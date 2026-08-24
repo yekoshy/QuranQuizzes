@@ -1,1 +1,197 @@
 
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خَرَائِطُ وَاخْتِبَارَاتُ القُرْآنِ الكَرِيمِ</title>
+    <!-- Using Google Fonts for neat and beautiful Arabic typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #15803d; /* Neat Islamic Green */
+            --primary-hover: #166534;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            font-family: 'Tajawal', sans-serif;
+            color: var(--text-main);
+        }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-family: 'Amiri', serif;
+            font-size: 2.5rem;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        header p {
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .surah-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--bg-color);
+            color: var(--primary);
+            border-radius: 50%;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            border: 2px solid var(--primary);
+            font-family: Arial, sans-serif;
+        }
+
+        .surah-name {
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0 0 1.5rem 0;
+            color: var(--text-main);
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background-color 0.2s, color 0.2s;
+            font-size: 1rem;
+        }
+
+        .btn-mindmap {
+            background-color: #f1f5f9;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-mindmap:hover {
+            background-color: #e2e8f0;
+        }
+
+        .btn-quiz {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-quiz:hover {
+            background-color: var(--primary-hover);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>مَشْرُوعُ خَرَائِطِ وَاخْتِبَارَاتِ القُرْآنِ الكَرِيمِ</h1>
+        <p>اخْتَرْ السُّورَةَ لِلْبَدْءِ فِي الاخْتِبَارِ أَوْ عَرْضِ الخَرِيطَةِ الذِّهْنِيَّةِ</p>
+    </header>
+
+    <div class="container">
+        <!-- This grid will be populated automatically by JavaScript -->
+        <div id="surah-container" class="grid"></div>
+    </div>
+
+    <footer>
+        تَمَّ إِنْشَاؤُهُ لِتَسْهِيلِ حِفْظِ وَفَهْمِ القُرْآنِ الكَرِيمِ
+    </footer>
+
+    <script>
+        // Array of all 114 Surahs with exact Tashkil
+        const surahs = [
+            "الفَاتِحَة", "البَقَرَة", "آل عِمْرَان", "النِّسَاء", "المَائِدَة", "الأَنْعَام", "الأَعْرَاف", "الأَنْفَال", "التَّوْبَة", "يُونُس",
+            "هُود", "يُوسُف", "الرَّعْد", "إِبْرَاهِيم", "الحِجْر", "النَّحْل", "الإِسْرَاء", "الكَهْف", "مَرْيَم", "طه",
+            "الأَنْبِيَاء", "الحَجّ", "المُؤْمِنُون", "النُّور", "الفُرْقَان", "الشُّعَرَاء", "النَّمْل", "القَصَص", "العَنْكَبُوت", "الرُّوم",
+            "لُقْمَان", "السَّجْدَة", "الأَحْزَاب", "سَبَأ", "فَاطِر", "يس", "الصَّافَّات", "ص", "الزُّمَر", "غَافِر",
+            "فُصِّلَت", "الشُّورَى", "الزُّخْرُف", "الدُّخَان", "الجَاثِيَة", "الأَحْقَاف", "مُحَمَّد", "الفَتْح", "الحُجُرَات", "ق",
+            "الذَّارِيَات", "الطُّور", "النَّجْم", "القَمَر", "الرَّحْمَن", "الوَاقِعَة", "الحَدِيد", "المُجَادَلَة", "الحَشْر", "المُمْتَحَنَة",
+            "الصَّفّ", "الجُمُعَة", "المُنَافِقُون", "التَّغَابُن", "الطَّلَاق", "التَّحْرِيم", "المُلْك", "القَلَم", "الحَاقَّة", "المَعَارِج",
+            "نُوح", "الجِنّ", "المُزَّمِّل", "المُدَّثِّر", "القِيَامَة", "الإِنْسَان", "المُرْسَلَات", "النَّبَأ", "النَّازِعَات", "عَبَس",
+            "التَّكْوِير", "الِانْفِطَار", "المُطَفِّفِين", "الِانْشِقَاق", "البُرُوج", "الطَّارِق", "الأَعْلَى", "الغَاشِيَة", "الفَجْر", "البَلَد",
+            "الشَّمْس", "اللَّيْل", "الضُّحَى", "الشَّرْح", "التِّين", "العَلَق", "القَدْر", "البَيِّنَة", "الزَّلْزَلَة", "العَادِيَات",
+            "القَارِعَة", "التَّكَاثُر", "العَصْر", "الهُمَزَة", "الفِيل", "قُرَيْش", "المَاعُون", "الكَوْثَر", "الكَافِرُون", "النَّصْر",
+            "المَسَد", "الإِخْلَاص", "الفَلَق", "النَّاس"
+        ];
+
+        const container = document.getElementById('surah-container');
+        
+        // Automatically generate a card for each Surah
+        surahs.forEach((surah, index) => {
+            const surahNumber = index + 1; // 1 to 114
+            
+            const card = document.createElement('div');
+            card.className = 'card';
+            
+            card.innerHTML = `
+                <div class="surah-number">${surahNumber}</div>
+                <h2 class="surah-name">سُورَةُ ${surah}</h2>
+                <div class="links">
+                    <a href="${surahNumber}_mindmap.html" class="btn btn-mindmap">خَرِيطَةٌ ذِهْنِيَّةٌ</a>
+                    <a href="${surahNumber}.html" class="btn btn-quiz">اخْتِبَارٌ</a>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    </script>
+</body>
+</html>
