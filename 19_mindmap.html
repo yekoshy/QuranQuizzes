@@ -5,165 +5,168 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>خَرِيطَةٌ ذِهْنِيَّةٌ لِسُورَةِ مَرْيَمَ</title>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
+     <style>
         :root {
-            --primary-color: #1a4a5e;
-            --secondary-color: #d4af37;
-            --bg-color: #f7f9fa;
-            --text-color: #333333;
+            --primary-color: #2c3e50;
+            --secondary-color: #2980b9;
+            --accent-color: #e74c3c;
+            --lesson-bg: #e8f8f5;
+            --lesson-border: #1abc9c;
+            --bg-color: #f4f7f6;
             --card-bg: #ffffff;
-            --line-color: #a8b8c0;
+            --line-color: #bdc3c7;
         }
 
         body {
-            font-family: 'Tajawal', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-color);
+            color: #333;
             margin: 0;
             padding: 20px;
-            line-height: 1.8;
+            line-height: 1.6;
         }
 
-        h1.main-title {
-            text-align: center;
-            color: var(--primary-color);
-            font-family: 'Amiri', serif;
-            font-size: 3rem;
-            margin-bottom: 50px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-
-        /* Mindmap Container */
-        .mindmap-wrapper {
-            position: relative;
+        .mindmap-container {
             max-width: 1000px;
             margin: 0 auto;
-            padding-bottom: 50px;
+            background-color: transparent;
         }
 
-        /* Central spine line */
-        .mindmap-wrapper::before {
+        .main-title {
+            text-align: center;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        /* Tree Structure */
+        .tree-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+
+        /* Vertical Line */
+        .tree-list::before {
             content: '';
             position: absolute;
             top: 0;
             bottom: 0;
-            right: 50px;
+            right: 20px; /* Adjust for RTL */
             width: 4px;
-            background-color: var(--primary-color);
-            border-radius: 2px;
+            background-color: var(--line-color);
         }
 
-        .node-container {
+        .partition-node {
             position: relative;
             margin-bottom: 40px;
-            padding-right: 100px;
+            padding-right: 50px;
         }
 
-        /* Branch lines connecting spine to cards */
-        .node-container::before {
+        /* Horizontal Connector */
+        .partition-node::before {
             content: '';
             position: absolute;
-            top: 40px;
-            right: 50px;
-            width: 50px;
+            top: 30px;
+            right: 20px;
+            width: 30px;
             height: 4px;
-            background-color: var(--primary-color);
+            background-color: var(--line-color);
         }
 
-        /* Circular bullet on the spine */
-        .node-container::after {
+        /* Circular Node Indicator */
+        .partition-node::after {
             content: '';
             position: absolute;
-            top: 32px;
-            right: 42px;
+            top: 22px;
+            right: 12px;
             width: 20px;
             height: 20px;
             background-color: var(--secondary-color);
-            border: 4px solid var(--primary-color);
             border-radius: 50%;
-            z-index: 1;
+            border: 4px solid var(--bg-color);
         }
 
-        .node-card {
+        .partition-content {
             background-color: var(--card-bg);
-            border: 2px solid var(--line-color);
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border-right: 5px solid var(--secondary-color);
         }
 
-        .node-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            border-color: var(--secondary-color);
-        }
-
-        .node-title {
-            color: var(--primary-color);
-            font-size: 1.5rem;
+        .partition-title {
+            color: var(--secondary-color);
+            font-size: 1.4em;
             margin-top: 0;
             margin-bottom: 15px;
-            border-bottom: 2px dashed var(--line-color);
+            border-bottom: 2px dashed #eee;
             padding-bottom: 10px;
-            font-family: 'Amiri', serif;
         }
 
-        .ayah-list {
+        .ayahs-list {
             list-style-type: none;
             padding: 0;
-            margin: 0 0 20px 0;
+            margin: 0;
         }
 
-        .ayah-list li {
+        .ayah-item {
             margin-bottom: 12px;
-            font-size: 1.1rem;
-            position: relative;
-            padding-right: 25px;
+            padding: 10px;
+            background-color: #fdfdfd;
+            border-radius: 5px;
+            border: 1px solid #eee;
         }
 
-        .ayah-list li::before {
-            content: '📌';
-            position: absolute;
-            right: 0;
-            top: 2px;
-            font-size: 1rem;
+        .ayah-range {
+            font-weight: bold;
+            color: var(--accent-color);
+            background-color: #fcebeb;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.9em;
+            margin-left: 8px;
         }
 
         .lesson-box {
-            background-color: rgba(212, 175, 55, 0.1);
-            border-right: 5px solid var(--secondary-color);
+            background-color: var(--lesson-bg);
+            border-right: 4px solid var(--lesson-border);
             padding: 15px;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 500;
+            margin-top: 20px;
+            border-radius: 5px;
+            color: #0e6251;
         }
 
         .lesson-title {
-            color: var(--primary-color);
-            font-weight: 700;
+            font-weight: bold;
+            color: var(--lesson-border);
             margin-bottom: 5px;
-            display: inline-block;
+            display: flex;
+            align-items: center;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .mindmap-wrapper::before {
-                right: 20px;
-            }
-            .node-container {
-                padding-right: 50px;
-            }
-            .node-container::before {
-                right: 20px;
-                width: 30px;
-            }
-            .node-container::after {
-                right: 12px;
-            }
-            h1.main-title {
-                font-size: 2rem;
-            }
+        .intro-box {
+            background-color: #fff3cd;
+            border-right: 4px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .partition-node { padding-right: 30px; }
+            .tree-list::before { right: 10px; }
+            .partition-node::before { right: 10px; width: 20px; }
+            .partition-node::after { right: 2px; }
+            .main-title { font-size: 1.5em; }
         }
     </style>
 </head>
