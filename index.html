@@ -1,15 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>خَرَائِطُ وَاخْتِبَارَاتُ القُرْآنِ الكَرِيمِ</title>
-    <!-- Using Google Fonts for neat and beautiful Arabic typography -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #15803d; /* Neat Islamic Green */
+            --primary: #15803d;
             --primary-hover: #166534;
             --bg-color: #f8fafc;
             --card-bg: #ffffff;
@@ -50,6 +48,14 @@
             max-width: 1200px;
             margin: 3rem auto;
             padding: 0 1.5rem;
+        }
+
+        #loading-message {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin: 2rem 0;
+            font-weight: bold;
         }
 
         .grid {
@@ -148,7 +154,10 @@
     </header>
 
     <div class="container">
-        <!-- This grid will be populated automatically by JavaScript -->
+        <!-- Message to show while the script checks your GitHub folder -->
+        <div id="loading-message">جَارٍ البَحْثُ عَنْ السُّوَرِ المُكْتَمِلَةِ فِي المِلَفَّات...</div>
+        
+        <!-- The grid where completed Surahs will appear -->
         <div id="surah-container" class="grid"></div>
     </div>
 
@@ -157,7 +166,6 @@
     </footer>
 
     <script>
-        // Array of all 114 Surahs with exact Tashkil
         const surahs = [
             "الفَاتِحَة", "البَقَرَة", "آل عِمْرَان", "النِّسَاء", "المَائِدَة", "الأَنْعَام", "الأَعْرَاف", "الأَنْفَال", "التَّوْبَة", "يُونُس",
             "هُود", "يُوسُف", "الرَّعْد", "إِبْرَاهِيم", "الحِجْر", "النَّحْل", "الإِسْرَاء", "الكَهْف", "مَرْيَم", "طه",
@@ -173,25 +181,65 @@
             "المَسَد", "الإِخْلَاص", "الفَلَق", "النَّاس"
         ];
 
-        const container = document.getElementById('surah-container');
-        
-        // Automatically generate a card for each Surah
-        surahs.forEach((surah, index) => {
-            const surahNumber = index + 1; // 1 to 114
-            
-            const card = document.createElement('div');
-            card.className = 'card';
-            
-            card.innerHTML = `
-                <div class="surah-number">${surahNumber}</div>
-                <h2 class="surah-name">سُورَةُ ${surah}</h2>
-                <div class="links">
-                    <a href="${surahNumber}_mindmap.html" class="btn btn-mindmap">خَرِيطَةٌ ذِهْنِيَّةٌ</a>
-                    <a href="${surahNumber}.html" class="btn btn-quiz">اخْتِبَارٌ</a>
-                </div>
-            `;
-            container.appendChild(card);
-        });
+        async function loadAvailableSurahs() {
+            const container = document.getElementById('surah-container');
+            const loading = document.getElementById('loading-message');
+
+            try {
+                // Fetch the list of files directly from your GitHub Repository
+                const response = await fetch('https://api.github.com/repos/yekoshy/QuranQuizzes/contents');
+                const filesData = await response.json();
+                
+                // If the API limit is hit or repo not found, filesData won't be an array
+                if (!Array.isArray(filesData)) throw new Error("API rate limit or connection issue.");
+
+                // Create an array containing only the names of the files in your repo
+                const availableFiles = filesData.map(file => file.name);
+
+                // Hide the loading text
+                loading.style.display = 'none';
+
+                let countAdded = 0;
+
+                // Loop through all 114 Surahs
+                surahs.forEach((surah, index) => {
+                    const surahNumber = index + 1;
+                    const quizFile = `${surahNumber}.html`;
+                    const mindmapFile = `${surahNumber}_mindmap.html`;
+
+                    // THE MAGIC RULE: Only add if BOTH files exist in the GitHub folder
+                    if (availableFiles.includes(quizFile) && availableFiles.includes(mindmapFile)) {
+                        
+                        const card = document.createElement('div');
+                        card.className = 'card';
+                        
+                        card.innerHTML = `
+                            <div class="surah-number">${surahNumber}</div>
+                            <h2 class="surah-name">سُورَةُ ${surah}</h2>
+                            <div class="links">
+                                <a href="${mindmapFile}" class="btn btn-mindmap">خَرِيطَةٌ ذِهْنِيَّةٌ</a>
+                                <a href="${quizFile}" class="btn btn-quiz">اخْتِبَارٌ</a>
+                            </div>
+                        `;
+                        container.appendChild(card);
+                        countAdded++;
+                    }
+                });
+
+                // If nothing is complete yet, show a friendly message
+                if (countAdded === 0) {
+                    container.style.display = 'block';
+                    container.innerHTML = '<p style="text-align:center; font-size: 1.1rem; color: #64748b;">لَا تُوجَدُ سُوَرٌ مُكْتَمِلَةٌ حَتَّى الآن. (يَجِبُ أَنْ يَتَوَفَّرَ مَلَفُّ الاخْتِبَارِ وَمَلَفُّ الخَرِيطَةِ مَعاً)</p>';
+                }
+
+            } catch (error) {
+                console.error('Error fetching files:', error);
+                loading.innerText = 'حَدَثَ خَطَأٌ فِي التَّحَقُّقِ مِنْ المِلَفَّاتِ. يُرْجَى تَحْدِيثُ الصَّفْحَةِ.';
+            }
+        }
+
+        // Run the function when the page loads
+        loadAvailableSurahs();
     </script>
 </body>
 </html>
