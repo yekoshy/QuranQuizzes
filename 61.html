@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مسابقة سورة الصف</title>
+    <style>
+        /* --- GitHub Light Theme Inspired CSS --- */
+        :root {
+            --bg-color: #ffffff;
+            --panel-bg: #f6f8fa;
+            --border-color: #d0d7de;
+            --text-primary: #24292f;
+            --text-secondary: #57606a;
+            --btn-primary: #1f883d;
+            --btn-primary-hover: #1a7f37;
+            --btn-secondary: #ffffff;
+            --btn-secondary-hover: #f3f4f6;
+            --color-correct: #1f883d;
+            --color-wrong: #cf222e;
+            --color-ayah-bg: #ddf4ff;
+            --color-ayah-border: #0969da;
+            
+            /* Difficulty Colors */
+            --color-easy: #2da44e;
+            --color-med: #bf8700;
+            --color-hard: #cf222e;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        /* Header & Tabs */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .tab-btn {
+            background-color: var(--btn-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: 0.2s;
+            font-weight: bold;
+        }
+
+        .tab-btn.active {
+            background-color: var(--btn-primary);
+            border-color: var(--btn-primary);
+            color: #ffffff;
+        }
+
+        .tab-btn:hover:not(.active) {
+            background-color: var(--btn-secondary-hover);
+        }
+
+        /* Main Panels */
+        .panel {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Buttons & Options */
+        button {
+            cursor: pointer;
+        }
+        
+        .btn-large {
+            background-color: var(--btn-primary);
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-size: 1.2em;
+            display: block;
+            margin: 20px auto 0;
+            transition: 0.2s;
+            font-weight: bold;
+        }
+
+        .btn-large:hover {
+            background-color: var(--btn-primary-hover);
+        }
+
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .option-btn {
+            background-color: var(--btn-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 1.2em;
+            text-align: right;
+            transition: 0.2s;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            background-color: var(--btn-secondary-hover);
+        }
+
+        .option-btn:disabled {
+            cursor: default;
+        }
+
+        .option-correct {
+            background-color: var(--color-correct) !important;
+            border-color: var(--color-correct) !important;
+            color: #fff !important;
+        }
+
+        .option-wrong {
+            background-color: var(--color-wrong) !important;
+            border-color: var(--color-wrong) !important;
+            color: #fff !important;
+        }
+
+        /* Feedbacks & Ayah */
+        .feedback {
+            margin-top: 20px;
+            font-size: 1.3em;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+
+        .feedback.cheer { color: var(--color-correct); display: block; animation: bounce 0.5s; }
+        .feedback.oops { color: var(--color-wrong); display: block; }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .ayah-box {
+            background-color: var(--color-ayah-bg);
+            border-right: 4px solid var(--color-ayah-border);
+            padding: 15px 20px;
+            margin-top: 20px;
+            border-radius: 4px;
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #0550ae;
+            display: none;
+            font-weight: bold;
+        }
+
+        /* Utilities */
+        .text-center { text-align: center; }
+        .mt-3 { margin-top: 20px; }
+        .mb-2 { margin-bottom: 15px; }
+        .text-secondary { color: var(--text-secondary); }
+        
+        .level-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            color: #fff;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .level-easy { background: var(--color-easy); }
+        .level-med { background: var(--color-med); }
+        .level-hard { background: var(--color-hard); }
+
+        /* Slides Controls & Pagination */
+        .slider-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        .slider-controls button {
+            background-color: var(--btn-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        .slider-controls button:hover {
+            background-color: var(--btn-secondary-hover);
+        }
+
+        .slide-answer {
+            background-color: var(--color-correct);
+            padding: 10px;
+            border-radius: 6px;
+            color: #fff;
+            margin: 15px 0;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .slider-pagination {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 20px;
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.2s;
+            opacity: 0.4;
+        }
+
+        .dot.easy { background-color: var(--color-easy); }
+        .dot.med { background-color: var(--color-med); }
+        .dot.hard { background-color: var(--color-hard); }
+        
+        .dot:hover { opacity: 0.8; }
+        .dot.active {
+            opacity: 1;
+            transform: scale(1.3);
+            box-shadow: 0 0 0 2px var(--panel-bg), 0 0 0 4px var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>📖 مَسَابَقَةُ سُورَةِ الصَّفِّ</h1>
+        <div class="tabs">
+            <button class="tab-btn active" id="btn-tab-quiz" onclick="switchTab('quiz')">المسابقة (15 سؤال)</button>
+            <button class="tab-btn" id="btn-tab-revision" onclick="switchTab('revision')">المراجعة (شرائح)</button>
+        </div>
+    </div>
+
+    <!-- Tab 1: Quiz -->
+    <div id="tab-quiz" class="panel active">
+        <!-- Start Screen -->
+        <div id="quiz-start" class="text-center">
+            <h2>مَرْحَباً بِكَ فِي مُسَابَقَةِ سُورَةِ الصَّفِّ</h2>
+            <p class="text-secondary mt-3">تَتَكَوَّنُ الْمُسَابَقَةُ مِنْ 15 سُؤَالاً مُخْتَارَةً عَشْوَائِيّاً (5 مِنْ كُلِّ مُسْتَوَى صُعُوبَةٍ).</p>
+            <button class="btn-large" onclick="startQuiz()">ابْدَأِ الْمُسَابَقَةَ الْآنَ</button>
+        </div>
+
+        <!-- Question Screen -->
+        <div id="quiz-question" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span id="q-counter" class="text-secondary" style="font-weight:bold;">السؤال 1 / 15</span>
+                <span id="q-level" class="level-badge">مستوى</span>
+            </div>
+            <h2 id="q-text" class="mt-3">نص السؤال</h2>
+            <div id="q-options" class="options-grid">
+                <!-- Options will be generated here -->
+            </div>
+            <div id="q-feedback" class="feedback"></div>
+            <div id="q-ayah" class="ayah-box"></div>
+            <button id="btn-next" class="btn-large" style="display: none;" onclick="nextQuestion()">السُّؤَالُ التَّالِي</button>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="quiz-result" class="text-center" style="display: none;">
+            <h2>انْتَهَتِ الْمُسَابَقَةُ! 🎉</h2>
+            <h1 style="font-size: 4em; color: var(--color-correct); margin: 20px 0;" id="final-score">15 / 15</h1>
+            <p id="score-msg" style="font-size: 1.2em; font-weight: bold;"></p>
+            <button class="btn-large" onclick="startQuiz()">إِعَادَةُ الْمُسَابَقَةِ</button>
+        </div>
+    </div>
+
+    <!-- Tab 2: Revision Slides -->
+    <div id="tab-revision" class="panel">
+        <div style="text-align: center; margin-bottom: 20px;">
+            <span id="slide-counter" class="text-secondary" style="font-weight:bold;">الشريحة 1 من 30</span>
+            <span id="slide-level" class="level-badge" style="margin-right: 15px;">مستوى</span>
+        </div>
+        <h2 id="slide-q-text">نص السؤال</h2>
+        <div class="slide-answer" id="slide-a-text">الإجابة الصحيحة</div>
+        <div class="ayah-box" id="slide-ayah" style="display: block;">الآية / التفسير</div>
+        
+        <div class="slider-pagination" id="slide-dots">
+            <!-- Dots will be generated here -->
+        </div>
+
+        <div class="slider-controls">
+            <button onclick="prevSlide()">السَّابِقُ</button>
+            <button onclick="nextSlide()">التَّالِي</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 30 Questions covering Surah As-Saff and Tafsir Ibn Kathir with full Tashkeel
+    const allQuestions = [
+        // --- Level 1: سهل (Easy) ---
+        {
+            level: "سَهْل",
+            class: "level-easy",
+            q: "مَاذَا تَفْعَلُ الْمَخْلُوقَاتُ فِي السَّمَاوَاتِ وَالْأَرْضِ كَمَا بَدَأَتْ سُورَةُ الصَّفِّ؟",
+            options: ["تُسَبِّحُ لِلَّهِ", "تَسْجُدُ لِلشَّمْسِ", "تَطُوفُ حَوْلَ الْأَرْضِ", "تَنَامُ بِاللَّيْلِ"],
+            correct: 0,
+            ayah: "﴿سَبَّحَ لِلَّهِ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ وَهُوَ الْعَزِيزُ الْحَكِيمُ﴾ [الصف: 1]"
+        },
+        {
+            level: "سَهْل",
+            class: "level-easy",
+            q: "مَا هُوَ الْأَمْرُ الَّذِي كَبُرَ مَقْتاً (أَيْ عَظُمَ بَغْضاً) عِنْدَ اللَّهِ تَعَالَى؟",
+            options: ["أَنْ تَقُولُوا مَا لَا تَفْعَلُونَ", "أَنْ تَأْكُلُوا أَمْوَالَ الْيَتَامَى", "أَنْ تَتْرُكُوا الصَّلَاةَ", "أَنْ تُشْرِكُوا بِاللَّهِ"],
+            correct: 0,
+            ayah: "﴿كَبُرَ مَقْتًا عِندَ اللَّهِ أَن تَقُولُوا مَا لَا تَفْعَلُونَ﴾ [الصف: 3] أَيْ إِنْكَاراً عَلَى مَنْ يَعِدُ وَعْداً لَا يَفِي بِهِ."
+        },
+        {
+            level: "سَهْل",
+            class: "level-easy",
+            q: "كَيْفَ يُحِبُّ اللَّهُ الْمُؤْمِنِينَ أَنْ يُقَاتِلُوا فِي سَبِيلِهِ؟",
+            options: ["صَفّاً كَأَنَّهُمْ بُنْيَانٌ مَرْصُوصٌ", "مُتَفَرِّقِينَ فِي الْجِبَالِ", "رُكْبَاناً عَلَى الْخَيْلِ فَقَطْ", "مُخْتَبِئِينَ خَلْفَ الْحُصُونِ"],
+            correct: 0,
+            ayah: "﴿إِنَّ اللَّهَ يُحِبُّ الَّذِينَ يُقَاتِلُونَ فِي سَبِيلِهِ صَفًّا كَأَنَّهُم بُنْيَانٌ مَّرْصُوصٌ﴾ [الصف: 4]"
+        },
+        {
+            level: "سَهْل",
+            class: "level-easy",
+            q: "أَيُّ نَبِيٍّ قَالَ لِقَوْمِهِ: ﴿لِمَ تُؤْذُونَنِي وَقَدْ تَعْلَمُونَ أَنِّي رَسُولُ اللَّهِ إِلَيْكُمْ﴾؟",
+            options: ["مُوسَى عَلَيْهِ السَّلَامُ", "عِيسَى عَلَيْهِ السَّلَامُ", "نُوحٌ عَلَيْهِ السَّلَامُ", "إِبْرَاهِيمُ عَلَيْهِ السَّلَامُ"],
+            correct: 0,
+            ayah: "﴿وَإِذْ قَالَ مُوسَىٰ لِقَوْمِهِ يَا قَوْمِ لِمَ تُؤْذُونَنِي وَقَد تَّعْلَمُونَ أَنِّي رَسُولُ اللَّهِ إِلَيْكُمْ﴾ [الصف: 5]"
+        },
+        {
+            level: "سَهْل",
+            class: "level-easy",
+            q: "مَنِ الَّذِي بَشَّرَ بِرَسُولٍ يَأْتِي مِنْ بَعْدِهِ اسْمُهُ أَحْمَدُ فِي هَذِهِ السُّورَةِ؟",
+            options: ["عِيسَى ابْنُ مَرْيَمَ", "مُوسَى بْنُ عِمْرَانَ", "دَاوُدُ عَلَيْهِ السَّلَامُ", "يَحْيَى عَلَيْهِ السَّلَامُ"],
+            correct: 0,
+            ayah: "﴿وَإِذْ قَالَ عِيسَى ابْنُ مَرْيَمَ يَا بَنِي إِسْرَائِيلَ... وَمُبَشِّرًا بِرَسُولٍ يَأْتِي مِن بَعْدِي اسْمُهُ أَحْمَدُ﴾ [الصف: 6]"
+        },
+        {
+            level: "سَهْل",
+            class: "level-easy",
+            q: "مَا هُوَ الِاسْمُ الَّذِي ذُكِرَ لِنَبِيِّنَا مُحَمَّدٍ ﷺ فِي سُورَةِ الصَّفِّ؟",
+            options: ["أَحْمَدُ", "الْمَاحِي", "الْحَاشِرُ", "الْعَاقِبُ"],
+            correct: 0,
+            ayah: "﴿وَمُبَشِّرًا بِرَسُولٍ يَأْتِي مِن بَعْدِي اسْمُهُ أَحْمَدُ﴾، وَهُوَ النَّبِيُّ الْأُمِّيُّ الْعَرَبِيُّ مُحَمَّدٌ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ."
+        },
+        {
+            level: "سَهْل",
+            class: "level-easy",
+            q: "بِمَاذَا رَدَّ الْكَافِرُونَ عِنْدَمَا جَاءَهُمُ الرَّسُولُ بِالْبَيِّنَاتِ كَمَا وَرَدَ فِي السُّورَةِ؟",
+            options: ["قَالُوا هَذَا سِحْرٌ مُبِينٌ", "آمَنُوا بِهِ جَمِيعاً", "هَرَبُوا مِنَ الْمَدِينَةِ", "قَالُوا هَذَا شَاعِرٌ"],
+            correct: 0,
+            ayah: "﴿فَلَمَّا جَاءَهُم بِالْبَيِّنَاتِ قَالُوا هَٰذَا سِحْرٌ مُّبِينٌ﴾ [الصف: 6]"
+        },
+        {
+            level: "سَهْل",
+            class: "level-easy",
+            q: "مَا هِيَ (التِّجَارَةُ) الَّتِي تَدُلُّ عَلَيْهَا السُّورَةُ لِتُنْجِيَ مِنْ عَذَابٍ أَلِيمٍ؟",
+            options: ["الْإِيمَانُ بِاللَّهِ وَرَسُولِهِ وَالْجِهَادُ بِالْأَمْوَالِ وَالْأَنْفُسِ", "بَيْعُ وَشِرَاءُ الذَّهَبِ وَالْفِضَّةِ", "السَّفَرُ لِطَلَبِ الْعِلْمِ فَقَطْ", "بِنَاءُ الْمَسَاجِدِ الْكَبِيرَةِ"],
+            correct: 0,
+            ayah: "﴿تُؤْمِنُونَ بِاللَّهِ وَرَسُولِهِ وَتُجَاهِدُونَ فِي سَبِيلِ اللَّهِ بِأَمْوَالِكُمْ وَأَنفُسِكُمْ﴾ [الصف: 11]"
+        },
+        {
+            level: "سَهْل",
+            class: "level-easy",
+            q: "مَا هِيَ الْبُشْرَى الدُّنْيَوِيَّةُ (وَأُخْرَى تُحِبُّونَهَا) الْمَذْكُورَةُ لِلْمُؤْمِنِينَ؟",
+            options: ["نَصْرٌ مِنَ اللَّهِ وَفَتْحٌ قَرِيبٌ", "كَنْزٌ مِنَ الذَّهَبِ", "أَنْهَارٌ مِنَ الْعَسَلِ فِي الدُّنْيَا", "سَلَامٌ دَائِمٌ مَعَ الْأَعْدَاءِ"],
+            correct: 0,
+            ayah: "﴿وَأُخْرَىٰ تُحِبُّونَهَا ۖ نَصْرٌ مِّنَ اللَّهِ وَفَتْحٌ قَرِيبٌ ۗ وَبَشِّرِ الْمُؤْمِنِينَ﴾ [الصف: 13]"
+        },
+        {
+            level: "سَهْل",
+            class: "level-easy",
+            q: "مَاذَا أَجَابَ الْحَوَارِيُّونَ حِينَمَا سَأَلَهُمْ عِيسَى: ﴿مَنْ أَنْصَارِي إِلَى اللَّهِ﴾؟",
+            options: ["نَحْنُ أَنْصَارُ اللَّهِ", "لَا قُدْرَةَ لَنَا عَلَى الْقِتَالِ", "اذْهَبْ أَنْتَ وَرَبُّكَ فَقَاتِلَا", "سَنُفَكِّرُ فِي الْأَمْرِ غَداً"],
+            correct: 0,
+            ayah: "﴿قَالَ الْحَوَارِيُّونَ نَحْنُ أَنصَارُ اللَّهِ﴾ [الصف: 14] أَيْ نَحْنُ أَنْصَارُكَ عَلَى مَا أُرْسِلْتَ بِهِ."
+        },
+
+        // --- Level 2: متوسط (Medium) ---
+        {
+            level: "مُتَوَسِّط",
+            class: "level-med",
+            q: "فِي أَيِّ شَيْءٍ نَزَلَتْ آيَةُ: ﴿لِمَ تَقُولُونَ مَا لَا تَفْعَلُونَ﴾ حَسَبَ رِوَايَةِ ابْنِ عَبَّاسٍ فِي التَّفْسِيرِ؟",
+            options: ["فِي قَوْمٍ تَمَنَّوْا فَرِيضَةَ الْجِهَادِ فَلَمَّا فُرِضَ نَكَلُوا عَنْهُ", "فِي قَوْمٍ وَعَدُوا بِإِخْرَاجِ الصَّدَقَاتِ وَلَمْ يَفْعَلُوا", "فِي الْمُنَافِقِينَ الَّذِينَ كَذَبُوا عَلَى النَّبِيِّ", "فِي قَوْمٍ ادَّعَوْا حِفْظَ الْقُرْآنِ"],
+            correct: 0,
+            ayah: "كَانَ نَاسٌ مِنَ الْمُؤْمِنِينَ يَقُولُونَ: لَوَدِدْنَا أَنَّ اللَّهَ دَلَّنَا عَلَى أَحَبِّ الْأَعْمَالِ... فَلَمَّا نَزَلَ الْجِهَادُ كَرِهَهُ بَعْضُهُمْ فَأَنْزَلَ اللَّهُ الْآيَةَ."
+        },
+        {
+            level: "مُتَوَسِّط",
+            class: "level-med",
+            q: "مَا مَعْنَى قَوْلِهِ تَعَالَى عَنِ الصَّفِّ فِي الْقِتَالِ: ﴿كَأَنَّهُمْ بُنْيَانٌ مَرْصُوصٌ﴾؟",
+            options: ["مُلْتَصِقٌ بَعْضُهُ بِبَعْضٍ وَمُثَبَّتٌ لَا يَزُولُ", "عَالٍ جِدّاً يَبْلُغُ السَّحَابَ", "مَبْنِيٌّ مِنَ الذَّهَبِ وَالْفِضَّةِ", "قَدِيمٌ جِدّاً كَالْآثَارِ"],
+            correct: 0,
+            ayah: "قَالَ ابْنُ عَبَّاسٍ: «مُثَبَّتٌ لَا يَزُولُ مُلْصَقٌ بَعْضُهُ بِبَعْضٍ»."
+        },
+        {
+            level: "مُتَوَسِّط",
+            class: "level-med",
+            q: "مَاذَا كَانَتْ عَاقِبَةُ قَوْمِ مُوسَى لَمَّا (زَاغُوا) أَيْ عَدَلُوا عَنِ اتِّبَاعِ الْحَقِّ مَعَ عِلْمِهِمْ؟",
+            options: ["أَزَاغَ اللَّهُ قُلُوبَهُمْ (أَسْكَنَهَا الشَّكَّ وَالْخِذْلَانَ)", "مَسَخَهُمْ قِرَدَةً وَخَنَازِيرَ", "أَغْرَقَهُمْ فِي الْيَمِّ مَعَ فِرْعَوْنَ", "أَنْزَلَ عَلَيْهِمْ حِجَارَةً مِنَ السَّمَاءِ"],
+            correct: 0,
+            ayah: "﴿فَلَمَّا زَاغُوا أَزَاغَ اللَّهُ قُلُوبَهُمْ ۚ وَاللَّهُ لَا يَهْدِي الْقَوْمَ الْفَاسِقِينَ﴾ [الصف: 5]"
+        },
+        {
+            level: "مُتَوَسِّط",
+            class: "level-med",
+            q: "مَنْ هُوَ الْأَظْلَمُ بِنَصِّ سُورَةِ الصَّفِّ فِي قَوْلِهِ: ﴿وَمَنْ أَظْلَمُ مِمَّنِ...﴾؟",
+            options: ["الَّذِي يَفْتَرِي الْكَذِبَ عَلَى اللَّهِ وَهُوَ يُدْعَى إِلَى الْإِسْلَامِ", "الَّذِي يَقْتُلُ النَّفْسَ الَّتِي حَرَّمَ اللَّهُ", "الَّذِي يَسْرِقُ أَمْوَالَ الْيَتَامَى", "الَّذِي يَمْنَعُ الْمَسَاجِدَ أَنْ يُذْكَرَ فِيهَا اسْمُ اللَّهِ"],
+            correct: 0,
+            ayah: "﴿وَمَنْ أَظْلَمُ مِمَّنِ افْتَرَىٰ عَلَى اللَّهِ الْكَذِبَ وَهُوَ يُدْعَىٰ إِلَى الْإِسْلَامِ ۚ وَاللَّهُ لَا يَهْدِي الْقَوْمَ الظَّالِمِينَ﴾ [الصف: 7]"
+        },
+        {
+            level: "مُتَوَسِّط",
+            class: "level-med",
+            q: "مَا هُوَ هَدَفُ الْكَافِرِينَ كَمَا وَصَفَهُمُ اللَّهُ فِي قَوْلِهِ: ﴿يُرِيدُونَ لِيُطْفِئُوا...﴾؟",
+            options: ["يُرِيدُونَ لِيُطْفِئُوا نُورَ اللَّهِ بِأَفْوَاهِهِمْ", "يُرِيدُونَ لِيُطْفِئُوا نَارَ الْمُسْلِمِينَ", "يُرِيدُونَ هَدْمَ الْكَعْبَةِ", "يُرِيدُونَ سَرِقَةَ أَمْوَالِ الْمُسْلِمِينَ"],
+            correct: 0,
+            ayah: "﴿يُرِيدُونَ لِيُطْفِئُوا نُورَ اللَّهِ بِأَفْوَاهِهِمْ وَاللَّهُ مُتِمُّ نُورِهِ وَلَوْ كَرِهَ الْكَافِرُونَ﴾ [الصف: 8]"
+        },
+        {
+            level: "مُتَوَسِّط",
+            class: "level-med",
+            q: "بِمَاذَا أَرْسَلَ اللَّهُ رَسُولَهُ كَمَا جَاءَ فِي آيَاتِ السُّورَةِ؟",
+            options: ["بِالْهُدَى وَدِينِ الْحَقِّ", "بِالْكِتَابِ وَالْمِيزَانِ فَقَطْ", "بِالْمُعْجِزَاتِ الْخَارِقَةِ كَالنَّارِ", "بِالسَّيْفِ لِقِتَالِ النَّاسِ جَمِيعاً فَقَطْ"],
+            correct: 0,
+            ayah: "﴿هُوَ الَّذِي أَرْسَلَ رَسُولَهُ بِالْهُدَىٰ وَدِينِ الْحَقِّ لِيُظْهِرَهُ عَلَى الدِّينِ كُلِّهِ...﴾ [الصف: 9]"
+        },
+        {
+            level: "مُتَوَسِّط",
+            class: "level-med",
+            q: "لِمَاذَا أَرْسَلَ اللَّهُ رَسُولَهُ بِالْهُدَى وَدِينِ الْحَقِّ حَسَبَ الْآيَةِ؟",
+            options: ["لِيُظْهِرَهُ عَلَى الدِّينِ كُلِّهِ", "لِيَجْمَعَ أَمْوَالَ الدُّنْيَا", "لِيُعَاقِبَ بَنِي إِسْرَائِيلَ فَقَطْ", "لِيَكُونَ مَلِكاً عَلَى الْعَرَبِ"],
+            correct: 0,
+            ayah: "﴿...لِيُظْهِرَهُ عَلَى الدِّينِ كُلِّهِ وَلَوْ كَرِهَ الْمُشْرِكُونَ﴾ [الصف: 9]"
+        },
+        {
+            level: "مُتَوَسِّط",
+            class: "level-med",
+            q: "مَا هُوَ الْجَزَاءُ فِي الْآخِرَةِ لِمَنْ يَقُومُ بِـ (التِّجَارَةِ الرَّابِحَةِ)؟",
+            options: ["يَغْفِرُ الذُّنُوبَ وَيُدْخِلُهُمْ جَنَّاتِ عَدْنٍ وَمَسَاكِنَ طَيِّبَةً", "أَنْ يَكُونُوا مُلُوكاً فِي الدُّنْيَا", "أَنْ لَا يَمُوتُوا أَبَداً بَلْ يُخَلَّدُونَ فِي الْأَرْضِ", "أَنْ يُعْطَوْا كُنُوزَ الْأَرْضِ بِأَكْمَلِهَا"],
+            correct: 0,
+            ayah: "﴿يَغْفِرْ لَكُمْ ذُنُوبَكُمْ وَيُدْخِلْكُمْ جَنَّاتٍ تَجْرِي مِن تَحْتِهَا الْأَنْهَارُ وَمَسَاكِنَ طَيِّبَةً فِي جَنَّاتِ عَدْنٍ﴾ [الصف: 12]"
+        },
+        {
+            level: "مُتَوَسِّط",
+            class: "level-med",
+            q: "مَنِ الَّذِينَ قَالَ لَهُمْ عِيسَى عَلَيْهِ السَّلَامُ: ﴿مَنْ أَنْصَارِي إِلَى اللَّهِ﴾؟",
+            options: ["الْحَوَارِيُّونَ (أَتْبَاعُ عِيسَى)", "الْفَرِيسِيُّونَ", "الرُّهْبَانُ بِشَكْلٍ عَامٍّ", "قُرَيْشٌ"],
+            correct: 0,
+            ayah: "﴿كَمَا قَالَ عِيسَى ابْنُ مَرْيَمَ لِلْحَوَارِيِّينَ مَنْ أَنصَارِي إِلَى اللَّهِ ۖ قَالَ الْحَوَارِيُّونَ...﴾ [الصف: 14]"
+        },
+        {
+            level: "مُتَوَسِّط",
+            class: "level-med",
+            q: "مَاذَا فَعَلَ اللَّهُ بِالَّذِينَ آمَنُوا مِنْ بَنِي إِسْرَائِيلَ ضِدَّ عَدُوِّهِمْ كَمَا فِي خِتَامِ السُّورَةِ؟",
+            options: ["أَيَّدَهُمْ (نَصَرَهُمْ) فَأَصْبَحُوا ظَاهِرِينَ", "رَفَعَهُمْ إِلَى السَّمَاءِ وَلَمْ يَنْتَصِرُوا", "نَقَلَهُمْ إِلَى مَكَّةَ لِلْعَيْشِ هُنَاكَ", "جَعَلَهُمْ يَعْتَزِلُونَ النَّاسَ فِي الْجِبَالِ"],
+            correct: 0,
+            ayah: "﴿فَأَيَّدْنَا الَّذِينَ آمَنُوا عَلَىٰ عَدُوِّهِمْ فَأَصْبَحُوا ظَاهِرِينَ﴾ [الصف: 14]"
+        },
+
+        // --- Level 3: صعب (Hard) ---
+        {
+            level: "صَعْب",
+            class: "level-hard",
+            q: "فِي الْحَدِيثِ الَّذِي رَوَاهُ أَبُو سَعِيدٍ الْخُدْرِيُّ، مَنْ هُمُ الثَّلَاثَةُ الَّذِينَ يَضْحَكُ اللَّهُ إِلَيْهِمْ؟",
+            options: ["الَّذِي يَقُومُ بِاللَّيْلِ، وَالْقَوْمُ يَصُفُّونَ لِلصَّلَاةِ، وَالْقَوْمُ يَصُفُّونَ لِلْقِتَالِ", "الْمُتَصَدِّقُ سِرّاً، وَالْحَاجُّ الْمَبْرُورُ، وَالصَّائِمُ", "طَالِبُ الْعِلْمِ، وَالْبَارُّ بِوَالِدَيْهِ، وَمُكَافِلُ الْيَتِيمِ", "قَارِئُ الْقُرْآنِ، وَالْمُؤَذِّنُ، وَالْإِمَامُ"],
+            correct: 0,
+            ayah: "قَالَ ﷺ: «ثَلَاثَةٌ يَضْحَكُ اللَّهُ إِلَيْهِمْ: الرَّجُلُ يَقُومُ مِنَ اللَّيْلِ، وَالْقَوْمُ إِذَا صَفُّوا لِلصَّلَاةِ، وَالْقَوْمُ إِذَا صَفُّوا لِلْقِتَالِ» (تفسير ابن كثير)."
+        },
+        {
+            level: "صَعْب",
+            class: "level-hard",
+            q: "مَنِ الصَّحَابِيُّ الَّذِي قَالَ فِي مَجْلِسٍ: 'لَوْ نَعْلَمُ أَيَّ الْأَعْمَالِ أَحَبُّ لَعَمِلْنَا بِهِ حَتَّى نَمُوتَ' ثُمَّ قَالَ 'لَا أَبْرَحُ حَبِيساً... أَمُوتُ' وَاسْتُشْهِدَ؟",
+            options: ["عَبْدُ اللَّهِ بْنُ رَوَاحَةَ", "خَالِدُ بْنُ الْوَلِيدِ", "عُمَرُ بْنُ الْخَطَّابِ", "حَمْزَةُ بْنُ عَبْدِ الْمُطَّلِبِ"],
+            correct: 0,
+            ayah: "قَالَ مُجَاهِدٌ: نَزَلَتْ فِي نَفَرٍ مِنَ الْأَنْصَارِ فِيهِمْ عَبْدُ اللَّهِ بْنُ رَوَاحَةَ... فَقُتِلَ شَهِيداً (تفسير ابن كثير)."
+        },
+        {
+            level: "صَعْب",
+            class: "level-hard",
+            q: "كَيْفَ بَدَأَ أَمْرُ النَّبِيِّ ﷺ كَمَا أَجَابَ السَّائِلِينَ (فِي الْحَدِيثِ عِنْدَ ابْنِ كَثِيرٍ)؟",
+            options: ["دَعْوَةُ إِبْرَاهِيمَ، وَبُشْرَى عِيسَى، وَرُؤْيَا أُمِّهِ أَنَّ نُوراً خَرَجَ مِنْهَا", "رُؤْيَا رَآهَا عَبْدُ الْمُطَّلِبِ، وَبِشَارَةُ بَحِيرَى الرَّاهِبِ", "عِنْدَمَا نَزَلَ عَلَيْهِ جِبْرِيلُ فِي غَارِ حِرَاءٍ فَقَطْ", "دَعْوَةُ إِسْمَاعِيلَ وَبِشَارَةُ مُوسَى"],
+            correct: 0,
+            ayah: "قَالَ ﷺ: «دَعْوَةُ أَبِي إِبْرَاهِيمَ، وَبُشْرَى عِيسَى، وَرَأَتْ أُمِّي كَأَنَّهُ خَرَجَ مِنْهَا نُورٌ أَضَاءَتْ لَهُ قُصُورُ بُصْرَى مِنْ أَرْضِ الشَّامِ»."
+        },
+        {
+            level: "صَعْب",
+            class: "level-hard",
+            q: "مَنِ الصَّحَابِيُّ الَّذِي خَطَبَ أَمَامَ النَّجَاشِيِّ وَأَوْضَحَ عَقِيدَةَ الْمُسْلِمِينَ فِي عِيسَى ابْنِ مَرْيَمَ؟",
+            options: ["جَعْفَرُ بْنُ أَبِي طَالِبٍ", "عُثْمَانُ بْنُ مَظْعُونٍ", "عَبْدُ اللَّهِ بْنُ مَسْعُودٍ", "أَبُو مُوسَى الْأَشْعَرِيُّ"],
+            correct: 0,
+            ayah: "قَالَ جَعْفَرٌ لِلنَّجَاشِيِّ: «نَقُولُ كَمَا قَالَ اللَّهُ: هُوَ كَلِمَةُ اللَّهِ وَرُوحُهُ أَلْقَاهَا إِلَى الْعَذْرَاءِ الْبَتُولِ...» (تفسير ابن كثير)."
+        },
+        {
+            level: "صَعْب",
+            class: "level-hard",
+            q: "مَا هُوَ النِّدَاءُ الَّذِي كَانَ يَقُولُهُ النَّبِيُّ ﷺ فِي أَيَّامِ الْحَجِّ كَمَا نَادَى عِيسَى الْحَوَارِيِّينَ؟",
+            options: ["«مَنْ رَجُلٌ يُؤْوِينِي حَتَّى أُبَلِّغَ رِسَالَةَ رَبِّي»", "«يَا أَيُّهَا النَّاسُ قُولُوا لَا إِلَهَ إِلَّا اللَّهُ تُفْلِحُوا»", "«هَلُمُّوا إِلَى تِجَارَةٍ لَنْ تَبُورَ»", "«مَنْ يُعَاهِدُنِي عَلَى الْمَوْتِ دُونَ مَكَّةَ»"],
+            correct: 0,
+            ayah: "كَانَ يَقُولُ ﷺ: «مَنْ رَجُلٌ يُؤْوِينِي حَتَّى أُبَلِّغَ رِسَالَةَ رَبِّي، فَإِنَّ قُرَيْشاً قَدْ مَنَعُونِي...» حَتَّى قَيَّضَ اللَّهُ لَهُ الْأَنْصَارَ."
+        },
+        {
+            level: "صَعْب",
+            class: "level-hard",
+            q: "مَنْ هُوَ التَّابِعِيُّ (أَوِ الرَّاوِي) الَّذِي سَأَلَ أَبَا ذَرٍّ عَنْ حَدِيثِ 'يُحِبُّ اللَّهُ ثَلَاثَةً' كَمَا ذَكَرَ ابْنُ كَثِيرٍ؟",
+            options: ["مُطَرِّفُ بْنُ عَبْدِ اللَّهِ", "سَعِيدُ بْنُ جُبَيْرٍ", "مُقَاتِلُ بْنُ حَيَّانَ", "يَحْيَى بْنُ جَابِرٍ"],
+            correct: 0,
+            ayah: "قَالَ مُطَرِّفٌ: لَقِيتُ أَبَا ذَرٍّ فَقُلْتُ كَانَ يَبْلُغُنِي عَنْكَ... فَقَالَ: رَجُلٌ غَزَا فِي سَبِيلِ اللَّهِ خَرَجَ مُحْتَسِباً، ثُمَّ قَرَأَ: ﴿إِنَّ اللَّهَ يُحِبُّ الَّذِينَ يُقَاتِلُونَ...﴾."
+        },
+        {
+            level: "صَعْب",
+            class: "level-hard",
+            q: "حَسَبَ تَفْسِيرِ ابْنِ كَثِيرٍ، مَا مَعْنَى 'الْمَاحِي' مِنْ أَسْمَاءِ النَّبِيِّ ﷺ الْمَذْكُورَةِ بِالْحَدِيثِ الصَّحِيحِ؟",
+            options: ["الَّذِي يَمْحُو اللَّهُ بِهِ الْكُفْرَ", "الَّذِي يَمْحُو الذُّنُوبَ عَنْ أُمَّتِهِ", "الَّذِي أَزَالَ الْأَصْنَامَ بِيَدِهِ مِنَ الْكَعْبَةِ", "الَّذِي يُنْسِي النَّاسَ كُتُبَهُمُ السَّابِقَةَ"],
+            correct: 0,
+            ayah: "قَالَ ﷺ: «...وَأَنَا الْمَاحِي الَّذِي يَمْحُو اللَّهُ بِهِ الْكُفْرَ»."
+        },
+        {
+            level: "صَعْب",
+            class: "level-hard",
+            q: "مَا مَعْنَى اسْمِهِ ﷺ (الْحَاشِرُ) كَمَا وَرَدَ فِي الصَّحِيحَيْنِ بِالسِّيَاقِ نَفْسِهِ؟",
+            options: ["الَّذِي يُحْشَرُ النَّاسُ عَلَى قَدَمِهِ", "الَّذِي يَحْشُرُ جُيُوشَ الْمُسْلِمِينَ فَقَطْ", "الَّذِي يَجْمَعُ الْأَمْوَالَ لِلْفُقَرَاءِ", "الَّذِي يَحْشُرُ الْمُنَافِقِينَ فِي جَهَنَّمَ"],
+            correct: 0,
+            ayah: "قَالَ ﷺ: «...وَأَنَا الْحَاشِرُ الَّذِي يُحْشَرُ النَّاسُ عَلَى قَدَمِي، وَأَنَا الْعَاقِبُ»."
+        },
+        {
+            level: "صَعْب",
+            class: "level-hard",
+            q: "مَنْ هُمُ الْقَوْمُ الَّذِينَ قَيَّضَهُمُ اللَّهُ لِنُصْرَةِ نَبِيِّهِ ﷺ وَمُوَازَرَتِهِ، فَسَمَّاهُمُ اللَّهُ بِـ (الْأَنْصَارِ)؟",
+            options: ["الْأَوْسُ وَالْخَزْرَجُ مِنْ أَهْلِ الْمَدِينَةِ", "بَنُو هَاشِمٍ وَبَنُو الْمُطَّلِبِ مِنْ مَكَّةَ", "ثَقِيفٌ مِنْ أَهْلِ الطَّائِفِ", "قَبَائِلُ غَطَفَانَ فِي نَجْدٍ"],
+            correct: 0,
+            ayah: "قَيَّضَ اللَّهُ عَزَّ وَجَلَّ لَهُ الْأَوْسَ وَالْخَزْرَجَ... فَوَفَّوْا لَهُ بِمَا عَاهَدُوا اللَّهَ عَلَيْهِ، وَلِهَذَا سَمَّاهُمُ اللَّهُ وَرَسُولُهُ (الْأَنْصَارَ)."
+        },
+        {
+            level: "صَعْب",
+            class: "level-hard",
+            q: "إِلَى مَنْ أَرْسَلَتْ قُرَيْشٌ (عَمْرَو بْنَ الْعَاصِ وَعُمَارَةَ بْنَ الْوَلِيدِ) لِلْوِشَايَةِ بِالْمُسْلِمِينَ الْمُهَاجِرِينَ؟",
+            options: ["إِلَى النَّجَاشِيِّ مَلِكِ الْحَبَشَةِ", "إِلَى هِرَقْلَ عَظِيمِ الرُّومِ", "إِلَى كِسْرَى مَلِكِ الْفُرْسِ", "إِلَى الْمُقَوْقِسِ حَاكِمِ مِصْرَ"],
+            correct: 0,
+            ayah: "بَعَثَنَا رَسُولُ اللَّهِ ﷺ إِلَى النَّجَاشِيِّ... وَبَعَثَتْ قُرَيْشٌ عَمْرَو بْنَ الْعَاصِ وَعُمَارَةَ بْنَ الْوَلِيدِ... وَفِيهَا قِصَّةُ جَعْفَرٍ (تفسير ابن كثير)."
+        }
+    ];
+
+    // --- State Variables ---
+    let currentQuizQuestions = [];
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let currentSlideIndex = 0;
+
+    // --- Tab Switching ---
+    function switchTab(tabId) {
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        
+        document.getElementById('tab-' + tabId).classList.add('active');
+        document.getElementById('btn-tab-' + tabId).classList.add('active');
+
+        if (tabId === 'revision') {
+            currentSlideIndex = 0;
+            renderSlide();
+        }
+    }
+
+    // --- Shuffle Utility ---
+    function shuffleArray(array) {
+        let currentIndex = array.length, randomIndex;
+        while (currentIndex !== 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+            [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+        }
+        return array;
+    }
+
+    // --- Pagination Dots for Slides ---
+    function generateDots() {
+        const dotsContainer = document.getElementById('slide-dots');
+        dotsContainer.innerHTML = '';
+        allQuestions.forEach((q, index) => {
+            const dot = document.createElement('div');
+            dot.className = `dot ${q.class.replace('level-', '')}`; // gives 'dot easy', 'dot med', 'dot hard'
+            dot.onclick = () => {
+                currentSlideIndex = index;
+                renderSlide();
+            };
+            dotsContainer.appendChild(dot);
+        });
+    }
+
+    function updateDots() {
+        const dots = document.querySelectorAll('.dot');
+        dots.forEach((dot, idx) => {
+            if (idx === currentSlideIndex) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+
+    // --- Quiz Logic ---
+    function startQuiz() {
+        document.getElementById('quiz-start').style.display = 'none';
+        document.getElementById('quiz-result').style.display = 'none';
+        document.getElementById('quiz-question').style.display = 'block';
+
+        // Filter by levels
+        let easyQ = allQuestions.filter(q => q.level === 'سَهْل');
+        let medQ = allQuestions.filter(q => q.level === 'مُتَوَسِّط');
+        let hardQ = allQuestions.filter(q => q.level === 'صَعْب');
+
+        shuffleArray(easyQ);
+        shuffleArray(medQ);
+        shuffleArray(hardQ);
+
+        // Select 15 questions (5 easy, 5 med, 5 hard)
+        currentQuizQuestions = [
+            ...easyQ.slice(0, 5),
+            ...medQ.slice(0, 5),
+            ...hardQ.slice(0, 5)
+        ];
+
+        shuffleArray(currentQuizQuestions);
+
+        currentQuestionIndex = 0;
+        score = 0;
+        renderQuestion();
+    }
+
+    function renderQuestion() {
+        const qData = currentQuizQuestions[currentQuestionIndex];
+        
+        document.getElementById('q-counter').innerText = `السؤال ${currentQuestionIndex + 1} من 15`;
+        
+        const qLevelBadge = document.getElementById('q-level');
+        qLevelBadge.innerText = qData.level;
+        qLevelBadge.className = 'level-badge ' + qData.class;
+
+        document.getElementById('q-text').innerText = qData.q;
+        
+        const optionsBox = document.getElementById('q-options');
+        optionsBox.innerHTML = '';
+
+        // Create options mapping to keep track of correct index after shuffle
+        let optionsObj = qData.options.map((opt, index) => ({ text: opt, isCorrect: index === qData.correct }));
+        shuffleArray(optionsObj);
+
+        optionsObj.forEach((opt) => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.innerText = opt.text;
+            btn.onclick = () => selectOption(btn, opt.isCorrect, optionsObj);
+            optionsBox.appendChild(btn);
+        });
+
+        document.getElementById('q-feedback').className = 'feedback';
+        document.getElementById('q-feedback').style.display = 'none';
+        document.getElementById('q-ayah').style.display = 'none';
+        document.getElementById('btn-next').style.display = 'none';
+    }
+
+    function selectOption(selectedBtn, isCorrect, optionsObj) {
+        // Disable all buttons
+        const allBtns = document.querySelectorAll('.option-btn');
+        allBtns.forEach(btn => btn.disabled = true);
+
+        const feedback = document.getElementById('q-feedback');
+        const ayahBox = document.getElementById('q-ayah');
+        const nextBtn = document.getElementById('btn-next');
+
+        if (isCorrect) {
+            selectedBtn.classList.add('option-correct');
+            feedback.innerText = "أَحْسَنْتَ! إِجَابَةٌ صَحِيحَةٌ 🌟";
+            feedback.className = 'feedback cheer';
+            score++;
+        } else {
+            selectedBtn.classList.add('option-wrong');
+            feedback.innerText = "إِجَابَةٌ خَاطِئَةٌ! ❌";
+            feedback.className = 'feedback oops';
+            
+            // Highlight the correct one
+            allBtns.forEach(btn => {
+                let correctObj = optionsObj.find(o => o.text === btn.innerText);
+                if (correctObj && correctObj.isCorrect) {
+                    btn.classList.add('option-correct');
+                }
+            });
+        }
+
+        // Show Ayah/Tafsir
+        ayahBox.innerText = currentQuizQuestions[currentQuestionIndex].ayah;
+        ayahBox.style.display = 'block';
+        nextBtn.style.display = 'block';
+    }
+
+    function nextQuestion() {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < currentQuizQuestions.length) {
+            renderQuestion();
+        } else {
+            showResult();
+        }
+    }
+
+    function showResult() {
+        document.getElementById('quiz-question').style.display = 'none';
+        document.getElementById('quiz-result').style.display = 'block';
+        
+        document.getElementById('final-score').innerText = `${score} / 15`;
+        
+        let msg = "";
+        if (score >= 13) msg = "مَشَاءَ اللَّهُ! أَنْتَ مُتَمَيِّزٌ فِي حِفْظِ وَفَهْمِ السُّورَةِ. 🏆";
+        else if (score >= 9) msg = "جَيِّدٌ جِدّاً! تَسْتَحِقُّ الْمُمَارَسَةَ أَكْثَرَ. 👍";
+        else msg = "عَلَيْكَ بِمُرَاجَعَةِ السُّورَةِ، اسْتَعِنْ بِعَلَامَةِ التَّبْوِيبِ (الْمُرَاجَعَة). 📚";
+
+        document.getElementById('score-msg').innerText = msg;
+    }
+
+    // --- Slides Logic ---
+    function renderSlide() {
+        const qData = allQuestions[currentSlideIndex];
+        
+        document.getElementById('slide-counter').innerText = `الشريحة ${currentSlideIndex + 1} من ${allQuestions.length}`;
+        
+        const slLevelBadge = document.getElementById('slide-level');
+        slLevelBadge.innerText = qData.level;
+        slLevelBadge.className = 'level-badge ' + qData.class;
+
+        document.getElementById('slide-q-text').innerText = qData.q;
+        document.getElementById('slide-a-text').innerText = "الْإِجَابَةُ الصَّحِيحَةُ: " + qData.options[qData.correct];
+        document.getElementById('slide-ayah').innerText = qData.ayah;
+
+        updateDots();
+    }
+
+    function nextSlide() {
+        if (currentSlideIndex < allQuestions.length - 1) {
+            currentSlideIndex++;
+            renderSlide();
+        }
+    }
+
+    function prevSlide() {
+        if (currentSlideIndex > 0) {
+            currentSlideIndex--;
+            renderSlide();
+        }
+    }
+
+    // Initialize dots on load
+    window.onload = () => {
+        generateDots();
+    };
+
+</script>
+
+</body>
+</html>
