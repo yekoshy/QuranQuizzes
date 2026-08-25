@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خَرِيطَةٌ ذِهْنِيَّةٌ - سُورَةُ الْمُمْتَحَنَةِ</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #2980b9;
+            --accent-color: #e74c3c;
+            --lesson-bg: #e8f8f5;
+            --lesson-border: #1abc9c;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --line-color: #bdc3c7;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .mindmap-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: transparent;
+        }
+
+        .main-title {
+            text-align: center;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        /* Tree Structure */
+        .tree-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+
+        /* Vertical Line */
+        .tree-list::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 20px;
+            width: 4px;
+            background-color: var(--line-color);
+        }
+
+        .partition-node {
+            position: relative;
+            margin-bottom: 40px;
+            padding-right: 50px;
+        }
+
+        /* Horizontal Connector */
+        .partition-node::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            width: 30px;
+            height: 4px;
+            background-color: var(--line-color);
+        }
+
+        /* Circular Node Indicator */
+        .partition-node::after {
+            content: '';
+            position: absolute;
+            top: 22px;
+            right: 12px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            border: 4px solid var(--bg-color);
+        }
+
+        .partition-content {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border-right: 5px solid var(--secondary-color);
+        }
+
+        .partition-title {
+            color: var(--secondary-color);
+            font-size: 1.4em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 2px dashed #eee;
+            padding-bottom: 10px;
+        }
+
+        .ayahs-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ayah-item {
+            margin-bottom: 12px;
+            padding: 10px;
+            background-color: #fdfdfd;
+            border-radius: 5px;
+            border: 1px solid #eee;
+        }
+
+        .ayah-range {
+            font-weight: bold;
+            color: var(--accent-color);
+            background-color: #fcebeb;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.9em;
+            margin-left: 8px;
+        }
+
+        .lesson-box {
+            background-color: var(--lesson-bg);
+            border-right: 4px solid var(--lesson-border);
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            color: #0e6251;
+        }
+
+        .lesson-title {
+            font-weight: bold;
+            color: var(--lesson-border);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .intro-box {
+            background-color: #fff3cd;
+            border-right: 4px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .partition-node { padding-right: 30px; }
+            .tree-list::before { right: 10px; }
+            .partition-node::before { right: 10px; width: 20px; }
+            .partition-node::after { right: 2px; }
+            .main-title { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="mindmap-container">
+    <div class="main-title">
+        خَرِيطَةٌ ذِهْنِيَّةٌ لِسُورَةِ الْمُمْتَحَنَةِ
+    </div>
+
+    <div class="intro-box">
+        <strong>مُقَدِّمَةٌ فِي سَبَبِ نُزُولِ السُّورَةِ:</strong>
+        نَزَلَتْ بِدَايَةُ السُّورَةِ فِي الصَّحَابِيِّ (حَاطِبِ بْنِ أَبِي بَلْتَعَةَ) حِينَمَا كَتَبَ كِتَابًا لِمُشْرِكِي قُرَيْشٍ يُخْبِرُهُمْ بِقَصْدِ النَّبِيِّ ﷺ لِفَتْحِ مَكَّةَ لِيَتَّخِذَ عِنْدَهُمْ يَدًا يَحْمُونَ بِهَا قَرَابَتَهُ. فَأَخْبَرَ اللَّهُ رَسُولَهُ بِذَلِكَ، وَعَاتَبَ اللَّهُ الْمُؤْمِنِينَ وَأَسَّسَ لَهُمْ قَوَاعِدَ الْوَلَاءِ وَالْبَرَاءِ.
+    </div>
+
+    <ul class="tree-list">
+        <!-- Partition 1 -->
+        <li class="partition-node">
+            <div class="partition-content">
+                <h3 class="partition-title">١. النَّهْيُ عَنْ مُوَالَاةِ أَعْدَاءِ اللَّهِ (الْآيَاتُ ١-٣)</h3>
+                <ul class="ayahs-list">
+                    <li class="ayah-item"><span class="ayah-range">الآيَةُ (١):</span> نَهْيٌ شَدِيدٌ لِلْمُؤْمِنِينَ عَنِ اتِّخَاذِ الْكُفَّارِ - الَّذِينَ يُحَارِبُونَ اللَّهَ وَرَسُولَهُ وَأَخْرَجُوا الْمُؤْمِنِينَ مِنْ دِيَارِهِمْ - أَوْلِيَاءَ يُلْقُونَ إِلَيْهِمْ بِالْمَوَدَّةِ سِرًّا وَعَلَانِيَةً، فَاللَّهُ عَالِمٌ بِالسَّرَائِرِ.</li>
+                    <li class="ayah-item"><span class="ayah-range">الآيَةُ (٢):</span> بَيَانُ أَنَّ عَدَاوَةَ هَؤُلَاءِ كَامِنَةٌ وَظَاهِرَةٌ؛ فَلَوْ قَدَرُوا عَلَى الْمُؤْمِنِينَ لَمَا تَرَدَّدُوا فِي إِيذَائِهِمْ بِالْقَوْلِ وَالْفِعْلِ، وَلَحَرَصُوا عَلَى رَدِّهِمْ إِلَى الْكُفْرِ.</li>
+                    <li class="ayah-item"><span class="ayah-range">الآيَةُ (٣):</span> التَّحْذِيرُ مِنْ تَقْدِيمِ الْأَقَارِبِ وَالْأَوْلَادِ عَلَى طَاعَةِ اللَّهِ لِإِرْضَائِهِمْ بِالْكُفْرِ؛ فَإِنَّهُمْ لَنْ يَنْفَعُوا يَوْمَ الْقِيَامَةِ، وَاللَّهُ هُوَ الَّذِي يَفْصِلُ بَيْنَ الْعِبَادِ.</li>
+                </ul>
+                <div class="lesson-box">
+                    <div class="lesson-title">📌 الدَّرْسُ الْمُسْتَفَادُ:</div>
+                    الْوَلَاءُ وَالْبَرَاءُ أَصْلٌ مِنْ أُصُولِ الْإِيمَانِ. وَلَا يَجُوزُ مُوَالَاةُ مَنْ يُحَارِبُ الدِّينَ، كَمَا لَا يَجُوزُ تَقْدِيمُ مَصَالِحِ الْأَهْلِ وَالْوَلَدِ عَلَى رِضَا اللَّهِ عَزَّ وَجَلَّ، فَالرَّابِطَةُ الْإِيمَانِيَّةُ هِيَ الْأَبْقَى.
+                </div>
+            </div>
+        </li>
+
+        <!-- Partition 2 -->
+        <li class="partition-node">
+            <div class="partition-content">
+                <h3 class="partition-title">٢. الِاقْتِدَاءُ بِإِبْرَاهِيمَ وَمَنْ مَعَهُ فِي الْبَرَاءَةِ مِنَ الشِّرْكِ (الْآيَاتُ ٤-٦)</h3>
+                <ul class="ayahs-list">
+                    <li class="ayah-item"><span class="ayah-range">الآيَةُ (٤):</span> ضَرْبُ الْمَثَلِ الْحَسَنِ بِإِبْرَاهِيمَ عَلَيْهِ السَّلَامُ وَالْمُؤْمِنِينَ حِينَ أَعْلَنُوا الْبَرَاءَةَ مِنْ قَوْمِهِمْ وَمِمَّا يَعْبُدُونَ مِنْ دُونِ اللَّهِ، وَأَعْلَنُوا الْعَدَاوَةَ لِلشِّرْكِ. وَاسْتِثْنَاءُ اسْتِغْفَارِ إِبْرَاهِيمَ لِأَبِيهِ (لِأَنَّهُ كَانَ لِوَعْدٍ وَقَدْ تَبَرَّأَ مِنْهُ لَاحِقًا).</li>
+                    <li class="ayah-item"><span class="ayah-range">الآيَةُ (٥):</span> دُعَاءُ الْمُؤْمِنِينَ: التَّوَكُّلُ عَلَى اللَّهِ، وَطَلَبُ الْمَغْفِرَةِ، وَالدُّعَاءُ بِأَلَّا يَجْعَلَهُمُ اللَّهُ فِتْنَةً لِلْكَافِرِينَ (أَيْ لَا يُسَلِّطُ الْأَعْدَاءَ عَلَيْهِمْ فَيَظُنُّ الْكُفَّارُ أَنَّهُمْ عَلَى الْحَقِّ).</li>
+                    <li class="ayah-item"><span class="ayah-range">الآيَةُ (٦):</span> التَّأْكِيدُ عَلَى أَنَّ هَذَا الِاقْتِدَاءَ هُوَ لِمَنْ يَرْجُو ثَوَابَ اللَّهِ وَالْيَوْمَ الْآخِرَ، وَمَنْ يَتَوَلَّ وَيُعْرِضْ فَإِنَّ اللَّهَ غَنِيٌّ عَنْهُ حَمِيدٌ فِي أَفْعَالِهِ.</li>
+                </ul>
+                <div class="lesson-box">
+                    <div class="lesson-title">📌 الدَّرْسُ الْمُسْتَفَادُ:</div>
+                    وُجُوبُ التَّأَسِّي بِأَبِي الْأَنْبِيَاءِ فِي الْبَرَاءَةِ مِنَ الشِّرْكِ وَأَهْلِهِ. وَأَهَمِّيَّةُ اللُّجُوءِ لِلَّهِ بِالدُّعَاءِ لِلثَّبَاتِ وَالْمَغْفِرَةِ، حَتَّى لَا نَكُونَ سَبَبًا فِي فِتْنَةِ أَعْدَاءِ الدِّينِ.
+                </div>
+            </div>
+        </li>
+
+        <!-- Partition 3 -->
+        <li class="partition-node">
+            <div class="partition-content">
+                <h3 class="partition-title">٣. التَّفْرِيقُ بَيْنَ الْكُفَّارِ الْمُسَالِمِينَ وَالْمُحَارِبِينَ (الْآيَاتُ ٧-٩)</h3>
+                <ul class="ayahs-list">
+                    <li class="ayah-item"><span class="ayah-range">الآيَةُ (٧):</span> رَجَاءٌ وَتَأْمِيلٌ بِأَنْ يَهْدِيَ اللَّهُ قُلُوبَ الْأَعْدَاءِ لِلْإِسْلَامِ (كَمَا حَصَلَ لِأَبِي سُفْيَانَ وَغَيْرِهِ بَعْدَ فَتْحِ مَكَّةَ)، فَتَنْقَلِبَ الْعَدَاوَةُ إِلَى مَوَدَّةٍ.</li>
+                    <li class="ayah-item"><span class="ayah-range">الآيَةُ (٨):</span> الرُّخْصَةُ الرَّبَّانِيَّةُ فِي الْبِرِّ وَالْإِحْسَانِ وَالْعَدْلِ مَعَ الْكُفَّارِ الْمُسَالِمِينَ الَّذِينَ لَمْ يُقَاتِلُوا الْمُسْلِمِينَ فِي الدِّينِ وَلَمْ يُخْرِجُوهُمْ مِنْ دِيَارِهِمْ.</li>
+                    <li class="ayah-item"><span class="ayah-range">الآيَةُ (٩):</span> تَخْصِيصُ التَّحْرِيمِ الشَّدِيدِ بِاتِّخَاذِ الْمُحَارِبِينَ الَّذِينَ قَاتَلُوا الْمُسْلِمِينَ وَأَخْرَجُوهُمْ - أَوْ عَاوَنُوا عَلَى ذَلِكَ - أَوْلِيَاءَ. وَمَنْ يَفْعَلْ ذَلِكَ فَهُوَ مِنَ الظَّالِمِينَ.</li>
+                </ul>
+                <div class="lesson-box">
+                    <div class="lesson-title">📌 الدَّرْسُ الْمُسْتَفَادُ:</div>
+                    عَدْلُ وَسَمَاحَةُ الشَّرِيعَةِ الْإِسْلَامِيَّةِ؛ فَهِيَ تُمَيِّزُ بَيْنَ مَسَالِمٍ تُحْسِنُ إِلَيْهِ وَتُقْسِطُ مَعَهُ (كَصِلَةِ الْأَقَارِبِ غَيْرِ الْمُسْلِمِينَ)، وَبَيْنَ مُحَارِبٍ مُعْتَدٍ تُقَاطِعُهُ وَتُعَادِيهِ.
+                </div>
+            </div>
+        </li>
+
+        <!-- Partition 4 -->
+        <li class="partition-node">
+            <div class="partition-content">
+                <h3 class="partition-title">٤. أَحْكَامُ الْمُهَاجِرَاتِ وَالزَّوَاجِ بِالْمُشْرِكَاتِ (الْآيَاتُ ١٠-١١)</h3>
+                <ul class="ayahs-list">
+                    <li class="ayah-item"><span class="ayah-range">الآيَةُ (١٠):</span> الْأَمْرُ بِامْتِحَانِ النِّسَاءِ الْمُهَاجِرَاتِ (بِالْحَلِفِ أَنَّهُنَّ جِئْنَ رَغْبَةً فِي الْإِسْلَامِ وَلَيْسَ فِرَارًا مِنْ زَوْجٍ). فَإِذَا ثَبَتَ إِيمَانُهُنَّ فَلَا يُرَدُّونَ لِلْكُفَّارِ، فَالْمُؤْمِنَةُ لَا تَحِلُّ لِكَافِرٍ. مَعَ الْأَمْرِ بِرَدِّ الْمَهْرِ لِأَزْوَاجِهِنَّ الْكُفَّارِ، وَجَوَازِ زَوَاجِ الْمُؤْمِنِينَ بِهِنَّ بِمَهْرٍ جَدِيدٍ. وَكَذَلِكَ نُهِيَ الْمُسْلِمُونَ عَنِ التَّمَسُّكِ بِعِصْمَةِ زَوْجَاتِهِمُ الْكَافِرَاتِ.</li>
+                    <li class="ayah-item"><span class="ayah-range">الآيَةُ (١١):</span> التَّوْجِيهُ بِأَنَّهُ إِذَا فَرَّتْ زَوْجَةُ مُسْلِمٍ إِلَى الْكُفَّارِ وَلَمْ يَرُدُّوا مَهْرَهَا، فَإِذَا نَالَ الْمُسْلِمُونَ غَنِيمَةً يُعَوَّضُ الزَّوْجُ الْمُسْلِمُ مِثْلَ مَا أَنْفَقَ مِنْ مَهْرِهَا، مَعَ الْأَمْرِ بِتَقْوَى اللَّهِ فِي كُلِّ الْأَحْوَالِ.</li>
+                </ul>
+                <div class="lesson-box">
+                    <div class="lesson-title">📌 الدَّرْسُ الْمُسْتَفَادُ:</div>
+                    الِاخْتِلَافُ فِي عَقِيدَةِ الْإِسْلَامِ يُنْهِي رَابِطَةَ الزَّوَاجِ (فَلَا الْمُسْلِمَةُ تَحِلُّ لِكَافِرٍ، وَلَا الْمُسْلِمُ يُبْقِي كَافِرَةً). وَالْإِسْلَامُ حَفِظَ الْحُقُوقَ الْمَالِيَّةَ حَتَّى لِلْأَعْدَاءِ بِرَدِّ الْمُهُورِ لَهُمْ تَحْقِيقًا لِلْعَدْلِ الْإِلَهِيِّ.
+                </div>
+            </div>
+        </li>
+
+        <!-- Partition 5 -->
+        <li class="partition-node">
+            <div class="partition-content">
+                <h3 class="partition-title">٥. مُبَايَعَةُ الْمُؤْمِنَاتِ (الْآيَةُ ١٢)</h3>
+                <ul class="ayahs-list">
+                    <li class="ayah-item"><span class="ayah-range">الآيَةُ (١٢):</span> شُرُوطُ بَيْعَةِ النِّسَاءِ لِلنَّبِيِّ ﷺ هِيَ: ١- عَدَمُ الشِّرْكِ بِاللَّهِ. ٢- عَدَمُ السَّرِقَةِ. ٣- عَدَمُ الزِّنَا. ٤- عَدَمُ قَتْلِ الْأَوْلَادِ (سَوَاءً وَأْدًا أَوْ إِسْقَاطًا). ٥- عَدَمُ الْإِتْيَانِ بِبُهْتَانٍ (كَإِلْحَاقِ وَلَدٍ لِغَيْرِ أَبِيهِ). ٦- عَدَمُ عِصْيَانِ النَّبِيِّ فِي مَعْرُوفٍ (وَمِنْهُ النَّهْيُ عَنِ النِّيَاحَةِ). فَإِذَا وَافَقْنَ بَايَعَهُنَّ بِالْكَلَامِ (وَلَمْ يُصَافِحْ امْرَأَةً قَطُّ) وَاسْتَغْفَرَ لَهُنَّ.</li>
+                </ul>
+                <div class="lesson-box">
+                    <div class="lesson-title">📌 الدَّرْسُ الْمُسْتَفَادُ:</div>
+                    عِنَايَةُ الْإِسْلَامِ بِالْمَرْأَةِ بِتَوْجِيهِهَا لِبِنَاءِ مُجْتَمَعٍ طَاهِرٍ خَالٍ مِنَ الْجَرَائِمِ وَالْمُنْكَرَاتِ. وَبَيَانُ هَدْيِ النَّبِيِّ ﷺ بِتَحْرِيمِ مُصَافَحَةِ النِّسَاءِ الْأَجَانِبِ حَتَّى فِي أَعْظَمِ الْمَوَاقِفِ كَالْبَيْعَةِ.
+                </div>
+            </div>
+        </li>
+
+        <!-- Partition 6 -->
+        <li class="partition-node">
+            <div class="partition-content">
+                <h3 class="partition-title">٦. الْخَاتِمَةُ: تَأْكِيدُ تَحْرِيمِ مُوَالَاةِ أَعْدَاءِ اللَّهِ (الْآيَةُ ١٣)</h3>
+                <ul class="ayahs-list">
+                    <li class="ayah-item"><span class="ayah-range">الآيَةُ (١٣):</span> خَاتِمَةُ السُّورَةِ كَبِدَايَتِهَا؛ نِدَاءٌ لِلْمُؤْمِنِينَ بِتَحْرِيمِ مُوَالَاةِ قَوْمٍ غَضِبَ اللَّهُ عَلَيْهِمْ. فَهَؤُلَاءِ قَدْ يَئِسُوا مِنْ خَيْرِ الْآخِرَةِ كَمَا يَئِسَ الْكُفَّارُ مِنْ أَمْوَاتِهِمُ الَّذِينَ فِي الْقُبُورِ أَنْ يَرْجِعُوا (لِإِنْكَارِهِمُ الْبَعْثَ)، أَوْ كَمَا يَئِسَ الْمَوْتَى الْكُفَّارُ مِنْ كُلِّ خَيْرٍ بَعْدَ مُعَايَنَتِهِمُ الْعَذَابَ.</li>
+                </ul>
+                <div class="lesson-box">
+                    <div class="lesson-title">📌 الدَّرْسُ الْمُسْتَفَادُ:</div>
+                    تَأْكِيدٌ قَاطِعٌ عَلَى أَنَّ مَنْ غَضِبَ اللَّهُ عَلَيْهِ لَا خَيْرَ فِيهِ وَلَا يُرْجَى مِنْهُ نَفْعٌ فِي الْآخِرَةِ، فَلَا يَنْبَغِي لِلْمُؤْمِنِ أَنْ يَتَوَلَّاهُ أَوْ يَرْكَنَ إِلَيْهِ فِي الدُّنْيَا جَافِيًا رِضَا رَبِّهِ.
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>
