@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خَرِيطَةٌ ذِهْنِيَّةٌ - سُورَةُ الطَّلَاقِ</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #2980b9;
+            --accent-color: #e74c3c;
+            --lesson-bg: #e8f8f5;
+            --lesson-border: #1abc9c;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --line-color: #bdc3c7;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .mindmap-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: transparent;
+        }
+
+        .main-title {
+            text-align: center;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        /* Tree Structure */
+        .tree-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+
+        /* Vertical Line */
+        .tree-list::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 20px; /* Adjust for RTL */
+            width: 4px;
+            background-color: var(--line-color);
+        }
+
+        .partition-node {
+            position: relative;
+            margin-bottom: 40px;
+            padding-right: 50px;
+        }
+
+        /* Horizontal Connector */
+        .partition-node::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            width: 30px;
+            height: 4px;
+            background-color: var(--line-color);
+        }
+
+        /* Circular Node Indicator */
+        .partition-node::after {
+            content: '';
+            position: absolute;
+            top: 22px;
+            right: 12px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            border: 4px solid var(--bg-color);
+        }
+
+        .partition-content {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border-right: 5px solid var(--secondary-color);
+        }
+
+        .partition-title {
+            color: var(--secondary-color);
+            font-size: 1.4em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 2px dashed #eee;
+            padding-bottom: 10px;
+        }
+
+        .ayahs-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ayah-item {
+            margin-bottom: 12px;
+            padding: 10px;
+            background-color: #fdfdfd;
+            border-radius: 5px;
+            border: 1px solid #eee;
+        }
+
+        .ayah-range {
+            font-weight: bold;
+            color: var(--accent-color);
+            background-color: #fcebeb;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.9em;
+            margin-left: 8px;
+        }
+
+        .lesson-box {
+            background-color: var(--lesson-bg);
+            border-right: 4px solid var(--lesson-border);
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            color: #0e6251;
+        }
+
+        .lesson-title {
+            font-weight: bold;
+            color: var(--lesson-border);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .intro-box {
+            background-color: #fff3cd;
+            border-right: 4px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .partition-node { padding-right: 30px; }
+            .tree-list::before { right: 10px; }
+            .partition-node::before { right: 10px; width: 20px; }
+            .partition-node::after { right: 2px; }
+            .main-title { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="mindmap-container">
+    <div class="main-title">
+        خَرِيطَةٌ ذِهْنِيَّةٌ لِسُورَةِ الطَّلَاقِ
+    </div>
+
+    <div class="intro-box">
+        <strong>مُقَدِّمَةٌ فِي هَدَفِ السُّورَةِ:</strong>
+        سُورَةُ الطَّلَاقِ تُفَصِّلُ أَحْكَامَ الْفِرَاقِ بَيْنَ الزَّوْجَيْنِ بِمَا يَضْمَنُ الْحُقُوقَ وَيَحْفَظُ الْكَرَامَةَ، مُبَيِّنَةً أَحْكَامَ الْعِدَّةِ وَالنَّفَقَةِ وَالسُّكْنَى، مَعَ التَّرْكِيزِ الْبَالِغِ عَلَى أَهَمِّيَّةِ "التَّقْوَى" وَالتَّوَكُّلِ عَلَى اللَّهِ كَعَاصِمٍ مِنَ الظُّلْمِ عِنْدَ الِانْفِصَالِ.
+    </div>
+
+    <ul class="tree-list">
+        <!-- Partition 1 -->
+        <li class="partition-node">
+            <div class="partition-content">
+                <h3 class="partition-title">١. أَحْكَامُ الطَّلَاقِ السُّنِّيِّ وَالسُّكْنَى فِي الْعِدَّةِ (الْآيَةُ ١)</h3>
+                <ul class="ayahs-list">
+                    <li class="ayah-item"><span class="ayah-range">الآيَةُ (١):</span> خِطَابٌ لِلنَّبِيِّ ﷺ وَلِلْأُمَّةِ بِأَحْكَامِ الطَّلَاقِ الصَّحِيحِ (طَلَاقِ السُّنَّةِ) وَهُوَ طَلَاقُ الْمَرْأَةِ فِي طُهْرٍ لَمْ يُمَامِسْهَا فِيهِ زَوْجُهَا. وَالْأَمْرُ بِحِفْظِ وَإِحْصَاءِ مُدَّةِ الْعِدَّةِ، مَعَ وُجُوبِ بَقَاءِ الْمُطَلَّقَةِ فِي بَيْتِ زَوْجِهَا دُونَ إِخْرَاجٍ أَوْ خُرُوجٍ إِلَّا بِإِتْيَانِهَا بِفَاحِشَةٍ مُبَيِّنَةٍ. وَتِلْكَ حُدُودُ اللَّهِ مَنْ يَتَعَدَّاهَا ظَلَمَ نَفْسَهُ، لَعَلَّ اللَّهَ يُحْدِثُ بَعْدَ ذَلِكَ أَمْرًا بِرَغْبَةِ الزَّوْجِ فِي مُرَاجَعَتِهَا.</li>
+                </ul>
+                <div class="lesson-box">
+                    <div class="lesson-title">📌 الدَّرْسُ الْمُسْتَفَادُ:</div>
+                    لِلطَّلَاقِ ضَوَابِطُ شَرْعِيَّةٌ تَجِبُ مُرَاعَاتُهَا تَعْظِيمًا لِحُدُودِ اللَّهِ. وَبَقَاءُ الزَّوْجَةِ الرَّجْعِيَّةِ فِي بَيْتِ الزَّوْجِيَّةِ يَفْتَحُ بَابًا كَبِيرًا لِلْإِصْلَاحِ وَإِعَادَةِ الْمَوَدَّةِ، فَالشَّرِيعَةُ تَحْرِصُ عَلَى بَقَاءِ الْأُسْرَةِ لِآخِرِ لَحْظَةٍ.
+                </div>
+            </div>
+        </li>
+
+        <!-- Partition 2 -->
+        <li class="partition-node">
+            <div class="partition-content">
+                <h3 class="partition-title">٢. الرَّجْعَةُ أَوِ الْمُفَارَقَةُ وَثَمَرَاتُ التَّقْوَى (الْآيَاتُ ٢-٣)</h3>
+                <ul class="ayahs-list">
+                    <li class="ayah-item"><span class="ayah-range">الآيَةُ (٢):</span> عِنْدَ مُقَارَبَةِ انْتِهَاءِ عِدَّةِ الطَّلَاقِ، عَلَى الزَّوْجِ أَنْ يَخْتَارَ: إِمَّا رَدُّهَا إِلَى عِصْمَتِهِ وَإِمْسَاكُهَا بِمَعْرُوفٍ وَإِحْسَانٍ، أَوْ مُفَارَقَتُهَا بِإِحْسَانٍ دُونَ مُشَاتَمَةٍ. مَعَ الْأَمْرِ بِإِشْهَادِ ذَوَيْ عَدْلٍ عَلَى الرَّجْعَةِ، مَوْعِظَةً لِمَنْ يُؤْمِنُ بِاللَّهِ. وَبِشَارَةٌ بِأَنَّ مَنْ يَتَّقِ اللَّهَ يَجْعَلْ لَهُ مِنْ كُلِّ كَرْبٍ مَخْرَجًا.</li>
+                    <li class="ayah-item"><span class="ayah-range">الآيَةُ (٣):</span> وَعْدٌ حَقٌّ بِأَنَّ الْمُتَّقِيَ يَرْزُقُهُ اللَّهُ مِنْ جِهَةٍ لَا تَخْطُرُ لَهُ بِبَالٍ (لَا يَحْتَسِبُهَا). وَمَنْ يُفَوِّضْ أَمْرَهُ لِلَّهِ (يَتَوَكَّلْ) يَكْفِهِ هُمُومَهُ، فَإِنَّ اللَّهَ نَافِذُ الْقَضَاءِ (بَالِغُ أَمْرِهِ) وَقَدْ جَعَلَ لِكُلِّ شَيْءٍ تَقْدِيرًا وَمِقْدَارًا.</li>
+                </ul>
+                <div class="lesson-box">
+                    <div class="lesson-title">📌 الدَّرْسُ الْمُسْتَفَادُ:</div>
+                    الْمُعَامَلَةُ فِي انْتِهَاءِ الْعَلَاقَاتِ الزَّوْجِيَّةِ مَبْنِيَّةٌ عَلَى الْفَضْلِ وَالْمَعْرُوفِ كَمَا بَدَأَتْ. وَأَنَّ تَقْوَى اللَّهِ وَالْتِزَامَ أَوَامِرِهِ يُفَرِّجَانِ الْكُرُوبَ، وَيَجْلِبَانِ الرِّزْقَ، فَمَنِ انْقَطَعَ إِلَى اللَّهِ كَفَاهُ كُلَّ مَؤُونَةٍ.
+                </div>
+            </div>
+        </li>
+
+        <!-- Partition 3 -->
+        <li class="partition-node">
+            <div class="partition-content">
+                <h3 class="partition-title">٣. عِدَّةُ الْيَائِسَةِ وَالصَّغِيرَةِ وَالْحَامِلِ (الْآيَاتُ ٤-٥)</h3>
+                <ul class="ayahs-list">
+                    <li class="ayah-item"><span class="ayah-range">الآيَةُ (٤):</span> بَيَانُ أَحْكَامٍ خَاصَّةٍ: الْمَرْأَةُ الْيَائِسَةُ مِنَ الْمَحِيضِ لِكِبَرِهَا، وَكَذَلِكَ الصَّغِيرَةُ الَّتِي لَمْ تَحِضْ بَعْدُ، عِدَّتُهُمَا "ثَلَاثَةُ أَشْهُرٍ". أَمَّا ذَوَاتُ الْحَمْلِ، فَأَجَلُ عِدَّتِهِنَّ يَنْتَهِي بِوَضْعِ الْحَمْلِ مَهْمَا كَانَتِ الْمُدَّةُ. وَوَعْدٌ آخَرُ لِلْمُتَّقِينَ بِتَيْسِيرِ الْأُمُورِ (يَجْعَلْ لَهُ مِنْ أَمْرِهِ يُسْرًا).</li>
+                    <li class="ayah-item"><span class="ayah-range">الآيَةُ (٥):</span> هَذِهِ التَّشْرِيعَاتُ هِيَ أَمْرُ اللَّهِ نَزَلَتْ إِلَيْنَا لِنَحْفَظَهَا، وَمَنْ يَلْتَزِمْ بِتَقْوَى اللَّهِ فِيهَا يُكَفِّرْ سَيِّئَاتِهِ وَيُعْظِمْ لَهُ الْأَجْرَ يَوْمَ الْقِيَامَةِ.</li>
+                </ul>
+                <div class="lesson-box">
+                    <div class="lesson-title">📌 الدَّرْسُ الْمُسْتَفَادُ:</div>
+                    شُمُولُ الشَّرِيعَةِ الْإِسْلَامِيَّةِ الَّتِي أَعْطَتْ لِكُلِّ حَالَةٍ حُكْمًا مُنَاسِبًا لَهَا مِمَّا يَرْفَعُ الْحَرَجَ عَنِ النَّاسِ. وَأَنَّ تَنْفِيذَ أَحْكَامِ الطَّلَاقِ بِمَا يُرْضِي اللَّهَ عِبَادَةٌ تُكَفِّرُ الذُّنُوبَ وَتُيَسِّرُ الْعَسِيرَ.
+                </div>
+            </div>
+        </li>
+
+        <!-- Partition 4 -->
+        <li class="partition-node">
+            <div class="partition-content">
+                <h3 class="partition-title">٤. أَحْكَامُ النَّفَقَةِ وَالرَّضَاعَةِ (الْآيَاتُ ٦-٧)</h3>
+                <ul class="ayahs-list">
+                    <li class="ayah-item"><span class="ayah-range">الآيَةُ (٦):</span> الْأَمْرُ بِإِسْكَانِ الْمُطَلَّقَةِ مَكَانَ سَكَنِ الزَّوْجِ حَسَبَ وُجْدِهِ وَقُدْرَتِهِ، وَالنَّهْيُ الشَّدِيدُ عَنِ التَّضْيِيقِ عَلَيْهِنَّ لِلْإِضْرَارِ بِهِنَّ. وَوُجُوبُ النَّفَقَةِ عَلَى الْمُطَلَّقَةِ الْحَامِلِ حَتَّى تَضَعَ. فَإِنْ أَرْضَعَتْ طِفْلَهَا تُعْطَى أَجْرَهَا، وَيَكُونُ ذَلِكَ بِتَشَاوُرٍ وَمَعْرُوفٍ بَيْنَ الطَّلِيقَيْنِ. وَإِنْ تَعَسَّرَتِ الْأُمُورُ بَيْنَهُمَا فَلْيَسْتَرْضِعْ لَهُ غَيْرَهَا دُونَ نِزَاعٍ مُسْتَمِرٍّ.</li>
+                    <li class="ayah-item"><span class="ayah-range">الآيَةُ (٧):</span> وُجُوبُ الْإِنْفَاقِ عَلَى الْمَوْلُودِ وَالْمُطَلَّقَةِ مَبْنِيٌّ عَلَى الِاسْتِطَاعَةِ؛ فَالْغَنِيُّ ذُو السَّعَةِ يُنْفِقُ مِنْ سَعَتِهِ، وَالْفَقِيرُ مِمَّا آتَاهُ اللَّهُ كَذَلِكَ، "لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا مَا آتَاهَا"، وَوَعْدٌ كَرِيمٌ بِأَنَّ اللَّهَ سَيَجْعَلُ بَعْدَ الْعُسْرِ وَالضِّيقِ يُسْرًا وَفَرَجًا.</li>
+                </ul>
+                <div class="lesson-box">
+                    <div class="lesson-title">📌 الدَّرْسُ الْمُسْتَفَادُ:</div>
+                    النَّهْيُ عَنِ اسْتِخْدَامِ الْأَوْلَادِ وَالنَّفَقَةِ كَأَسْلِحَةٍ لِلضَّرَرِ بَعْدَ الطَّلَاقِ. وَمُرَاعَاةُ حَالِ الزَّوْجِ الْمَادِّيَّةِ تَعْكِسُ يُسْرَ الشَّرِيعَةِ، وَالتَّذْكِيرُ بِأَنَّ الْعُسْرَ زَائِلٌ وَيَعْقُبُهُ فَضْلُ اللَّهِ وَيُسْرُهُ جَبْرًا لِلْقُلُوبِ.
+                </div>
+            </div>
+        </li>
+
+        <!-- Partition 5 -->
+        <li class="partition-node">
+            <div class="partition-content">
+                <h3 class="partition-title">٥. الِاعْتِبَارُ بِمَصِيرِ الْأُمَمِ وَوَعْدُ الْمُؤْمِنِينَ (الْآيَاتُ ٨-١١)</h3>
+                <ul class="ayahs-list">
+                    <li class="ayah-item"><span class="ayah-range">الآيَاتُ (٨-١٠):</span> تَحْذِيرٌ وَوَعِيدٌ بِذِكْرِ مَصِيرِ الْقُرَى الَّتِي تَمَرَّدَتْ (عَتَتْ) عَلَى أَمْرِ اللَّهِ وَرُسُلِهِ، فَحَاسَبَهَا اللَّهُ حِسَابًا شَدِيدًا مُنْكَرًا، وَذَاقَتْ وَبَالَ عِصْيَانِهَا بِخُسْرَانٍ فِي الدُّنْيَا، مَعَ مَا أَعَدَّهُ اللَّهُ لَهُمْ مِنْ عَذَابٍ شَدِيدٍ فِي الْآخِرَةِ. لِذَا، يُنَادِي اللَّهُ أُولِي الْعُقُولِ مِنَ الْمُؤْمِنِينَ أَنْ يَتَّقُوهُ وَلَا يَتَجَاوَزُوا شَرْعَهُ.</li>
+                    <li class="ayah-item"><span class="ayah-range">الآيَةُ (١١):</span> بَيَانُ نِعْمَةِ اللَّهِ بِإِنْزَالِ الْقُرْآنِ ذِكْرًا، وَإِرْسَالِ النَّبِيِّ ﷺ رَسُولًا يَتْلُو آيَاتٍ وَاضِحَاتٍ لِيُخْرِجَ الْمُؤْمِنِينَ مِنْ ظُلُمَاتِ الْجَهْلِ وَالْكُفْرِ إِلَى نُورِ الشَّرْعِ وَالْإِيمَانِ. وَبِشَارَةٌ لِمَنْ يُؤْمِنُ وَيَعْمَلُ صَالِحًا بِدُخُولِ جَنَّاتٍ تَجْرِي مِنْ تَحْتِهَا الْأَنْهَارُ أَبَدًا وَقَدْ أَحْسَنَ اللَّهُ لَهُ رِزْقًا.</li>
+                </ul>
+                <div class="lesson-box">
+                    <div class="lesson-title">📌 الدَّرْسُ الْمُسْتَفَادُ:</div>
+                    مُخَالَفَةُ أَحْكَامِ اللَّهِ (بِمَا فِيهَا أَحْكَامُ الْأُسْرَةِ) هِيَ سَبَبٌ لِلْهَلَاكِ كَمَا هَلَكَتِ الْأُمَمُ السَّابِقَةُ بِمُعَانَدَتِهَا. وَأَنَّ رِسَالَةَ الْإِسْلَامِ هِيَ النُّورُ الَّذِي يَحْفَظُ لِلْبَشَرِيَّةِ سَعَادَتَهَا فِي الدُّنْيَا، وَالْجَنَّةَ فِي الْآخِرَةِ.
+                </div>
+            </div>
+        </li>
+
+        <!-- Partition 6 -->
+        <li class="partition-node">
+            <div class="partition-content">
+                <h3 class="partition-title">٦. قُدْرَةُ اللَّهِ وَإِحَاطَةُ عِلْمِهِ (الْآيَةُ ١٢)</h3>
+                <ul class="ayahs-list">
+                    <li class="ayah-item"><span class="ayah-range">الآيَةُ (١٢):</span> خِتَامُ السُّورَةِ الْكَرِيمَةِ بِمَشْهَدٍ كَوْنِيٍّ مَهِيبٍ؛ فَهُوَ سُبْحَانَهُ الَّذِي خَلَقَ سَبْعَ سَمَاوَاتٍ طِبَاقًا، وَمِنَ الْأَرْضِ سَبْعًا مِثْلَهُنَّ. يَتَنَزَّلُ أَمْرُهُ الْكَوْنِيُّ وَالشَّرْعِيُّ بَيْنَهُنَّ لِحِكْمَةٍ بَالِغَةٍ: لِيَعْلَمَ النَّاسُ يَقِينًا أَنَّ اللَّهَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، وَأَنَّهُ سُبْحَانَهُ قَدْ أَحَاطَ بِكُلِّ شَيْءٍ عِلْمًا.</li>
+                </ul>
+                <div class="lesson-box">
+                    <div class="lesson-title">📌 الدَّرْسُ الْمُسْتَفَادُ:</div>
+                    مَنِ اتَّصَفَ بِهَذِهِ الْعَظَمَةِ وَالْقُدْرَةِ وَالْعِلْمِ الْمُحِيطِ، فَهُوَ الْجَدِيرُ بِأَنْ يُطَاعَ وَلَا يُعْصَى. وَالتَّفَكُّرُ فِي قُدْرَةِ اللَّهِ هُوَ أَعْظَمُ بَاعِثٍ عَلَى تَحْقِيقِ "التَّقْوَى" الَّتِي هِيَ مِحْوَرُ السُّورَةِ فِي أَحْكَامِهَا كَافَّةً.
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>
