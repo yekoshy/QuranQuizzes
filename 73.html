@@ -695,7 +695,7 @@
         allQuestions.forEach((q, index) => {
             const dot = document.createElement('div');
             dot.className = `dot ${q.level}`;
-            dot.innerText = index + 1;
+            //dot.innerText = index + 1;
             dot.onclick = () => {
                 currentSlideIndex = index;
                 renderSlide();
