@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خَرِيطَةٌ ذِهْنِيَّةٌ - سُورَةُ الْمُدَّثِّرِ</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #2980b9;
+            --accent-color: #e74c3c;
+            --lesson-bg: #e8f8f5;
+            --lesson-border: #1abc9c;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --line-color: #bdc3c7;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .mindmap-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: transparent;
+        }
+
+        .main-title {
+            text-align: center;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        /* Tree Structure */
+        .tree-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+
+        /* Vertical Line */
+        .tree-list::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 20px; /* Adjust for RTL */
+            width: 4px;
+            background-color: var(--line-color);
+        }
+
+        .partition-node {
+            position: relative;
+            margin-bottom: 40px;
+            padding-right: 50px;
+        }
+
+        /* Horizontal Connector */
+        .partition-node::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            width: 30px;
+            height: 4px;
+            background-color: var(--line-color);
+        }
+
+        /* Circular Node Indicator */
+        .partition-node::after {
+            content: '';
+            position: absolute;
+            top: 22px;
+            right: 12px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            border: 4px solid var(--bg-color);
+        }
+
+        .partition-content {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border-right: 5px solid var(--secondary-color);
+        }
+
+        .partition-title {
+            color: var(--secondary-color);
+            font-size: 1.4em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 2px dashed #eee;
+            padding-bottom: 10px;
+        }
+
+        .ayahs-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ayah-item {
+            margin-bottom: 12px;
+            padding: 10px;
+            background-color: #fdfdfd;
+            border-radius: 5px;
+            border: 1px solid #eee;
+        }
+
+        .ayah-range {
+            font-weight: bold;
+            color: var(--accent-color);
+            background-color: #fcebeb;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.9em;
+            margin-left: 8px;
+        }
+
+        .lesson-box {
+            background-color: var(--lesson-bg);
+            border-right: 4px solid var(--lesson-border);
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            color: #0e6251;
+        }
+
+        .lesson-title {
+            font-weight: bold;
+            color: var(--lesson-border);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .intro-box {
+            background-color: #fff3cd;
+            border-right: 4px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .partition-node { padding-right: 30px; }
+            .tree-list::before { right: 10px; }
+            .partition-node::before { right: 10px; width: 20px; }
+            .partition-node::after { right: 2px; }
+            .main-title { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="mindmap-container">
+    <div class="main-title">
+        خَرِيطَةٌ ذِهْنِيَّةٌ لِسُورَةِ الْمُدَّثِّرِ
+    </div>
+
+    <div class="intro-box">
+        <strong>مُقَدِّمَةٌ عَنِ السُّورَةِ:</strong>
+        نَزَلَتْ هَذِهِ السُّورَةُ الْكَرِيمَةُ بَعْدَ فَتْرَةٍ مِنِ انْقِطَاعِ الْوَحْيِ عَنِ النَّبِيِّ ﷺ؛ حِينَ رَأَى جِبْرِيلَ جَالِسًا بَيْنَ السَّمَاءِ وَالْأَرْضِ، فَعَادَ لِخَدِيجَةَ رَضِيَ اللَّهُ عَنْهَا يَقُولُ: "دَثِّرُونِي.. دَثِّرُونِي"، فَأَنْزَلَ اللَّهُ تَعَالَى طَلِيعَةَ هَذِهِ السُّورَةِ آمِرًا إِيَّاهُ بِالنُّهُوضِ لِلدَّعْوَةِ.
+    </div>
+
+    <ul class="tree-list">
+        <!-- Partition 1 -->
+        <li class="partition-node">
+            <div class="partition-content">
+                <h3 class="partition-title">١. الْأَمْرُ بِالدَّعْوَةِ وَالتَّوْجِيهَاتُ الرَّبَّانِيَّةُ (الْآيَاتُ ١-٧)</h3>
+                <ul class="ayahs-list">
+                    <li class="ayah-item"><span class="ayah-range">الآيَاتُ (١-٢):</span> نِدَاءٌ لِلنَّبِيِّ ﷺ الْمُتَغَطِّي بِثِيَابِهِ (الْمُدَّثِّرِ)، يَأْمُرُهُ بِأَنْ يَشَمِّرَ عَنْ عَزْمِهِ، وَيَقُومَ لِيُنْذِرَ النَّاسَ وَيَدْعُوَهُمْ.</li>
+                    <li class="ayah-item"><span class="ayah-range">الآيَاتُ (٣-٥):</span> الْأَمْرُ بِتَعْظِيمِ رَبِّهِ، وَتَطْهِيرِ ثِيَابِهِ وَقَلْبِهِ وَنَفْسِهِ مِنَ الْمَعَاصِي، وَهَجْرِ الْأَوْثَانِ وَالْأَصْنَامِ (الرُّجْزَ).</li>
+                    <li class="ayah-item"><span class="ayah-range">الآيَاتُ (٦-٧):</span> النَّهْيُ عَنْ إِعْطَاءِ الْعَطِيَّةِ طَمَعًا فِي لِقَاءِ عَوَضٍ دُنْيَوِيٍّ أَكْبَرَ مِنْهَا، مَعَ الْأَمْرِ بِاصْطِنَاعِ الصَّبْرِ الْخَالِصِ لِوَجْهِ اللَّهِ عَزَّ وَجَلَّ عَلَى أَذَى الْقَوْمِ.</li>
+                </ul>
+                <div class="lesson-box">
+                    <div class="lesson-title">📌 الدَّرْسُ الْمُسْتَفَادُ:</div>
+                    طَرِيقُ الدَّعْوَةِ إِلَى اللَّهِ يَبْدَأُ بِالِاسْتِجَابَةِ الْفَوْرِيَّةِ، وَالِاهْتِمَامِ بِطَهَارَةِ الظَّاهِرِ وَالْبَاطِنِ، ثُمَّ يَتَطَلَّبُ صَبْرًا طَوِيلًا وَإِخْلَاصًا تَرْتَفِعُ بِهِ النَّفْسُ عَنْ مَطَامِعِ الدُّنْيَا.
+                </div>
+            </div>
+        </li>
+
+        <!-- Partition 2 -->
+        <li class="partition-node">
+            <div class="partition-content">
+                <h3 class="partition-title">٢. أَهْوَالُ يَوْمِ الْقِيَامَةِ عَلَى الْكَافِرِينَ (الْآيَاتُ ٨-١٠)</h3>
+                <ul class="ayahs-list">
+                    <li class="ayah-item"><span class="ayah-range">الآيَةُ (٨):</span> إِذَا نُفِخَ فِي الصُّورِ (النَّاقُورِ) إِيذَانًا بِقِيَامِ السَّاعَةِ.</li>
+                    <li class="ayah-item"><span class="ayah-range">الآيَاتُ (٩-١٠):</span> ذَلِكَ الْيَوْمُ سَيَكُونُ شَدِيدًا غَايَةَ الشِّدَّةِ عَسِيرًا، وَلَنْ يَكُونَ سَهْلًا أَوْ يَسِيرًا عَلَى الْكَافِرِينَ بِاللَّهِ أَبَدًا.</li>
+                </ul>
+                <div class="lesson-box">
+                    <div class="lesson-title">📌 الدَّرْسُ الْمُسْتَفَادُ:</div>
+                    النَّفْخَةُ فِي الصُّورِ بَدْءٌ لِمَرْحَلَةٍ لَا رَاحَةَ فِيهَا لِلْمُكَذِّبِينَ؛ فَهُوَ يَوْمٌ عَسِيرٌ يُخِيفُ كُلَّ قَلْبٍ جَاحِدٍ.
+                </div>
+            </div>
+        </li>
+
+        <!-- Partition 3 -->
+        <li class="partition-node">
+            <div class="partition-content">
+                <h3 class="partition-title">٣. قِصَّةُ عَنَادِ الْوَلِيدِ بْنِ الْمُغِيرَةِ وَمَصِيرُهُ (الْآيَاتُ ١١-٢٥)</h3>
+                <ul class="ayahs-list">
+                    <li class="ayah-item"><span class="ayah-range">الآيَاتُ (١١-١٤):</span> وَعِيدٌ شَدِيدٌ مِنْ رَبِّ الْعَالَمِينَ لِلْوَلِيدِ بْنِ الْمُغِيرَةِ، الَّذِي خَلَقَهُ وَحِيدًا ثُمَّ أَنْعَمَ عَلَيْهِ بِمَالٍ وَاسِعٍ، وَأَبْنَاءٍ حَاضِرِينَ حَوْلَهُ، وَمَهَّدَ لَهُ سُبُلَ الْعَيْشِ الْمُرَفَّهِ.</li>
+                    <li class="ayah-item"><span class="ayah-range">الآيَاتُ (١٥-١٧):</span> اسْتِنْكَارٌ لِطَمَعِهِ فِي الْمَزِيدِ مِنَ النِّعَمِ مَعَ أَنَّهُ كَانَ مُعَانِدًا جَاحِدًا لِآيَاتِ اللَّهِ! وَبِذَلِكَ سَيُكَلِّفُهُ اللَّهُ مَشَقَّةً مِنَ الْعَذَابِ الَّذِي لَا رَاحَةَ فِيهِ (صَعُودًا).</li>
+                    <li class="ayah-item"><span class="ayah-range">الآيَاتُ (١٨-٢٠):</span> وَصْفُ حَالَتِهِ حِينَ سُئِلَ عَنِ الْقُرْآنِ؛ فَفَكَّرَ وَتَرَوَّى فِيمَا سَيَخْتَلِقُهُ مِنَ الْكَذِبِ، فَدَعَا اللَّهُ عَلَيْهِ بِالْهَلَاكِ.</li>
+                    <li class="ayah-item"><span class="ayah-range">الآيَاتُ (٢١-٢٥):</span> ثُمَّ أَعَادَ النَّظَرَ، وَقَبَّضَ مَا بَيْنَ عَيْنَيْهِ كَالِحًا، مُسْتَكْبِرًا عَنِ الِانْقِيَادِ، ثُمَّ زَعَمَ -بُهْتَانًا- أَنَّ الْقُرْآنَ إِنَّمَا هُوَ سِحْرٌ يُتَوَارَثُ عَنِ الْغَيْرِ وَلَيْسَ إِلَّا قَوْلَ بَشَرٍ.</li>
+                </ul>
+                <div class="lesson-box">
+                    <div class="lesson-title">📌 الدَّرْسُ الْمُسْتَفَادُ:</div>
+                    كَثْرَةُ الْمَالِ وَالْوَلَدِ ابْتِلَاءٌ لَا تَعْنِي رِضَا اللَّهِ إِنْ قَابَلَهَا الْإِنْسَانُ بِالْجُحُودِ! وَالْمُكَابَرَةُ بَعْدَ مَعْرِفَةِ الْحَقِّ (مِثْلَمَا أَيْقَنَ الْوَلِيدُ بِحَلَاوَةِ الْقُرْآنِ ثُمَّ أَنْكَرَهُ) تُؤَدِّي بِصَاحِبِهَا لِسَخَطِ اللَّهِ وَهَلَاكِهِ.
+                </div>
+            </div>
+        </li>
+
+        <!-- Partition 4 -->
+        <li class="partition-node">
+            <div class="partition-content">
+                <h3 class="partition-title">٤. وَصْفُ النَّارِ (سَقَرَ) وَخَزَنَتِهَا (الْآيَاتُ ٢٦-٣١)</h3>
+                <ul class="ayahs-list">
+                    <li class="ayah-item"><span class="ayah-range">الآيَاتُ (٢٦-٣٠):</span> تَوَعُّدُ الْجَاحِدِ بِإِحْرَاقِهِ فِي (سَقَرَ)، وَهِيَ نَارٌ عَظِيمَةٌ تَأْكُلُ اللُّحُومَ وَالْعِظَامَ لَا تُبْقِي شَيْئًا، مُحْرِقَةٌ وَمُلَوِّحَةٌ لِلْجُلُودِ، وَعَلَيْهَا تِسْعَةَ عَشَرَ مَلَكًا غَلِيظًا مِنْ خَزَنَةِ جَهَنَّمَ.</li>
+                    <li class="ayah-item"><span class="ayah-range">الآيَةُ (٣١):</span> لَمْ يَجْعَلِ اللَّهُ حُرَّاسَ النَّارِ إِلَّا مِنَ الْمَلَائِكَةِ لِقُوَّتِهِمْ. وَجَعَلَ هَذَا الْعَدَدَ (١٩) لِحِكْمَةٍ بَالِغَةٍ: لِيَمْتَحِنَ بِهِ الْكَافِرِينَ الَّذِينَ اسْتَهْزَأُوا، وَلِيَتَيَقَّنَ أَهْلُ الْكِتَابِ، وَيَزْدَادَ الْمُؤْمِنُونَ إِيمَانًا، وَلِيَرْتَابَ الْمُنَافِقُونَ. وَمَا يَعْلَمُ عَدَدَ جُنُودِ رَبِّكَ سِوَاهُ.</li>
+                </ul>
+                <div class="lesson-box">
+                    <div class="lesson-title">📌 الدَّرْسُ الْمُسْتَفَادُ:</div>
+                    أُمُورُ الْغَيْبِ (كَعَدَدِ مَلَائِكَةِ النَّارِ) مُسَلَّمَاتٌ شَرْعِيَّةٌ يَخْتَبِرُ اللَّهُ بِهَا الْقُلُوبَ؛ فَالْمُؤْمِنُ يَزْدَادُ بِهَا يَقِينًا وَتَسْلِيمًا، وَفِي الْمُقَابِلِ يَتَّخِذُهَا الْكَافِرُونَ مَادَّةً لِلسُّخْرِيَةِ مِمَّا يَزِيدُهُمْ ضَلَالًا.
+                </div>
+            </div>
+        </li>
+
+        <!-- Partition 5 -->
+        <li class="partition-node">
+            <div class="partition-content">
+                <h3 class="partition-title">٥. الْقَسَمُ عَلَى عَظَمَةِ النَّارِ وَالْإِنْذَارُ لِلْبَشَرِ (الْآيَاتُ ٣٢-٣٧)</h3>
+                <ul class="ayahs-list">
+                    <li class="ayah-item"><span class="ayah-range">الآيَاتُ (٣٢-٣٥):</span> قَسَمٌ رَبَّانِيٌّ مَهُولٌ بِالْقَمَرِ، وَبِاللَّيْلِ إِذَا أَدْبَرَ وَوَلَّى، وَبِالصُّبْحِ عِنْدَمَا يُسْفِرُ وَيُشْرِقُ؛ تَأْكِيدًا أَنَّ نَارَ جَهَنَّمَ لَهِيَ مِنْ أَعْظَمِ الدَّوَاهِي وَالْخُطُوبِ يَوْمَ الْقِيَامَةِ.</li>
+                    <li class="ayah-item"><span class="ayah-range">الآيَاتُ (٣٦-٣٧):</span> بَيَانُ أَنَّهَا إِنْذَارٌ صَرِيحٌ لِلْبَشَرِيَّةِ جَمْعَاءَ؛ مَتْرُوكَةٌ لِاخْتِيَارِهِمْ، لِمَنْ أَرَادَ أَنْ يَتَقَدَّمَ نَحْوَ الْهُدَى، أَوْ مَنْ أَرَادَ التَّأَخُّرَ بِاتِّبَاعِ سُبُلِ الْغَوَايَةِ.</li>
+                </ul>
+                <div class="lesson-box">
+                    <div class="lesson-title">📌 الدَّرْسُ الْمُسْتَفَادُ:</div>
+                    مَشَاهِدُ الْكَوْنِ الْمُتَعَاقِبَةُ كَاللَّيْلِ وَالنَّهَارِ تَشْهَدُ عَلَى صِدْقِ وُعُودِ اللَّهِ وَوَعِيدِهِ! وَالْإِنْسَانُ عِنْدَهُ الْمَشِيئَةُ؛ فَبِعَمَلِهِ إِمَّا أَنْ يَتَقَدَّمَ لِلْخَيْرَاتِ أَوْ يَتَأَخَّرَ بِالسَّيِّئَاتِ.
+                </div>
+            </div>
+        </li>
+
+        <!-- Partition 6 -->
+        <li class="partition-node">
+            <div class="partition-content">
+                <h3 class="partition-title">٦. حِوَارُ أَهْلِ الْجَنَّةِ وَأَسْبَابُ دُخُولِ الْمُجْرِمِينَ سَقَرَ (الْآيَاتُ ٣٨-٤٧)</h3>
+                <ul class="ayahs-list">
+                    <li class="ayah-item"><span class="ayah-range">الآيَاتُ (٣٨-٤٢):</span> كُلُّ إِنْسَانٍ مُعْتَقَلٌ وَمُقَيَّدٌ بِمَا كَسَبَ مِنْ عَمَلٍ، إِلَّا الْمُؤْمِنِينَ (أَصْحَابَ الْيَمِينِ)، فَهُمْ فِي غُرُفَاتِ الْجَنَّةِ يَتَسَاءَلُونَ قَائِلِينَ لِلْمُجْرِمِينَ فِي النَّارِ: "مَا سَلَكَكُمْ فِي سَقَرَ؟" (أَيْ مَا الَّذِي أَوْقَعَكُمْ فِيهَا؟).</li>
+                    <li class="ayah-item"><span class="ayah-range">الآيَاتُ (٤٣-٤٧):</span> إِقْرَارُ الْمُجْرِمِينَ بِالْأَسْبَابِ الْمُهْلِكَةِ: ١) تَرْكُهُمْ لِلصَّلَاةِ، ٢) تَرْكُهُمْ لِإِطْعَامِ الْمَسَاكِينِ، ٣) خَوْضُهُمْ بِالْبَاطِلِ مَعَ الْخَائِضِينَ، ٤) تَكْذِيبُهُمْ بِيَوْمِ الدِّينِ، حَتَّى بَغَتَهُمُ الْمَوْتُ (الْيَقِينُ).</li>
+                </ul>
+                <div class="lesson-box">
+                    <div class="lesson-title">📌 الدَّرْسُ الْمُسْتَفَادُ:</div>
+                    النَّجَاةُ يَوْمَ الْقِيَامَةِ تَسْتَوْجِبُ الْجَمْعَ بَيْنَ إِعْطَاءِ حَقِّ اللَّهِ (إِقَامَةُ الصَّلَاةِ) وَحَقِّ الْخَلْقِ (إِطْعَامُ الْمَحَاوِيجِ)، مَعَ ضَرُورَةِ حِفْظِ اللِّسَانِ عَنْ مَجَالِسِ الْبَاطِلِ وَاللَّغْوِ وَالْيَقِينِ الْجَازِمِ بِالْآخِرَةِ.
+                </div>
+            </div>
+        </li>
+
+        <!-- Partition 7 -->
+        <li class="partition-node">
+            <div class="partition-content">
+                <h3 class="partition-title">٧. حَقِيقَةُ إِعْرَاضِ الْكَافِرِينَ وَالْمَوْعِظَةُ الْخَاتِمَةُ (الْآيَاتُ ٤٨-٥٦)</h3>
+                <ul class="ayahs-list">
+                    <li class="ayah-item"><span class="ayah-range">الآيَاتُ (٤٨-٥١):</span> مَنْ كَانَتْ هَذِهِ صِفَاتُهُمْ فَلَنْ تَنْفَعَهُمْ شَفَاعَةُ أَيِّ شَافِعٍ لِأَنَّهُمْ كُفَّارٌ. وَيَتَعَجَّبُ الْقُرْآنُ مِنْ إِعْرَاضِهِمْ عَنِ التَّذْكِرَةِ؛ حَيْثُ فَرُّوا عَنِ الْحَقِّ كَمَا تَفِرُّ الْحُمُرُ الْوَحْشِيَّةُ النَّافِرَةُ مِنَ الْأَسَدِ الْمُفْتَرِسِ (قَسْوَرَةٍ).</li>
+                    <li class="ayah-item"><span class="ayah-range">الآيَاتُ (٥٢-٥٣):</span> سَبَبُ ذَلِكَ أَنَّهُمْ يَتَكَبَّرُونَ، وَيُرِيدُ كُلُّ وَاحِدٍ مِنْهُمْ أَنْ يُنَزَّلَ عَلَيْهِ كِتَابٌ خَاصٌّ مِنَ السَّمَاءِ كَمُحَمَّدٍ ﷺ! وَالْحَقِيقَةُ أَنَّ الَّذِي أَفْسَدَهُمْ هُوَ عَدَمُ خَوْفِهِمْ مِنْ عَذَابِ الْآخِرَةِ.</li>
+                    <li class="ayah-item"><span class="ayah-range">الآيَاتُ (٥٤-٥٦):</span> تَأْكِيدٌ جَازِمٌ أَنَّ الْقُرْآنَ مَوْعِظَةٌ وَتَذْكِيرٌ لِلْبَشَرِ، فَمَنْ شَاءَ اتَّعَظَ بِهِ، وَالْهِدَايَةُ بِمَشِيئَةِ اللَّهِ الْمُحِيطَةِ. فَاللَّهُ وَحْدَهُ هُوَ الْمُسْتَحِقُّ لِأَنْ يُخَافَ وَيُتَّقَى، وَهُوَ الْمُسْتَحِقُّ أَنْ يَغْفِرَ ذَنْبَ مَنْ تَابَ إِلَيْهِ سُبْحَانَهُ.</li>
+                </ul>
+                <div class="lesson-box">
+                    <div class="lesson-title">📌 الدَّرْسُ الْمُسْتَفَادُ:</div>
+                    الِاسْتِكْبَارُ يَعْمِي الْبَصِيرَةَ حَتَّى يَصِيرَ النُّفُورُ عَنِ الْقُرْآنِ عَجِيبًا كَنُفُورِ الْبَهَائِمِ. وَكَمَالُ الْهِدَايَةِ لَا يَتِمُّ إِلَّا إِذَا عَظُمَ خَوْفُ الْآخِرَةِ فِي الْقَلْبِ، وَعَلِمَ الْعَبْدُ أَنَّ رَبَّهُ هُوَ أَهْلُ التَّقْوَى وَأَهْلُ الْمَغْفِرَةِ.
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>
