@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مسابقة سورة الفاتحة</title>
     <style>
-        /* --- Light Theme Inspired CSS --- */
+        /* --- Light Theme & Requested Font --- */
         :root {
             --bg-color: #f6f8fa;
             --panel-bg: #ffffff;
@@ -24,7 +24,7 @@
 
         * {
             box-sizing: border-box;
-            /* The specific font stack requested */
+            /* Same Font Stack as GitHub requested */
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
         }
 
@@ -76,7 +76,7 @@
             cursor: pointer;
             font-size: 1.2em;
             font-weight: bold;
-            transition: 0.2s;
+            transition: all 0.2s ease;
         }
 
         .tab-btn.active {
@@ -150,7 +150,7 @@
             font-size: 1.3em;
             text-align: right;
             font-weight: 500;
-            transition: 0.2s;
+            transition: all 0.2s ease;
             line-height: 1.6;
         }
 
@@ -224,7 +224,6 @@
             color: #0550ae;
             font-weight: 600;
             display: none;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
         }
 
         /* Utilities */
@@ -283,7 +282,7 @@
             justify-content: center;
             gap: 10px;
             margin-bottom: 25px;
-            direction: ltr; /* Keeping dots visual order left-to-right */
+            direction: ltr; /* Keeps dots visual order left-to-right */
         }
 
         .dot {
@@ -344,11 +343,11 @@
             </div>
             <h2 id="q-text" class="mt-3">نَصُّ السُّؤَالِ</h2>
             <div id="q-options" class="options-grid">
-                <!-- Options will be generated here -->
+                <!-- Options will be generated here dynamically -->
             </div>
             <div id="q-feedback" class="feedback"></div>
             <div id="q-ayah" class="ayah-box"></div>
-            <button id="btn-next" class="btn-large" style="display: none;" onclick="nextQuestion()">السُّؤَالُ التَّالِي ➡️</button>
+            <button id="btn-next" class="btn-large" style="display: none;" onclick="nextQuestion()">السُّؤَالُ التَّالِي ⬅️</button>
         </div>
 
         <!-- Result Screen -->
@@ -376,8 +375,8 @@
         <div class="ayah-box" id="slide-ayah" style="display: block;">الْآيَةُ / التَّفْسِيرُ</div>
         
         <div class="slider-controls">
-            <button onclick="prevSlide()">⬅️ السَّابِقُ</button>
-            <button onclick="nextSlide()">التَّالِي ➡️</button>
+            <button onclick="prevSlide()">السَّابِقُ ➡️</button>
+            <button onclick="nextSlide()">⬅️ التَّالِي</button>
         </div>
     </div>
 </div>
@@ -387,49 +386,56 @@
     const allQuestions = [
         // Level 1: سهل (Easy) - 7 Questions
         {
-            level: "سَهْل",
+            levelId: "easy",
+            levelAr: "سَهْل",
             q: "لِمَاذَا سُمِّيَتْ سُورَةُ الْفَاتِحَةِ بِـ «أُمِّ الْكِتَابِ» كَمَا قَالَ الْبُخَارِيُّ؟",
             options: ["لِأَنَّهُ يُبْدَأُ بِكِتَابَتِهَا فِي الْمَصَاحِفِ وَيُبْدَأُ بِقِرَاءَتِهَا فِي الصَّلَاةِ", "لِأَنَّهَا أَطْوَلُ سُورَةٍ فِي الْقُرْآنِ الْكَرِيمِ", "لِأَنَّهَا نَزَلَتْ فِي مَكَّةَ قَبْلَ كُلِّ السُّوَرِ", "لِأَنَّهَا تَتَحَدَّثُ عَنْ قَصَصِ الْأَنْبِيَاءِ"],
             correct: 0,
             ayah: "قَالَ الْبُخَارِيُّ: «وَسُمِّيَتْ - أُمَّ الْكِتَابِ - لِأَنَّهُ يُبْدَأُ بِكِتَابَتِهَا فِي الْمَصَاحِفِ، وَيُبْدَأُ بِقِرَاءَتِهَا فِي الصَّلَاةِ»."
         },
         {
-            level: "سَهْل",
+            levelId: "easy",
+            levelAr: "سَهْل",
             q: "مِنْ أَسْمَاءِ سُورَةِ الْفَاتِحَةِ كَمَا وَرَدَ فِي التَّفْسِيرِ:",
             options: ["الْحَمْدُ، وَالشِّفَاءُ، وَالْوَاقِيَةُ، وَأَسَاسُ الْقُرْآنِ", "الْإِخْلَاصُ، وَالْمُعَوِّذَةُ، وَالنُّورُ", "السَّبْعُ الْمَثَانِي، وَالْوَاقِعَةُ، وَالْكَوْثَرُ", "تَبَارَكَ، وَيَس، وَأُمُّ الْقُرْآنِ"],
             correct: 0,
             ayah: "وَلَهَا أَسْمَاءٌ مِنْهَا «الْحَمْدُ» وَ«الشِّفَاءُ» وَ«الْوَاقِيَةُ» وَ«الْكَافِيَةُ» وَ«أَسَاسُ الْقُرْآنِ»."
         },
         {
-            level: "سَهْل",
+            levelId: "easy",
+            levelAr: "سَهْل",
             q: "مَاذَا سَمَّى النَّبِيُّ ﷺ سُورَةَ الْفَاتِحَةِ حِينَ نَادَى أَبَا سَعِيدِ بْنَ الْمُعَلَّى؟",
             options: ["أَعْظَمُ سُورَةٍ فِي الْقُرْآنِ", "أَطْوَلُ سُورَةٍ فِي الْقُرْآنِ", "سَنَامُ الْقُرْآنِ", "قَلْبُ الْقُرْآنِ"],
             correct: 0,
             ayah: "قَالَ: لَأُعَلِّمَنَّكَ أَعْظَمَ سُورَةٍ فِي الْقُرْآنِ قَبْلَ أَنْ تَخْرُجَ مِنَ الْمَسْجِدِ.. هِيَ السَّبْعُ الْمَثَانِي وَالْقُرْآنُ الْعَظِيمُ."
         },
         {
-            level: "سَهْل",
+            levelId: "easy",
+            levelAr: "سَهْل",
             q: "كَيْفَ شَفَى أَبُو سَعِيدٍ الْخُدْرِيُّ سَيِّدَ الْحَيِّ اللَّدِيغَ؟",
             options: ["رَقَاهُ بِأُمِّ الْكِتَابِ (الْفَاتِحَةِ)", "رَقَاهُ بِآيَةِ الْكُرْسِيِّ", "رَقَاهُ بِالْمُعَوِّذَتَيْنِ", "رَقَاهُ بِسُورَةِ الْبَقَرَةِ"],
             correct: 0,
             ayah: "قَالَ: لَا، مَا رَقَيْتُ إِلَّا بِأُمِّ الْكِتَابِ.. فَقَالَ ﷺ: «وَمَا كَانَ يُدْرِيهِ أَنَّهَا رُقْيَةٌ؟ إِقْسِمُوا وَاضْرِبُوا لِي بِسَهْمٍ»."
         },
         {
-            level: "سَهْل",
+            levelId: "easy",
+            levelAr: "سَهْل",
             q: "مَا مَعْنَى ﴿الْحَمْدُ لِلَّهِ﴾ كَمَا فَسَّرَهَا ابْنُ جَرِيرٍ الطَّبَرِيُّ؟",
             options: ["الشُّكْرُ لِلَّهِ خَالِصاً دُونَ سَائِرِ مَا يُعْبَدُ مِنْ دُونِهِ", "طَلَبُ الْمَغْفِرَةِ مِنَ اللَّهِ فَقَطْ", "الثَّنَاءُ عَلَى الصَّالِحِينَ مِنَ الْعِبَادِ", "الدُّعَاءُ بِالرَّحْمَةِ فِي الْآخِرَةِ"],
             correct: 0,
             ayah: "مَعْنَى ﴿الْحَمْدُ لِلَّهِ﴾ الشُّكْرُ لِلَّهِ خَالِصاً دُونَ سَائِرِ مَا يُعْبَدُ مِنْ دُونِهِ، بِمَا أَنْعَمَ عَلَى عِبَادِهِ مِنَ النِّعَمِ."
         },
         {
-            level: "سَهْل",
+            levelId: "easy",
+            levelAr: "سَهْل",
             q: "مَا مَعْنَى قَوْلِهِ تَعَالَى ﴿رَبِّ الْعَالَمِينَ﴾؟",
             options: ["الْمَالِكُ الْمُتَصَرِّفُ فِي كُلِّ مَوْجُودٍ سِوَى اللَّهِ عَزَّ وَجَلَّ", "الْخَالِقُ لِلْبَشَرِ فَقَطْ", "الرَّازِقُ لِلْمُؤْمِنِينَ فَقَطْ", "الْمُحَاسِبُ فِي يَوْمِ الْقِيَامَةِ فَقَطْ"],
             correct: 0,
             ayah: "الرَّبُّ هُوَ الْمَالِكُ الْمُتَصَرِّفُ.. وَالْعَالَمِينَ جَمْعُ عَالَمٍ وَهُوَ كُلُّ مَوْجُودٍ سِوَى اللَّهِ عَزَّ وَجَلَّ."
         },
         {
-            level: "سَهْل",
+            levelId: "easy",
+            levelAr: "سَهْل",
             q: "مَا الْكَلِمَةُ الَّتِي يُسْتَحَبُّ قَوْلُهَا بَعْدَ الِانْتِهَاءِ مِنْ قِرَاءَةِ الْفَاتِحَةِ وَمَا مَعْنَاهَا؟",
             options: ["«آمِينَ» وَمَعْنَاهَا: اللَّهُمَّ اسْتَجِبْ", "«صَدَقَ اللَّهُ» وَمَعْنَاهَا: يَقِينُ الْقَلْبِ", "«سُبْحَانَ اللَّهِ» وَمَعْنَاهَا: التَّنْزِيهُ", "«الْحَمْدُ لِلَّهِ» وَمَعْنَاهَا: الشُّكْرُ"],
             correct: 0,
@@ -438,49 +444,56 @@
 
         // Level 2: متوسط (Medium) - 7 Questions
         {
-            level: "مُتَوَسِّط",
+            levelId: "medium",
+            levelAr: "مُتَوَسِّط",
             q: "مَا مَعْنَى قَوْلِهِ ﷺ عَنْ صَلَاةِ مَنْ لَمْ يَقْرَأْ بِأُمِّ الْقُرْآنِ: «فَهِيَ خِدَاجٌ»؟",
             options: ["أَيْ نَاقِصَةٌ غَيْرُ تَمَامٍ، كَمَا فَسَّرَهُ جُمْهُورُ الْأَئِمَّةِ (مَالِك وَالشَّافِعِيّ وَأَحْمَد)", "أَيْ مَقْبُولَةٌ مَعَ الْكَرَاهَةِ عِنْدَ جَمِيعِ الْعُلَمَاءِ", "أَيْ أَنَّهُ يَجِبُ عَلَيْهِ سُجُودُ السَّهْوِ فَقَطْ", "أَيْ صَحِيحَةٌ لِأَنَّهُ قَرَأَ غَيْرَهَا مِنَ الْقُرْآنِ"],
             correct: 0,
             ayah: "احْتَجَّ بَقِيَّةُ الْأَئِمَّةِ بِهَذَا الْحَدِيثِ «فَهِيَ خِدَاجٌ» وَالْخِدَاجُ هُوَ النَّاقِصُ.. وَلَا تُجْزِئُ الصَّلَاةُ بِدُونِهَا."
         },
         {
-            level: "مُتَوَسِّط",
+            levelId: "medium",
+            levelAr: "مُتَوَسِّط",
             q: "كَيْفَ يَرُدُّ اللَّهُ عَلَى الْعَبْدِ إِذَا قَالَ فِي صَلَاتِهِ: ﴿مَالِكِ يَوْمِ الدِّينِ﴾؟",
             options: ["يَقُولُ اللَّهُ: مَجَّدَنِي عَبْدِي", "يَقُولُ اللَّهُ: حَمِدَنِي عَبْدِي", "يَقُولُ اللَّهُ: أَثْنَى عَلَيَّ عَبْدِي", "يَقُولُ اللَّهُ: هَذَا لِعَبْدِي وَلِعَبْدِي مَا سَأَلَ"],
             correct: 0,
             ayah: "الْحَدِيثُ الْقُدْسِيُّ: «فَإِذَا قَالَ: {مَالِكِ يَوْمِ الدِّينِ} قَالَ: مَجَّدَنِي عَبْدِي، وَقَالَ مَرَّةً: فَوَّضَ إِلَيَّ عَبْدِي»."
         },
         {
-            level: "مُتَوَسِّط",
+            levelId: "medium",
+            levelAr: "مُتَوَسِّط",
             q: "مَتَى تَكُونُ الِاسْتِعَاذَةُ مِنَ الشَّيْطَانِ الرَّجِيمِ عَلَى الْمَشْهُورِ الَّذِي عَلَيْهِ الْجُمْهُورُ؟",
             options: ["تَكُونُ قَبْلَ التِّلَاوَةِ لِدَفْعِ الْمُوَسْوِسِ عَنْهَا", "تَكُونُ بَعْدَ الِانْتِهَاءِ مِنَ التِّلَاوَةِ لِلْخَتْمِ بِمَا يُرْضِي اللَّهَ", "تَكُونُ فِي وَسَطِ الْقِرَاءَةِ إِذَا سَهَا الْقَارِئُ", "لَا تُسْتَحَبُّ إِلَّا عِنْدَ سَمَاعِ الْقُرْآنِ فَقَطْ"],
             correct: 0,
             ayah: "وَالْمَشْهُورُ الَّذِي عَلَيْهِ الْجُمْهُورُ: أَنَّ الِاسْتِعَاذَةَ إِنَّمَا تَكُونُ قَبْلَ التِّلَاوَةِ لِدَفْعِ الْمُوَسْوِسِ عَنْهَا."
         },
         {
-            level: "مُتَوَسِّط",
+            levelId: "medium",
+            levelAr: "مُتَوَسِّط",
             q: "مَا الْفَرْقُ بَيْنَ اسْمَيِ ﴿الرَّحْمَن﴾ وَ﴿الرَّحِيم﴾ فِي حَقِّ اللَّهِ تَعَالَى كَمَا بَيَّنَ التَّفْسِيرُ؟",
             options: ["الرَّحْمَنُ أَشَدُّ مُبَالَغَةً وَيَعُمُّ جَمِيعَ الْخَلْقِ، وَالرَّحِيمُ خَاصَّةٌ بِالْمُؤْمِنِينَ", "لَا فَرْقَ بَيْنَهُمَا فَهُمَا بِنَفْسِ الدَّرَجَةِ فِي اللُّغَةِ", "الرَّحِيمُ أَشَدُّ مُبَالَغَةً مِنْ الرَّحْمَنِ لِأَنَّهُ جَاءَ مُتَأَخِّراً", "الرَّحْمَنُ لِلْمُؤْمِنِينَ وَالرَّحِيمُ لِلْكُفَّارِ"],
             correct: 0,
             ayah: "قَالَ ابْنُ جَرِيرٍ: {الرَّحْمَن} لِجَمِيعِ الْخَلْقِ، {الرَّحِيمِ} بِالْمُؤْمِنِينَ.. فَدَلَّ عَلَى أَنَّ {الرَّحْمَنَ} أَشَدُّ مُبَالَغَةً فِي الرَّحْمَةِ لِعُمُومِهَا."
         },
         {
-            level: "مُتَوَسِّط",
+            levelId: "medium",
+            levelAr: "مُتَوَسِّط",
             q: "بِمَاذَا بَشَّرَ الْمَلَكُ النَّبِيَّ ﷺ عِنْدَمَا فُتِحَ بَابٌ مِنَ السَّمَاءِ لَمْ يُفْتَحْ قَطُّ؟",
             options: ["بِنُورَيْنِ: فَاتِحَةِ الْكِتَابِ، وَخَوَاتِيمِ سُورَةِ الْبَقَرَةِ", "بِنُزُولِ سُورَةِ الْكَهْفِ وَسُورَةِ يُوسُفَ", "بِأَنَّ اللَّهَ سَيَغْفِرُ لِأُمَّتِهِ جَمِيعاً", "بِمُعْجِزَةِ انْشِقَاقِ الْقَمَرِ وَالْإِسْرَاءِ"],
             correct: 0,
             ayah: "قَالَ الْمَلَكُ: «أَبْشِرْ بِنُورَيْنِ قَدْ أُوتِيتَهُمَا لَمْ يُؤْتَهُمَا نَبِيٌّ قَبْلَكَ: فَاتِحَةُ الْكِتَابِ، وَخَوَاتِيمُ سُورَةِ الْبَقَرَةِ»."
         },
         {
-            level: "مُتَوَسِّط",
+            levelId: "medium",
+            levelAr: "مُتَوَسِّط",
             q: "مَاذَا تَعْنِي إِضَافَةُ الْمُلْكِ إِلَى ﴿يَوْمِ الدِّينِ﴾ فِي قَوْلِهِ ﴿مَالِكِ يَوْمِ الدِّينِ﴾؟",
             options: ["لِأَنَّهُ لَا يَدَّعِي أَحَدٌ هُنَاكَ شَيْئاً وَلَا يَتَكَلَّمُ أَحَدٌ إِلَّا بِإِذْنِهِ، مَعَ أَنَّهُ رَبُّ الْعَالَمِينَ فِي الدُّنْيَا وَالْآخِرَةِ", "لِأَنَّ اللَّهَ تَعَالَى يَمْلِكُ الْآخِرَةَ فَقَطْ وَلَا يَمْلِكُ الدُّنْيَا", "تَخْصِيصاً لِلْيَوْمِ الَّذِي يَنْتَهِي فِيهِ الْعَالَمُ دُونَ حِسَابٍ", "لِأَنَّهُ يَوْمٌ يَسْتَرِيحُ فِيهِ الْمُؤْمِنُونَ مِنَ الْعَمَلِ"],
             correct: 0,
             ayah: "وَإِنَّمَا أُضِيفَ إِلَى يَوْمِ الدِّينِ لِأَنَّهُ لَا يَدَّعِي أَحَدٌ هُنَاكَ شَيْئاً، وَلَا يَتَكَلَّمُ أَحَدٌ إِلَّا بِإِذْنِهِ.. وَإِلَّا فَقَدْ تَقَدَّمَ أَنَّهُ رَبُّ الدُّنْيَا وَالْآخِرَةِ."
         },
         {
-            level: "مُتَوَسِّط",
+            levelId: "medium",
+            levelAr: "مُتَوَسِّط",
             q: "مَا هُوَ التَّوْجِيهُ الَّذِي نَسْتَفِيدُهُ مِنْ ذِكْرِ ﴿الرَّحْمَنِ الرَّحِيمِ﴾ بَعْدَ ﴿رَبِّ الْعَالَمِينَ﴾؟",
             options: ["أَنَّهُ مِنْ بَابِ قَرْنِ التَّرْغِيبِ بِالتَّرْهِيبِ"، "أَنَّ الصِّفَاتِ تَتَكَرَّرُ لِلْمُبَالَغَةِ فَقَطْ", "لِلدَّلَالَةِ عَلَى انْتِهَاءِ الدُّنْيَا", "لِتَخْوِيفِ الْكُفَّارِ مِنَ الْعَذَابِ"],
             correct: 0,
@@ -489,42 +502,48 @@
 
         // Level 3: صعب (Hard) - 6 Questions
         {
-            level: "صَعْب",
+            levelId: "hard",
+            levelAr: "صَعْب",
             q: "مَا أَصْلُ اشْتِقَاقِ كَلِمَةِ (الشَّيْطَانِ) فِي لُغَةِ الْعَرَبِ عَلَى الْقَوْلِ الصَّحِيحِ عِنْدَ سِيبَوَيْهِ؟",
             options: ["مُشْتَقٌّ مِنْ شَطَنَ إِذَا بَعُدَ، فَهُوَ بَعِيدٌ بِفِسْقِهِ عَنْ كُلِّ خَيْرٍ", "مُشْتَقٌّ مِنْ شَاطَ إِذَا احْتَرَقَ لِأَنَّهُ مَخْلُوقٌ مِنْ نَارٍ", "مُشْتَقٌّ مِنَ الشَّطَطِ وَهُوَ الزِّيَادَةُ وَالْمُبَالَغَةُ", "كَلِمَةٌ أَعْجَمِيَّةٌ لَيْسَ لَهَا اشْتِقَاقٌ فِي الْعَرَبِيَّةِ"],
             correct: 0,
             ayah: "(الشَّيْطَانُ) فِي لُغَةِ الْعَرَبِ مُشْتَقٌّ مِنْ شَطَنَ إِذَا بَعُدَ.. قَالَ سِيبَوَيْهِ: الْعَرَبُ تَقُولُ تَشَيْطَنَ فُلَانٌ.. فَالشَّيْطَانُ مُشْتَقٌّ مِنَ الْبُعْدِ عَلَى الصَّحِيحِ."
         },
         {
-            level: "صَعْب",
+            levelId: "hard",
+            levelAr: "صَعْب",
             q: "لِمَاذَا قُدِّمَتْ ﴿إِيَّاكَ نَعْبُدُ﴾ عَلَى ﴿وَإِيَّاكَ نَسْتَعِينُ﴾ فِي سُورَةِ الْفَاتِحَةِ؟",
             options: ["لِأَنَّ الْعِبَادَةَ لَهُ هِيَ الْمَقْصُودَةُ، وَالِاسْتِعَانَةُ وَسِيلَةٌ إِلَيْهَا (يُقَدَّمُ الْأَهَمُّ)", "لِأَنَّ النَّاسَ يَعْبُدُونَ قَبْلَ أَنْ يَسْتَعِينُوا دَائِماً", "لِمُجَرَّدِ السَّجْعِ وَالتَّوَافُقِ فِي أَوَاخِرِ الْآيَاتِ", "لِأَنَّ الِاسْتِعَانَةَ تَكُونُ فِي الْآخِرَةِ فَقَطْ"],
             correct: 0,
             ayah: "وَإِنَّمَا قَدَّمَ {إِيَّاكَ نَعْبُدُ} عَلَى {وَإِيَّاكَ نَسْتَعِينُ} لِأَنَّ الْعِبَادَةَ لَهُ هِيَ الْمَقْصُودَةُ، وَالِاسْتِعَانَةُ وَسِيلَةٌ إِلَيْهَا، وَالْأَصْلُ تَقْدِيمُ مَا هُوَ الْأَهَمُّ."
         },
         {
-            level: "صَعْب",
+            levelId: "hard",
+            levelAr: "صَعْب",
             q: "مَنِ الْمَقْصُودُ بِـ ﴿الْمَغْضُوبِ عَلَيْهِمْ﴾ وَ﴿الضَّالِّينَ﴾ كَمَا وَرَدَ فِي حَدِيثِ عَدِيِّ بْنِ حَاتِمٍ عَنِ النَّبِيِّ ﷺ؟",
             options: ["الْمَغْضُوبُ عَلَيْهِمْ هُمُ الْيَهُودُ، وَالضَّالُّونَ هُمُ النَّصَارَى", "الْمَغْضُوبُ عَلَيْهِمْ هُمُ الْمُشْرِكُونَ، وَالضَّالُّونَ هُمُ الْمُنَافِقُونَ", "الْمَغْضُوبُ عَلَيْهِمْ هُمُ النَّصَارَى، وَالضَّالُّونَ هُمُ الْيَهُودُ", "هُمْ جَمِيعُ مَنْ كَفَرَ بِاللَّهِ مِنْ كُلِّ الْأُمَمِ بِالتَّسَاوِي"],
             correct: 0,
             ayah: "سَأَلْتُ رَسُولَ اللَّهِ ﷺ عَنْ قَوْلِهِ: {غَيْرِ الْمَغْضُوبِ عَلَيْهِم} قَالَ: هُمُ الْيَهُودُ، {وَلَا الضآلين} قَالَ: النَّصَارَى (رَوَاهُ أَحْمَدُ وَالتِّرْمِذِيُّ)."
         },
         {
-            level: "صَعْب",
+            levelId: "hard",
+            levelAr: "صَعْب",
             q: "مَا السِّرُّ الْبَلَاغِيُّ فِي قَوْلِهِ: ﴿أَنْعَمْتَ عَلَيْهِمْ﴾ مُقَابِلَ ﴿الْمَغْضُوبِ عَلَيْهِم﴾ كَمَا أَشَارَ إِلَيْهِ التَّفْسِيرُ؟",
             options: ["إِسْنَادُ الْإِنْعَامِ إِلَى اللَّهِ بِضَمِيرِ الْفَاعِلِ بَيْنَمَا حُذِفَ الْفَاعِلُ فِي الْغَضَبِ، وَإِنْ كَانَ هُوَ الْفَاعِلَ لِذَلِكَ حَقِيقَةً", "أَنَّ اللَّهَ هُوَ مَنْ أَنْعَمَ وَلَكِنَّ النَّاسَ هُمْ مَنْ غَضِبُوا عَلَى أَنْفُسِهِمْ فَقَطْ", "لَا يَرْجِعُ لِسِرٍّ بَلَاغِيٍّ وَإِنَّمَا هُوَ لِتَنْوِيعِ الْقَوَافِي", "أَنَّ الْغَضَبَ صِفَةٌ لِلْمَلَائِكَةِ وَلَيْسَ لِلَّهِ"],
             correct: 0,
             ayah: "وَمَا أَحْسَنَ مَا جَاءَ إِسْنَادُ الْإِنْعَامِ إِلَيْهِ فِي قَوْلِهِ: {أَنْعَمْتَ عَلَيْهِمْ} وَحَذْفُ الْفَاعِلِ فِي الْغَضَبِ.. وَإِنْ كَانَ هُوَ الْفَاعِلَ لِذَلِكَ فِي الْحَقِيقَةِ."
         },
         {
-            level: "صَعْب",
+            levelId: "hard",
+            levelAr: "صَعْب",
             q: "كَيْفَ فَسَّرَ ابْنُ جَرِيرٍ الطَّبَرِيُّ مَعْنَى: ﴿اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ﴾؟",
             options: ["أَيْ وَفِّقْنَا لِلثَّبَاتِ عَلَى مَا ارْتَضَيْتَهُ مِنْ قَوْلٍ وَعَمَلٍ.. لِأَنَّ مَنْ وُفِّقَ لِذَلِكَ فَقَدْ وُفِّقَ لِلْإِسْلَامِ", "أَيْ دُلَّنَا عَلَى طَرِيقِ النَّجَاةِ يَوْمَ الْقِيَامَةِ فَقَطْ", "أَيْ أَظْهِرْ لَنَا الْمُعْجِزَاتِ لِنُؤْمِنَ بِهَا", "أَيْ أَنْزِلْ عَلَيْنَا كِتَاباً جَدِيداً"],
             correct: 0,
             ayah: "قَالَ ابْنُ جَرِيرٍ: الْأَوْلَى بِتَأْوِيلِ هَذِهِ الْآيَةِ عِنْدِي أَنْ يَكُونَ مَعْنِيّاً بِهِ: وَفِّقْنَا لِلثَّبَاتِ عَلَى مَا ارْتَضَيْتَهُ.. مِنْ قَوْلٍ وَعَمَلٍ."
         },
         {
-            level: "صَعْب",
+            levelId: "hard",
+            levelAr: "صَعْب",
             q: "مَا هُوَ الِاسْمُ الَّذِي قِيلَ إِنَّهُ مُشْتَقٌّ مِنْ (أَلِهَ يَأْلَهُ إِلَاهَةً) أَوْ مِنْ (وَلِهَ إِذَا تَحَيَّرَ) عِنْدَ بَعْضِ الْعُلَمَاءِ؟",
             options: ["اسْمُ الْجَلَالَةِ «اللَّهُ»", "الرَّحْمَنُ", "الرَّبُّ", "الصَّمَدُ"],
             correct: 0,
@@ -537,11 +556,6 @@
     let currentQuestionIndex = 0;
     let score = 0;
     let currentSlideIndex = 0;
-
-    // --- Init ---
-    window.onload = () => {
-        initDots();
-    };
 
     // --- Tab Switching ---
     function switchTab(tabId) {
@@ -574,16 +588,16 @@
         document.getElementById('quiz-result').style.display = 'none';
         document.getElementById('quiz-question').style.display = 'block';
 
-        // Filter by levels
-        let easyQ = allQuestions.filter(q => q.level === 'سَهْل');
-        let medQ = allQuestions.filter(q => q.level === 'مُتَوَسِّط');
-        let hardQ = allQuestions.filter(q => q.level === 'صَعْب');
+        // Filter by strict English ID to prevent Arabic text matching errors
+        let easyQ = allQuestions.filter(q => q.levelId === 'easy');
+        let medQ = allQuestions.filter(q => q.levelId === 'medium');
+        let hardQ = allQuestions.filter(q => q.levelId === 'hard');
 
         shuffleArray(easyQ);
         shuffleArray(medQ);
         shuffleArray(hardQ);
 
-        // Select 15 questions exactly (5 from each difficulty level)
+        // Select exactly 5 questions from each difficulty level (Total 15)
         currentQuizQuestions = [
             ...easyQ.slice(0, 5),
             ...medQ.slice(0, 5),
@@ -597,9 +611,9 @@
         renderQuestion();
     }
 
-    function getLevelBadgeClass(level) {
-        if(level === 'سَهْل') return 'badge-easy';
-        if(level === 'مُتَوَسِّط') return 'badge-medium';
+    function getLevelBadgeClass(levelId) {
+        if(levelId === 'easy') return 'badge-easy';
+        if(levelId === 'medium') return 'badge-medium';
         return 'badge-hard';
     }
 
@@ -609,60 +623,74 @@
         document.getElementById('q-counter').innerText = `السُّؤَالُ ${currentQuestionIndex + 1} / 15`;
         
         const badge = document.getElementById('q-level');
-        badge.innerText = qData.level;
-        badge.className = `level-badge ${getLevelBadgeClass(qData.level)}`;
+        badge.innerText = qData.levelAr;
+        badge.className = `level-badge ${getLevelBadgeClass(qData.levelId)}`;
         
         document.getElementById('q-text').innerText = qData.q;
         
         const optionsBox = document.getElementById('q-options');
         optionsBox.innerHTML = '';
 
-        // Create options mapping to keep track of correct index after shuffle
-        let optionsObj = qData.options.map((opt, index) => ({ text: opt, isCorrect: index === qData.correct }));
+        // Safely map correct indices
+        let optionsObj = qData.options.map((opt, index) => ({ text: opt, isCorrect: (index === qData.correct) }));
         shuffleArray(optionsObj);
 
         optionsObj.forEach((opt) => {
             const btn = document.createElement('button');
             btn.className = 'option-btn';
             btn.innerText = opt.text;
-            btn.onclick = () => selectOption(btn, opt.isCorrect, optionsObj);
+            
+            // Using dataset prevents innerText spacing bugs across browsers
+            btn.dataset.correct = opt.isCorrect;
+            
+            btn.onclick = function() {
+                selectOption(this);
+            };
             optionsBox.appendChild(btn);
         });
 
-        document.getElementById('q-feedback').className = 'feedback';
+        // Hide old feedback & Ayah
+        const feedback = document.getElementById('q-feedback');
+        feedback.style.display = 'none';
+        feedback.className = 'feedback';
+        
         document.getElementById('q-ayah').style.display = 'none';
         document.getElementById('btn-next').style.display = 'none';
     }
 
-    function selectOption(selectedBtn, isCorrect, optionsObj) {
-        // Disable all buttons
+    function selectOption(selectedBtn) {
+        // Disable all buttons immediately
         const allBtns = document.querySelectorAll('.option-btn');
         allBtns.forEach(btn => btn.disabled = true);
 
+        const isCorrect = selectedBtn.dataset.correct === "true";
         const feedback = document.getElementById('q-feedback');
         const ayahBox = document.getElementById('q-ayah');
         const nextBtn = document.getElementById('btn-next');
 
+        // Reset animation logic (forces reflow so animation plays every time)
+        feedback.className = 'feedback';
+        void feedback.offsetWidth; 
+
         if (isCorrect) {
             selectedBtn.classList.add('option-correct');
             feedback.innerText = "أَحْسَنْتَ! إِجَابَةٌ صَحِيحَةٌ 🌟🎉";
-            feedback.className = 'feedback cheer';
+            feedback.classList.add('cheer'); // Triggers celebration animation
             score++;
         } else {
             selectedBtn.classList.add('option-wrong');
             feedback.innerText = "إِجَابَةٌ خَاطِئَةٌ! ❌";
-            feedback.className = 'feedback oops';
+            feedback.classList.add('oops'); // Triggers shake animation
             
-            // Highlight the correct one in Green
+            // Highlight the correct one immediately
             allBtns.forEach(btn => {
-                let correctObj = optionsObj.find(o => o.text === btn.innerText);
-                if (correctObj && correctObj.isCorrect) {
+                if (btn.dataset.correct === "true") {
                     btn.classList.add('option-correct');
                 }
             });
         }
 
-        // Show Ayah/Tafsir
+        // Show Ayah/Tafsir explanation
         ayahBox.innerText = currentQuizQuestions[currentQuestionIndex].ayah;
         ayahBox.style.display = 'block';
         nextBtn.style.display = 'block';
@@ -697,10 +725,10 @@
         dotsContainer.innerHTML = '';
         allQuestions.forEach((q, index) => {
             const dot = document.createElement('div');
-            // Select color based on level
+            
             let dotClass = 'dot-easy';
-            if(q.level === 'مُتَوَسِّط') dotClass = 'dot-medium';
-            else if(q.level === 'صَعْب') dotClass = 'dot-hard';
+            if (q.levelId === 'medium') dotClass = 'dot-medium';
+            else if (q.levelId === 'hard') dotClass = 'dot-hard';
             
             dot.className = `dot ${dotClass}`;
             dot.onclick = () => {
@@ -728,8 +756,8 @@
         document.getElementById('slide-counter').innerText = `الشَّرِيحَةُ ${currentSlideIndex + 1} مِنْ ${allQuestions.length}`;
         
         const badge = document.getElementById('slide-level');
-        badge.innerText = qData.level;
-        badge.className = `level-badge ${getLevelBadgeClass(qData.level)}`;
+        badge.innerText = qData.levelAr;
+        badge.className = `level-badge ${getLevelBadgeClass(qData.levelId)}`;
 
         document.getElementById('slide-q-text').innerText = qData.q;
         document.getElementById('slide-a-text').innerText = "الْإِجَابَةُ الصَّحِيحَةُ: " + qData.options[qData.correct];
@@ -751,6 +779,10 @@
             renderSlide();
         }
     }
+
+    // Initialize UI manually (Solves issues with window.onload in some editors)
+    initDots();
+    renderSlide();
 
 </script>
 
