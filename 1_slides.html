@@ -6,6 +6,9 @@
     <title>سورة الفاتحة - عرض تفاعلي</title>
     <!-- استدعاء خط Tajawal الممتاز للقراءة مع التشكيل -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -14,7 +17,7 @@
         }
 
         body {
-            font-family: 'Tajawal', sans-serif;
+            font-family: 'Almarai', sans-serif;
             background-color: #fcfcfc;
             /* خلفية مزخرفة خفيفة جداً تشبه التصميم الأصلي */
             background-image: radial-gradient(#f0f0f0 1px, transparent 1px);
@@ -270,7 +273,7 @@
                 </div>
                 <div class="box bg-green-light border-green text-md" style="width: 100%;">
                     {إِنَّنِىٓ أَنَا ٱللَّهُ لَآ إِلَـٰهَ إِلَّآ أَنَا۠ فَٱعْبُدْنِى وَأَقِمِ ٱلصَّلَوٰةَ لِذِكْرِىٓ ١٤} طه<br><br>
-                    {قَالَ رَبِّ ٱشْرَحْ لِى صَدْرِى ٢٥ وَيَسِّرْ لِىٓ أَمْرِى ٢٦ وَٱحْلُلْ عُقْدَةً مِّن لِّسَانِى ٢٧ يَفْقَهُوا۟ قَوْلِى ٢٨...} طه
+                    {قَالَ رَبِّ ٱشْرَحْ لِى صَدْرِى ٢٥ وَيَسِّرْ لِىٓ أَمْرِى ٢٦ وَٱحْلُلْ عُقْدَةً مِّن لِّسَانِى ٢٧ يَفْقَهُوا۟ قَوْلِى ٢٨ وَٱجْعَل لِّى وَزِيرًا مِّنْ أَهْلِى ٢٩ هَـٰرُونَ أَخِى ٣٠ ٱشْدُدْ بِهِۦٓ أَزْرِى ٣١ وَأَشْرِكْهُ فِىٓ أَمْرِى ٣٢ كَىْ نُسَبِّحَكَ كَثِيرًا ٣٣ وَنَذْكُرَكَ كَثِيرًا ٣٤ إِنَّكَ كُنتَ بِنَا بَصِيرًا ٣٥} طه 
                 </div>
             </div>
 
@@ -298,9 +301,9 @@
 
     <!-- أزرار التحكم -->
     <div class="controls">
-        <button class="btn" id="nextBtn" onclick="nextSlide()">&#10095;</button> <!-- سهم يمين للسابق لأننا RTL -->
-        <button class="btn home-btn" onclick="showOverview()">&#8962;</button> <!-- أيقونة المنزل -->
         <button class="btn" id="prevBtn" onclick="prevSlide()">&#10094;</button> <!-- سهم يسار للتالي -->
+        <button class="btn home-btn" onclick="showOverview()">&#8962;</button> <!-- أيقونة المنزل -->
+        <button class="btn" id="nextBtn" onclick="nextSlide()">&#10095;</button> <!-- سهم يمين للسابق لأننا RTL -->
     </div>
 
     <script>
