@@ -140,10 +140,10 @@
             <!-- الشريحة 0 (تم التعديل لمنع التفاف الأقواس) -->
             <div class="slide">
                 <div class="text-green" style="font-size: 2.5em; font-weight: 800; margin-bottom: 15px; white-space: nowrap; direction: rtl; unicode-bidi: isolate;">
-                    { فَإِذَا قَرَأۡتَ ٱلۡقُرۡءَانَ فَٱسۡتَعِذۡ بِٱللَّهِ مِنَ ٱلشَّیۡطَـٰنِ ٱلرَّجِیمِ }
+                    {فَإِذَا قَرَأْتَ ٱلْقُرْءَانَ فَٱسْتَعِذْ بِٱللَّهِ مِنَ ٱلشَّيْطَـٰنِ ٱلرَّجِيمِ}
                 </div>
                 <div class="text-purple text-lg" style="margin-bottom: 80px; direction: rtl; unicode-bidi: isolate;">
-                    [سُورَةُ النَّحۡلِ: ٩٨]
+                    [سُورَةُ النَّحۡلِ]
                 </div>
                 <div class="text-huge" style="color: #444; direction: rtl; unicode-bidi: isolate;">
                     «كُلُّ أَمْرٍ لَا يُبْدَأُ فِيهِ بِبِسْمِ اللَّهِ الرحمن الرحيم فَهُوَ أَجْذَمُ»
@@ -282,10 +282,12 @@
     <!-- أزرار التحكم -->
     <div class="controls">
         <!-- السهم الأيمن للسابق (نظراً لأن الواجهة باللغة العربية) -->
-        <button class="btn" id="prevBtn" onclick="prevSlide()">&#10095;</button> 
+        <button class="btn" id="nextBtn" onclick="nextSlide()">&#10094;</button>
+        
         <button class="btn home-btn" onclick="showOverview()">&#8962;</button> 
+        <button class="btn" id="prevBtn" onclick="prevSlide()">&#10095;</button> 
         <!-- السهم الأيسر للتالي -->
-        <button class="btn" id="nextBtn" onclick="nextSlide()">&#10094;</button> 
+         
     </div>
 
     <script>
