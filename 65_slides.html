@@ -15,67 +15,58 @@
         }
 
         body {
-            background-color: #f4f4f9;
+            background-color: #f4f4f9; /* لون خلفية الصفحة الخارجية */
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            padding: 20px;
         }
 
         .slideshow-container {
-            width: 90%;
-            max-width: 900px;
-            height: 80vh;
+            width: 100%;
+            max-width: 950px;
+            height: auto; /* ليتمدد الصندوق حسب حجم النص بدون تمرير */
+            min-height: 65vh; 
             position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             border-radius: 20px;
-            overflow: hidden;
-            background: #fff;
+            background: #ffffff; /* خلفية بيضاء ثابتة للشرائح */
+            padding-bottom: 60px; /* مساحة لنقاط التنقل السفلية */
         }
 
         .slide {
             display: none;
-            height: 100%;
-            padding: 40px 60px;
-            animation: fade 0.6s ease-in-out;
-            color: #333;
-            overflow-y: auto;
+            width: 100%;
+            padding: 40px 60px 20px 60px;
+            animation: fade 0.5s ease-in-out;
+            background-color: #ffffff;
         }
 
-        /* تخصيص ألوان متدرجة ومبهجة لكل شريحة */
-        .slide-1 { background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); }
-        .slide-2 { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
-        .slide-3 { background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%); }
-        .slide-4 { background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); }
-        .slide-5 { background: linear-gradient(135deg, #f6d365 0%, #fda085 100%); }
-        .slide-6 { background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%); }
-        .slide-7 { background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); }
-
         @keyframes fade {
-            from { opacity: 0.4; transform: scale(0.98); }
-            to { opacity: 1; transform: scale(1); }
+            from { opacity: 0.2; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         h1 {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #2c3e50;
-            border-bottom: 3px dashed rgba(0,0,0,0.1);
+            font-size: 2.3rem;
+            margin-bottom: 25px;
+            border-bottom: 2px dashed #ecf0f1;
             padding-bottom: 15px;
         }
 
         ul {
             list-style: none;
-            font-size: 1.4rem;
-            line-height: 1.8;
+            font-size: 1.3rem;
+            line-height: 1.7;
         }
 
         ul li {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             position: relative;
             padding-right: 35px;
+            font-weight: 600;
         }
 
         ul li::before {
@@ -89,7 +80,7 @@
         ul li ul {
             margin-top: 10px;
             margin-right: 20px;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
         }
 
         ul li ul li::before {
@@ -98,8 +89,61 @@
 
         .highlight {
             font-weight: 800;
-            color: #d35400;
         }
+
+        /* ---------------------------------------------------
+           تلوين النصوص لكل شريحة لتبقى مبهجة رغم الخلفية البيضاء
+           --------------------------------------------------- */
+        
+        /* الشريحة 1 */
+        .slide-1 h1 { color: #8e44ad; border-bottom-color: #8e44ad; }
+        .slide-1 h2 { color: #2980b9; }
+        .slide-1 p { color: #e67e22; font-weight: 800; }
+
+        /* الشريحة 2 */
+        .slide-2 h1 { color: #c0392b; border-bottom-color: #c0392b; }
+        .slide-2 li { color: #34495e; }
+        .slide-2 .highlight { color: #e74c3c; }
+
+        /* الشريحة 3 */
+        .slide-3 h1 { color: #27ae60; border-bottom-color: #27ae60; }
+        .slide-3 li { color: #2c3e50; }
+        .slide-3 .highlight { color: #16a085; }
+
+        /* الشريحة 4 */
+        .slide-4 h1 { color: #d35400; border-bottom-color: #d35400; }
+        .slide-4 li { color: #2c3e50; }
+        .slide-4 .highlight { color: #e67e22; }
+
+        /* الشريحة 5 */
+        .slide-5 h1 { color: #2980b9; border-bottom-color: #2980b9; }
+        .slide-5 li { color: #34495e; }
+        .slide-5 .highlight { color: #3498db; }
+        .slide-5 b { color: #8e44ad; }
+
+        /* الشريحة 6 */
+        .slide-6 h1 { color: #6c3483; border-bottom-color: #6c3483; }
+        .slide-6 li { color: #2c3e50; }
+        .slide-6 .highlight { color: #9b59b6; }
+        .slide-6 .arrow { color: #c0392b; }
+        .slide-6 b { color: #e74c3c; }
+
+        /* الشريحة 7 */
+        .slide-7 h1 { color: #1abc9c; border-bottom-color: #1abc9c; }
+        .slide-7 .intro-text { color: #d35400; font-weight: 800; }
+        .slide-7 li { color: #34495e; }
+        .slide-7 .highlight { color: #16a085; }
+        .slide-7 .note {
+            background: #f8f9f9;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border-right: 4px solid #1abc9c;
+            font-size: 1.1rem;
+            margin-top: 8px;
+            color: #2980b9;
+        }
+
+        /* --------------------------------------------------- */
 
         /* أسهم التنقل */
         .prev, .next {
@@ -107,12 +151,12 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            background-color: rgba(255, 255, 255, 0.7);
-            color: #333;
+            width: 45px;
+            height: 45px;
+            background-color: #f1f2f6;
+            color: #2c3e50;
             font-weight: bold;
-            font-size: 24px;
+            font-size: 20px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -123,11 +167,11 @@
             z-index: 10;
         }
 
-        .next { left: 20px; }
-        .prev { right: 20px; }
+        .next { left: -20px; }
+        .prev { right: -20px; }
 
         .prev:hover, .next:hover {
-            background-color: #34495e;
+            background-color: #2c3e50;
             color: white;
         }
 
@@ -142,32 +186,18 @@
 
         .dot {
             cursor: pointer;
-            height: 15px;
-            width: 15px;
+            height: 12px;
+            width: 12px;
             margin: 0 5px;
-            background-color: rgba(0, 0, 0, 0.3);
+            background-color: #bdc3c7;
             border-radius: 50%;
             display: inline-block;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .active, .dot:hover {
             background-color: #2c3e50;
-            transform: scale(1.2);
-        }
-
-        .note {
-            background: rgba(255,255,255,0.6);
-            padding: 10px;
-            border-radius: 10px;
-            border-right: 4px solid #2980b9;
-            font-size: 1.1rem;
-            margin-top: 10px;
-        }
-        
-        .arrow {
-            color: #c0392b;
-            font-weight: bold;
+            transform: scale(1.3);
         }
 
         @media (max-width: 768px) {
@@ -175,7 +205,8 @@
             ul { font-size: 1.1rem; }
             ul li ul { font-size: 1rem; }
             .slide { padding: 30px 40px; }
-            .prev, .next { width: 40px; height: 40px; font-size: 18px; }
+            .next { left: 10px; }
+            .prev { right: 10px; }
         }
     </style>
 </head>
@@ -187,11 +218,11 @@
     <div class="slide slide-1">
         <h1>📖 سُورَةُ الطَّلَاقِ (النِّسَاءُ الصُّغْرَى)</h1>
         <div style="text-align: center; margin-top: 40px;">
-            <h2 style="font-size: 2rem; color: #2980b9; line-height: 1.6;">
+            <h2 style="font-size: 2.2rem; line-height: 1.6;">
                 مُلَخَّصُ أَحْكَامِ الأُسْرَةِ <br> 
                 وَأَنْوَاعِ الأَنْكِحَةِ وَالطَّلَاقِ وَالكَفَّارَاتِ
             </h2>
-            <p style="margin-top: 30px; font-size: 1.2rem; color: #7f8c8d;">
+            <p style="margin-top: 30px; font-size: 1.3rem;">
                 بِنَاءً عَلَى المُخَطَّطَاتِ وَتَفْسِيرِ الآيَاتِ 
             </p>
         </div>
@@ -287,7 +318,7 @@
     <!-- الشريحة السابعة: ثمرات التقوى في سورة الطلاق -->
     <div class="slide slide-7">
         <h1>✨ ثَمَرَاتُ التَّقْوَى فِي سُورَةِ الطَّلَاقِ</h1>
-        <p style="text-align: center; margin-bottom: 20px; font-size: 1.3rem;">تَكَرَّرَتْ عِبَارَةُ <b>{وَمَن يَتَّقِ اللَّهَ}</b> مُرْتَبِطَةً بِوُعُودٍ عَظِيمَةٍ:</p>
+        <p class="intro-text" style="text-align: center; margin-bottom: 20px; font-size: 1.3rem;">تَكَرَّرَتْ عِبَارَةُ {وَمَن يَتَّقِ اللَّهَ} مُرْتَبِطَةً بِوُعُودٍ عَظِيمَةٍ:</p>
         <ul>
             <li><span class="highlight">الفَرَجُ وَالرِّزْقُ:</span> <br>
                 {وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا * وَيَرْزُقْهُ مِنْ حَيْثُ لَا يَحْتَسِبُ}
@@ -324,13 +355,10 @@
     let slideIndex = 1;
     showSlides(slideIndex);
 
-    // دالة لتغيير الشريحة بناءً على الزر (التالي / السابق)
-    // نستخدم +/- بشكل معكوس ليناسب اتجاه اللغة العربية (RTL)
     function plusSlides(n) {
         showSlides(slideIndex += n);
     }
 
-    // دالة للقفز لشريحة معينة بناءً على النقاط السفلية
     function currentSlide(n) {
         showSlides(slideIndex = n);
     }
@@ -340,32 +368,29 @@
         let slides = document.getElementsByClassName("slide");
         let dots = document.getElementsByClassName("dot");
         
-        // إعادة التدوير إذا تجاوزنا العدد
         if (n > slides.length) {slideIndex = 1}    
         if (n < 1) {slideIndex = slides.length}
         
-        // إخفاء كل الشرائح
         for (i = 0; i < slides.length; i++) {
             slides[i].style.display = "none";  
         }
         
-        // إزالة حالة النشاط من كل النقاط
         for (i = 0; i < dots.length; i++) {
             dots[i].className = dots[i].className.replace(" active", "");
         }
         
-        // عرض الشريحة المطلوبة وتفعيل النقطة الخاصة بها
+        // عند عرض الشريحة، سيأخذ الصندوق الأبيض تلقائياً الارتفاع المطلوب بفضل height: auto
         slides[slideIndex-1].style.display = "block";  
         dots[slideIndex-1].className += " active";
     }
 
-    // دعم التنقل بلوحة المفاتيح
+    // التنقل بلوحة المفاتيح
     document.addEventListener('keydown', function(event) {
         if(event.key === "ArrowRight") {
-            plusSlides(1); // السابق عربياً
+            plusSlides(1);
         }
         else if(event.key === "ArrowLeft") {
-            plusSlides(-1); // التالي عربياً
+            plusSlides(-1);
         }
     });
 </script>
