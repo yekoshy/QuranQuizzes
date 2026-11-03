@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تأملات وملاحظات سورة التغابن</title>
+    <!-- استدعاء خط عربي واضح وجميل -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: #eef2f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .slideshow-container {
+            width: 100%;
+            max-width: 980px;
+            height: auto;
+            min-height: 70vh; 
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            border-radius: 24px;
+            background: #ffffff;
+            padding-bottom: 70px;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            padding: 40px 65px 25px 65px;
+            animation: fade 0.4s ease-in-out;
+            background-color: #ffffff;
+            border-radius: 24px;
+        }
+
+        @keyframes fade {
+            from { opacity: 0.2; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            border-bottom: 2px dashed #ecf0f1;
+            padding-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .section-title-slide {
+            text-align: center;
+            padding: 70px 30px;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 8px 22px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .section-title-slide h2 {
+            font-size: 2.6rem;
+            line-height: 1.5;
+            font-weight: 900;
+        }
+
+        .section-title-slide p {
+            font-size: 1.3rem;
+            margin-top: 15px;
+            color: #7f8c8d;
+        }
+
+        ul {
+            list-style: none;
+            font-size: 1.25rem;
+            line-height: 1.8;
+        }
+
+        ul li {
+            margin-bottom: 14px;
+            position: relative;
+            padding-right: 35px;
+            font-weight: 600;
+        }
+
+        ul li::before {
+            content: "✦";
+            position: absolute;
+            right: 0;
+            top: 0px;
+            font-size: 1.3rem;
+        }
+        
+        ul li ul {
+            margin-top: 10px;
+            margin-right: 15px;
+            font-size: 1.15rem;
+        }
+
+        ul li ul li::before {
+            content: "🔹";
+            font-size: 1rem;
+        }
+
+        .highlight {
+            font-weight: 800;
+        }
+
+        .hadith-box {
+            background-color: #fafbfd;
+            border-right: 5px solid #2980b9;
+            padding: 20px 25px;
+            border-radius: 12px;
+            font-size: 1.25rem;
+            line-height: 2;
+            color: #2c3e50;
+            margin-top: 15px;
+            text-align: justify;
+        }
+
+        .hadith-source {
+            margin-top: 15px;
+            font-size: 1.05rem;
+            color: #7f8c8d;
+            font-weight: 700;
+            text-align: left;
+            direction: ltr;
+        }
+
+        .names-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .name-card {
+            background: #fdfefe;
+            border: 1px solid #e1e8ed;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: #2c3e50;
+            transition: 0.2s;
+        }
+
+        .name-card:hover {
+            border-color: #9b59b6;
+            background-color: #fbf7fd;
+        }
+
+        /* ألوان الشرائح */
+        .slide-intro h1 { color: #2c3e50; border-bottom-color: #bdc3c7; }
+        
+        .c-purple h1, .c-purple h2 { color: #8e44ad; border-bottom-color: #8e44ad; }
+        .c-purple .section-badge { background: #f4ecf7; color: #8e44ad; }
+        .c-purple .highlight { color: #8e44ad; }
+
+        .c-blue h1, .c-blue h2 { color: #2980b9; border-bottom-color: #2980b9; }
+        .c-blue .section-badge { background: #ebf5fb; color: #2980b9; }
+        .c-blue .highlight { color: #2980b9; }
+
+        .c-orange h1, .c-orange h2 { color: #d35400; border-bottom-color: #d35400; }
+        .c-orange .section-badge { background: #fdf2e9; color: #d35400; }
+        .c-orange .highlight { color: #d35400; }
+
+        .c-green h1, .c-green h2 { color: #27ae60; border-bottom-color: #27ae60; }
+        .c-green .section-badge { background: #eafaf1; color: #27ae60; }
+        .c-green .highlight { color: #27ae60; }
+
+        .c-teal h1, .c-teal h2 { color: #16a085; border-bottom-color: #16a085; }
+        .c-teal .section-badge { background: #e8f8f5; color: #16a085; }
+        .c-teal .highlight { color: #16a085; }
+
+        .c-crimson h1, .c-crimson h2 { color: #c0392b; border-bottom-color: #c0392b; }
+        .c-crimson .section-badge { background: #fcedec; color: #c0392b; }
+        .c-crimson .highlight { color: #c0392b; }
+
+        /* أسهم التنقل */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 46px;
+            height: 46px;
+            background-color: #ffffff;
+            color: #2c3e50;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.3s;
+            user-select: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+            z-index: 10;
+        }
+
+        .next { left: -22px; }
+        .prev { right: -22px; }
+
+        .prev:hover, .next:hover {
+            background-color: #2c3e50;
+            color: #ffffff;
+        }
+
+        /* نقاط التنقل السفلية */
+        .dots-container {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            padding: 0 25px;
+            z-index: 10;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 10px;
+            width: 10px;
+            background-color: #d5dbdb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: 0.3s ease;
+        }
+
+        .active, .dot:hover {
+            background-color: #2c3e50;
+            transform: scale(1.35);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.7rem; }
+            .section-title-slide h2 { font-size: 2rem; }
+            ul { font-size: 1.1rem; }
+            .slide { padding: 30px 25px; }
+            .next { left: 8px; }
+            .prev { right: 8px; }
+            .hadith-box { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slideshow-container">
+
+    <!-- الشريحة 1: المقدمة -->
+    <div class="slide slide-intro">
+        <h1>📖 تَأَمُّلَاتٌ حَوْلَ سُورَةِ التَّغَابُنِ</h1>
+        <div style="text-align: center; margin-top: 40px;">
+            <h2 style="font-size: 2.2rem; line-height: 1.6; color: #2c3e50;">
+                مُلَخَّصُ المَحَاوِرِ وَالفَوَائِدِ المَنْهَجِيَّةِ
+            </h2>
+            <p style="margin-top: 30px; font-size: 1.35rem; color: #e67e22; font-weight: 700;">
+                المُسَبِّحَاتُ • فِتْنَةُ المَالِ وَالأَوْلَادِ وَالاسْتِضْعَافُ • أَسْمَاءُ القِيَامَةِ • أَرَكَانُ القَدَرِ
+            </p>
+        </div>
+    </div>
+
+    <!-- الشريحة 2: عنوان القسم الأول -->
+    <div class="slide c-purple">
+        <div class="section-title-slide">
+            <span class="section-badge">المِحْوَرُ الأَوَّلُ</span>
+            <h2>١. سُوَرُ المُسَبِّحَاتِ</h2>
+            <p>تَصْنِيفُ السُّوَرِ الَّتِي افْتُتِحَتْ بِتَسْبِيحِ اللهِ عَزَّ وَجَلَّ وَصِيَغُهَا</p>
+        </div>
+    </div>
+
+    <!-- الشريحة 3: هرمية المسبحات - المصدر والأمر -->
+    <div class="slide c-purple">
+        <h1>✨ المُسَبِّحَاتُ: صِيغَتَا المَصْدَرِ وَالأَمْرِ</h1>
+        <ul>
+            <li>
+                <span class="highlight">صِيغَةُ المَصْدَرِ (سُبْحَانَ):</span>
+                <ul>
+                    <li>سُورَةُ <span class="highlight">الإِسْرَاءِ</span> ﴿سُبْحَانَ الَّذِي أَسْرَىٰ بِعَبْدِهِ لَيْلًا﴾.</li>
+                    <li>المَصْدَرُ يَدُلُّ عَلَى التَّنْزِيهِ المُطْلَقِ الثَّابِتِ الَّذِي لَا يَرْتَبِطُ بِزَمَنٍ.</li>
+                </ul>
+            </li>
+            <li style="margin-top: 25px;">
+                <span class="highlight">صِيغَةُ الأَمْرِ (سَبِّحْ):</span>
+                <ul>
+                    <li>سُورَةُ <span class="highlight">الأَعْلَى</span> ﴿سَبِّحِ اسْمَ رَبِّكَ الْأَعْلَى﴾.</li>
+                    <li>طَلَبُ التَّسْبِيحِ وَاسْتِحْضَارُ عَظَمَةِ اسْمِ اللهِ سُبْحَانَهُ وَتَعَالَى.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- الشريحة 4: هرمية المسبحات - الماضي والمضارع -->
+    <div class="slide c-purple">
+        <h1>⚔️ المُسَبِّحَاتُ: الفِعْلُ المَاضِي وَالمُضَارِعُ</h1>
+        <ul>
+            <li>
+                <span class="highlight">صِيغَةُ المَاضِي (سَبَّحَ) — [سُوَرُ الحَرْبِ وَالقُوَّةِ]:</span>
+                <ul>
+                    <li>سُورَةُ <span class="highlight">الحَدِيدِ</span> ﴿سَبَّحَ لِلَّهِ مَا فِي السَّمَاوَاتِ وَالْأَرْضِ﴾.</li>
+                    <li>سُورَةُ <span class="highlight">الحَشْرِ</span> ﴿سَبَّحَ لِلَّهِ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ﴾.</li>
+                </ul>
+            </li>
+            <li style="margin-top: 20px;">
+                <span class="highlight">صِيغَةُ المُضَارِعِ (يُسَبِّحُ) — [سُوَرُ العِبَادَاتِ وَالأَحْكَامِ]:</span>
+                <ul>
+                    <li>سُورَةُ <span class="highlight">الصَّفِّ</span> ﴿يُسَبِّحُ لِلَّهِ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ﴾.</li>
+                    <li>سُورَةُ <span class="highlight">الجُمُعَةِ</span> ﴿يُسَبِّحُ لِلَّهِ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ﴾.</li>
+                    <li>سُورَةُ <span class="highlight">التَّغَابُنِ</span> ﴿يُسَبِّحُ لِلَّهِ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ﴾.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- الشريحة 5: عنوان القسم الثاني -->
+    <div class="slide c-orange">
+        <div class="section-title-slide">
+            <span class="section-badge">المِحْوَرُ الثَّانِي</span>
+            <h2>٢. فِتْنَةُ المَالِ وَالأَوْلَادِ وَالاسْتِضْعَافُ</h2>
+            <p>أَحْوَالُ المُسْتَضْعَفِينَ فِي بَدْرٍ وَتَأَمُّلَاتُ سُورَةِ التَّغَابُنِ فِي البَلَاءِ بِالأَهْلِ</p>
+        </div>
+    </div>
+
+    <!-- الشريحة 6: هرمية المستضعفين في بدر -->
+    <div class="slide c-orange">
+        <h1>🛡️ المُسْتَضْعَفُونَ الَّذِينَ أُجْبِرُوا عَلَى الخُرُوجِ فِي بَدْرٍ</h1>
+        <ul>
+            <li>
+                <span class="highlight">مَنْ قُتِلَ مِنهُمْ ⬅ التَّشْدِيدُ:</span>
+                <ul>
+                    <li>وَرَدَ فِيهِمُ التَّغْلِيظُ وَالتَّشْدِيدُ لِبَقَائِهِمْ فِي دِيَارِ الكُفْرِ مَعَ قُدْرَتِهِمْ عَلَى الهِجْرَةِ.</li>
+                    <li>﴿إِنَّ الَّذِينَ تَوَفَّاهُمُ الْمَلَائِكَةُ ظَالِمِي أَنفُسِهِمْ قَالُوا فِيمَ كُنتُمْ...﴾ [النساء: 97].</li>
+                </ul>
+            </li>
+            <li style="margin-top: 15px;">
+                <span class="highlight">مَنْ أُسِرَ مِنهُمْ ⬅ الفِدَاءُ وَالمُعَامَلَةُ العَادِلَةُ:</span>
+                <ul>
+                    <li>عُومِلُوا كَبَقِيَّةِ الأَسْرَى بِأَخْذِ الفِدَاءِ، <span class="highlight">وَالسِّرُّ إِلَى اللهِ</span> فِي نَوَايَاهُمْ وَإِيمَانِهِمْ.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- الشريحة 7: فتنة الأهل والمال -->
+    <div class="slide c-orange">
+        <h1>🏡 فِتْنَةُ المَالِ وَالأَوْلَادِ وَالأَزْوَاجِ</h1>
+        <ul>
+            <li>
+                <span class="highlight">حَدِيثُ:</span> «الوَلَدُ مَجْبَنَةٌ، مَبْخَلَةٌ، مَحْزَنَةٌ».
+                <ul>
+                    <li>قَدْ يَكُونُ حُبُّ الأَوْلَادِ دَافِعاً لِلْجُبْنِ عَنِ الجِهَادِ، وَالبُخْلِ بِالمَالِ، وَالحُزْنِ عَلَيْهِمْ.</li>
+                </ul>
+            </li>
+            <li style="margin-top: 15px;">
+                <span class="highlight">تَوْجِيهَاتُ سُورَةِ التَّغَابُنِ:</span>
+                <ul>
+                    <li>﴿يَا أَيُّهَا الَّذِينَ آمَنُوا إِنَّ مِنْ أَزْوَاجِكُمْ وَأَوْلَادِكُمْ عَدُوًّا لَّكُمْ فَاحْذَرُوهُمْ﴾: لِأَنَّهُمْ قَدْ يَصُدُّونَ عَنْ طَاعَةِ اللهِ.</li>
+                    <li>﴿وَإِن تَعْفُوا وَتَصْفَحُوا وَتَغْفِرُوا فَإِنَّ اللَّهَ غَفُورٌ رَّحِيمٌ﴾: الدَّعْوَةُ لِلرَّحْمَةِ بَعْدَ الحَذَرِ.</li>
+                    <li>﴿إِنَّمَا أَمْوَالُكُمْ وَأَوْلَادُكُمْ فِتْنَةٌ وَاللَّهُ عِندَهُ أَجْرٌ عَظِيمٌ﴾: اخْتِبَارٌ وَابْتِلَاءٌ لِلإِيمَانِ.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- الشريحة 8: عنوان القسم الثالث -->
+    <div class="slide c-crimson">
+        <div class="section-title-slide">
+            <span class="section-badge">المِحْوَرُ الثَّالِثُ</span>
+            <h2>٣. أَسْمَاءُ يَوْمِ القِيَامَةِ</h2>
+            <p>مِنْهَا "يَوْمُ التَّغَابُنِ" وَتَعَدُّدُ الأَسْمَاءِ لِعِظَمِ المَوْقِفِ وَهَوْلِهِ</p>
+        </div>
+    </div>
+
+    <!-- الشريحة 9: هرمية أسماء يوم القيامة -->
+    <div class="slide c-crimson">
+        <h1>⚖️ مِنْ أَسْمَاءِ يَوْمِ القِيَامَةِ فِي القُرْآنِ</h1>
+        <div class="names-grid">
+            <div class="name-card" style="border-color: #c0392b; background-color: #fcedec; font-weight: 800;">يَوْمُ التَّغَابُنِ</div>
+            <div class="name-card">القِيَامَة</div>
+            <div class="name-card">السَّاعَة</div>
+            <div class="name-card">القَارِعَة</div>
+            <div class="name-card">الوَاقِعَة</div>
+            <div class="name-card">الحَاقَّة</div>
+            <div class="name-card">الغَاشِيَة</div>
+            <div class="name-card">الطَّامَّةُ الكُبْرَى</div>
+            <div class="name-card">الصَّاخَّة</div>
+            <div class="name-card">الحِسَاب</div>
+            <div class="name-card">البَعْث</div>
+            <div class="name-card">التَّنَاد</div>
+            <div class="name-card">الآزِفَة</div>
+            <div class="name-card">يَوْمُ الجَمْعِ</div>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.15rem; color: #7f8c8d; text-align: center;">
+            💡 <span class="highlight">يَوْمُ التَّغَابُنِ:</span> سُمِّيَ بِذَلِكَ لِأَنَّ أَهْلَ الجَنَّةِ يَغْبِنُونَ أَهْلَ النَّارِ فِيمَا فَاتَهُمْ مِنَ النَّعِيمِ.
+        </p>
+    </div>
+
+    <!-- الشريحة 10: عنوان القسم الرابع -->
+    <div class="slide c-teal">
+        <div class="section-title-slide">
+            <span class="section-badge">المِحْوَرُ الرَّابِعُ</span>
+            <h2>٤. أَحَادِيثُ فِي القَدَرِ</h2>
+            <p>أَحَادِيثُ نَبَوِيَّةٌ شَرِيفَةٌ تُوَضِّحُ حَقِيقَةَ الإِيمَانِ بِالقَضَاءِ وَالقَدَرِ وَالعَمَلِ</p>
+        </div>
+    </div>
+
+    <!-- الشريحة 11: حديث 1 -->
+    <div class="slide c-blue">
+        <h1>📜 الحَدِيثُ الأَوَّلُ: الكِتَابُ وَالعَمَلُ</h1>
+        <div class="hadith-box">
+            عَنْ عَلِيٍّ رَضِيَ اللَّهُ عَنْهُ قَالَ: ((كُنَّا فِي جَنَازَةٍ فِي بَقِيعِ الغَرْقَدِ، فَأَتَانَا النَّبِيُّ صَلَّى اللَّهُ عَلَيْهِ وَآلِهِ وَسَلَّمَ فَقَعَدَ، وَقَعَدْنَا حَوْلَهُ، وَمَعَهُ مِخْصَرَةٌ فَنَكَّسَ، فَجَعَلَ يَنْكُتُ بِمِخْصَرَتِهِ، ثُمَّ قَالَ: <b>مَا مِنْكُمْ مِنْ أَحَدٍ، مَا مِنْ نَفْسٍ مَنْفُوسَةٍ إِلَّا كُتِبَ مَكَانُهَا مِنَ الجَنَّةِ وَالنَّارِ، وَإِلَّا قَدْ كُتِبَ شَقِيَّةً أَوْ سَعِيدَةً</b>، فَقَالَ رَجُلٌ: يَا رَسُولَ اللَّهِ، أَفَلَا نَتَّكِلُ عَلَى كِتَابِنَا وَنَدَعُ العَمَلَ، فَمَنْ كَانَ مِنَّا مِنْ أَهْلِ السَّعَادَةِ، فَسَيَصِيرُ إِلَى عَمَلِ أَهْلِ السَّعَادَةِ، وَأَمَّا مَنْ كَانَ مِنَّا مِنْ أَهْلِ الشَّقَاوَةِ، فَسَيَصِيرُ إِلَى عَمَلِ أَهْلِ الشَّقَاوَةِ؟ قَالَ: <b>أَمَّا أَهْلُ السَّعَادَةِ فَيُيَسَّرُونَ لِعَمَلِ السَّعَادَةِ، وَأَمَّا أَهْلُ الشَّقَاوَةِ فَيُيَسَّرُونَ لِعَمَلِ الشَّقَاوَةِ</b>، ثُمَّ قَرَأَ: ﴿فَأَمَّا مَنْ أَعْطَى وَاتَّقَى﴾ [الليل: 5]؛ الآيَةَ)).
+        </div>
+        <div class="hadith-source">[أخرجه البخاري برقم: (1296)، ومسلم برقم: (2647)]</div>
+    </div>
+
+    <!-- الشريحة 12: حديث 2 -->
+    <div class="slide c-teal">
+        <h1>📜 الحَدِيثُ الثَّانِي: مُحَاجَّةُ آدَمَ وَمُوسَى</h1>
+        <div class="hadith-box">
+            عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ عَنِ النَّبِيِّ صَلَّى اللَّهُ عَلَيْهِ وَآلِهِ وَسَلَّمَ، قَالَ: ((احْتَجَّ آدَمُ وَمُوسَى، فَقَالَ لَهُ مُوسَى: يَا آدَمُ، أَنْتَ أَبُونَا، خَيَّبْتَنَا وَأَخْرَجْتَنَا مِنَ الجَنَّةِ، قَالَ لَهُ آدَمُ: <b>يَا مُوسَى، اصْطَفَاكَ اللَّهُ بِكَلَامِهِ، وَخَطَّ لَكَ بِيَدِهِ، أَتَلُومُنِي عَلَى أَمْرٍ قَدَّرَهُ اللَّهُ عَلَيَّ قَبْلَ أَنْ يَخْلُقَنِي بِأَرْبَعِينَ سَنَةً؟</b> فَحَجَّ آدَمُ مُوسَى، فَحَجَّ آدَمُ مُوسَى؛ ثَلَاثًا)).
+        </div>
+        <div class="hadith-source">[أخرجه البخاري برقم: (6240)، ومسلم برقم: (2652)]</div>
+    </div>
+
+    <!-- الشريحة 13: حديث 3 -->
+    <div class="slide c-green">
+        <h1>📜 الحَدِيثُ الثَّالِثُ: حَقِيقَةُ الإِيمَانِ بِالقَدَرِ</h1>
+        <div class="hadith-box">
+            عَنْ جَابِرِ بْنِ عَبْدِ اللَّهِ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَآلِهِ وَسَلَّمَ: <br><br>
+            ((<b>لَا يُؤْمِنُ عَبْدٌ حَتَّى يُؤْمِنَ بِالقَدَرِ خَيْرِهِ وَشَرِّهِ، حَتَّى يَعْلَمَ أَنَّ مَا أَصَابَهُ لَمْ يَكُنْ لِيُخْطِئَهُ، وَأَنَّ مَا أَخْطَأَهُ لَمْ يَكُنْ لِيُصِيبَهُ</b>)).
+        </div>
+        <div class="hadith-source">[أخرجه الترمذي برقم: (2144)، وصححه الألباني في السلسلة الصحيحة برقم: (2439)]</div>
+    </div>
+
+    <!-- الشريحة 14: حديث 4 -->
+    <div class="slide c-blue">
+        <h1>📜 الحَدِيثُ الرَّابِعُ: المُؤْمِنُ القَوِيُّ وَالاسْتِعَانَةُ بِاللهِ</h1>
+        <div class="hadith-box">
+            عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ، قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَآلِهِ وَسَلَّمَ: <br><br>
+            ((<b>المُؤْمِنُ القَوِيُّ خَيْرٌ وَأَحَبُّ إِلَى اللَّهِ مِنَ المُؤْمِنِ الضَّعِيفِ وَفِي كُلٍّ خَيْرٌ، احْرِصْ عَلَى مَا يَنْفَعُكَ، وَاسْتَعِنْ بِاللَّهِ وَلَا تَعْجَزْ، وَإِنْ أَصَابَكَ شَيْءٌ فَلَا تَقُلْ: لَوْ أَنِّي فَعَلْتُ كَانَ كَذَا وَكَذَا، وَلَكِنْ قُلْ: قَدَّرَ اللَّهُ وَمَا شَاءَ فَعَلَ؛ فَإِنَّ "لَوْ" تَفْتَحُ عَمَلَ الشَّيْطَانِ</b>)).
+        </div>
+        <div class="hadith-source">[أخرجه مسلم برقم: (2664)]</div>
+    </div>
+
+    <!-- أزرار التنقل -->
+    <a class="next" onclick="plusSlides(1)">❮</a>
+    <a class="prev" onclick="plusSlides(-1)">❯</a>
+
+    <!-- نقاط التنقل السفلية -->
+    <div class="dots-container">
+        <span class="dot" onclick="currentSlide(1)"></span> 
+        <span class="dot" onclick="currentSlide(2)"></span> 
+        <span class="dot" onclick="currentSlide(3)"></span> 
+        <span class="dot" onclick="currentSlide(4)"></span> 
+        <span class="dot" onclick="currentSlide(5)"></span> 
+        <span class="dot" onclick="currentSlide(6)"></span> 
+        <span class="dot" onclick="currentSlide(7)"></span> 
+        <span class="dot" onclick="currentSlide(8)"></span> 
+        <span class="dot" onclick="currentSlide(9)"></span> 
+        <span class="dot" onclick="currentSlide(10)"></span> 
+        <span class="dot" onclick="currentSlide(11)"></span> 
+        <span class="dot" onclick="currentSlide(12)"></span> 
+        <span class="dot" onclick="currentSlide(13)"></span> 
+        <span class="dot" onclick="currentSlide(14)"></span> 
+    </div>
+
+</div>
+
+<script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("slide");
+        let dots = document.getElementsByClassName("dot");
+        
+        if (n > slides.length) { slideIndex = 1; }    
+        if (n < 1) { slideIndex = slides.length; }
+        
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        
+        slides[slideIndex - 1].style.display = "block";  
+        if (dots[slideIndex - 1]) {
+            dots[slideIndex - 1].className += " active";
+        }
+    }
+
+    // التنقل بلوحة المفاتيح
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "ArrowRight") {
+            plusSlides(-1); // التالي في القراءة العربية
+        } else if (event.key === "ArrowLeft") {
+            plusSlides(1);  // السابق
+        }
+    });
+</script>
+
+</body>
+</html>
