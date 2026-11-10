@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تأملات ومواقف حول سورة المنافقين</title>
+    <!-- استدعاء خط عربي واضح وجميل مع التشكيل -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #f0f3f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 15px;
+            user-select: none;
+        }
+
+        .slideshow-container {
+            width: 100%;
+            max-width: 1000px;
+            min-height: 74vh;
+            position: relative;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.09);
+            border-radius: 24px;
+            background: #ffffff;
+            padding-bottom: 75px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            padding: 40px 65px 25px 65px;
+            animation: fade 0.35s ease-in-out;
+            background-color: #ffffff;
+            border-radius: 24px;
+            overflow-y: auto;
+            max-height: 78vh;
+        }
+
+        @keyframes fade {
+            from { opacity: 0.25; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.15rem;
+            margin-bottom: 22px;
+            border-bottom: 2px dashed #ecf0f1;
+            padding-bottom: 14px;
+            font-weight: 800;
+        }
+
+        .section-title-slide {
+            text-align: center;
+            padding: 70px 25px;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .section-title-slide h2 {
+            font-size: 2.5rem;
+            line-height: 1.5;
+            font-weight: 900;
+        }
+
+        .section-title-slide p {
+            font-size: 1.25rem;
+            margin-top: 15px;
+            color: #7f8c8d;
+            line-height: 1.7;
+        }
+
+        ul {
+            list-style: none;
+            font-size: 1.22rem;
+            line-height: 1.85;
+            color: #2c3e50;
+        }
+
+        ul li {
+            margin-bottom: 14px;
+            position: relative;
+            padding-right: 32px;
+            font-weight: 600;
+        }
+
+        ul li::before {
+            content: "✦";
+            position: absolute;
+            right: 0;
+            top: 1px;
+            font-size: 1.25rem;
+        }
+        
+        ul li ul {
+            margin-top: 8px;
+            margin-right: 15px;
+            font-size: 1.12rem;
+        }
+
+        ul li ul li::before {
+            content: "🔹";
+            font-size: 0.95rem;
+            top: 2px;
+        }
+
+        .highlight {
+            font-weight: 800;
+        }
+
+        .quote-box, .hadith-box {
+            background-color: #fafbfd;
+            border-right: 5px solid #2980b9;
+            padding: 20px 24px;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            line-height: 1.95;
+            color: #2c3e50;
+            margin-top: 15px;
+            text-align: justify;
+        }
+
+        .hadith-source {
+            margin-top: 14px;
+            font-size: 1.05rem;
+            color: #7f8c8d;
+            font-weight: 700;
+            text-align: left;
+            direction: ltr;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .card-item {
+            background: #fdfefe;
+            border: 1px solid #e1e8ed;
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: #2c3e50;
+            transition: 0.25s ease;
+        }
+
+        .card-item:hover {
+            transform: translateY(-2px);
+            border-color: #34495e;
+        }
+
+        /* تنسيقات الألوان حسب المحاور */
+        .slide-intro h1 { color: #2c3e50; border-bottom-color: #bdc3c7; }
+
+        .c-purple h1, .c-purple h2 { color: #8e44ad; border-bottom-color: #8e44ad; }
+        .c-purple .section-badge { background: #f4ecf7; color: #8e44ad; }
+        .c-purple .highlight { color: #8e44ad; }
+
+        .c-blue h1, .c-blue h2 { color: #2980b9; border-bottom-color: #2980b9; }
+        .c-blue .section-badge { background: #ebf5fb; color: #2980b9; }
+        .c-blue .highlight { color: #2980b9; }
+
+        .c-orange h1, .c-orange h2 { color: #d35400; border-bottom-color: #d35400; }
+        .c-orange .section-badge { background: #fdf2e9; color: #d35400; }
+        .c-orange .highlight { color: #d35400; }
+
+        .c-green h1, .c-green h2 { color: #27ae60; border-bottom-color: #27ae60; }
+        .c-green .section-badge { background: #eafaf1; color: #27ae60; }
+        .c-green .highlight { color: #27ae60; }
+
+        .c-teal h1, .c-teal h2 { color: #16a085; border-bottom-color: #16a085; }
+        .c-teal .section-badge { background: #e8f8f5; color: #16a085; }
+        .c-teal .highlight { color: #16a085; }
+
+        .c-crimson h1, .c-crimson h2 { color: #c0392b; border-bottom-color: #c0392b; }
+        .c-crimson .section-badge { background: #fcedec; color: #c0392b; }
+        .c-crimson .highlight { color: #c0392b; }
+
+        /* أسهم التنقل */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 46px;
+            height: 46px;
+            background-color: #ffffff;
+            color: #2c3e50;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.25s;
+            user-select: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+            z-index: 10;
+        }
+
+        .next { left: -22px; }
+        .prev { right: -22px; }
+
+        .prev:hover, .next:hover {
+            background-color: #2c3e50;
+            color: #ffffff;
+        }
+
+        /* حاوية مؤشرات الشرائح */
+        .dots-container {
+            position: absolute;
+            bottom: 18px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            padding: 0 25px;
+            z-index: 10;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 10px;
+            width: 10px;
+            background-color: #d5dbdb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: 0.3s ease;
+        }
+
+        .active, .dot:hover {
+            background-color: #2c3e50;
+            transform: scale(1.35);
+        }
+
+        .fullscreen-hint {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-size: 0.75rem;
+            color: #95a5a6;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 8px; }
+            .slideshow-container { min-height: 85vh; padding-bottom: 60px; }
+            h1 { font-size: 1.55rem; }
+            .section-title-slide h2 { font-size: 1.85rem; }
+            ul { font-size: 1.05rem; }
+            .slide { padding: 25px 18px; }
+            .next { left: 4px; width: 38px; height: 38px; }
+            .prev { right: 4px; width: 38px; height: 38px; }
+            .quote-box, .hadith-box { font-size: 1.05rem; padding: 14px; }
+            .dot { width: 7px; height: 7px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slideshow-container" id="slideshowBox">
+    <span class="fullscreen-hint">اضغط مرتين للشاشة الكاملة ⛶</span>
+
+    <!-- الشريحة 1: المقدمة -->
+    <div class="slide slide-intro">
+        <h1>📖 تَأَمُّلَاتٌ وَمَوَاقِفُ حَوْلَ سُورَةِ المُنَافِقِينَ</h1>
+        <div style="text-align: center; margin-top: 35px;">
+            <h2 style="font-size: 2.1rem; line-height: 1.6; color: #2c3e50;">
+                دِرَاسَةٌ تَارِيخِيَّةٌ وَتَرْبَوِيَّةٌ لِأَحْدَاثِ الغَزَوَاتِ وَصِفَاتِ النِّفَاقِ
+            </h2>
+            <p style="margin-top: 25px; font-size: 1.3rem; color: #2980b9; font-weight: 700; line-height: 1.8;">
+                غَزْوَةُ بَنِي المُصْطَلِقِ • مَوَاقِفُ ابْنِ أُبَيٍّ وَعَبْدِ اللهِ بَرَّ وَالِدَهُ • حِيلَةُ نُعَيْمِ بْنِ مَسْعُودٍ • صِفَاتُ المُنَافِقِينَ
+            </p>
+        </div>
+    </div>
+
+    <!-- الشريحة 2: عنوان المحور الأول -->
+    <div class="slide c-blue">
+        <div class="section-title-slide">
+            <span class="section-badge">المِحْوَرُ الأَوَّلُ</span>
+            <h2>١. غَزْوَةُ بَنِي المُصْطَلِقِ</h2>
+            <p>سِيَاقُ الغَزْوَةِ، وَمَوْقِعُ المُرَيْسِيعِ، وَبَرَكَةُ أُمِّ المُؤْمِنِينَ جُوَيْرِيَةَ بِنْتِ الحَارِثِ رَضِيَ اللهُ عَنْهَا</p>
+        </div>
+    </div>
+
+    <!-- الشريحة 3: أحداث غزوة بني المصطلق -->
+    <div class="slide c-blue">
+        <h1>⚔️ غَزْوَةُ بَنِي المُصْطَلِقِ (المُرَيْسِيع)</h1>
+        <ul>
+            <li>
+                <span class="highlight">الزَّمَانُ وَالسَّبَبُ:</span>
+                <ul>
+                    <li>وَقَعَتْ فِي <span class="highlight">شَعْبَانَ سَنَةَ ٦ هِـ</span> عِنْدَ مَاءِ المُرَيْسِيعِ بِنَاحِيَةِ قُدَيْدٍ.</li>
+                    <li>بَلَغَ النَّبِيَّ ﷺ أَنَّ بَنِي المُصْطَلِقِ يَتَجَمَّعُونَ لِقِتَالِهِ بِقِيَادَةِ الحَارِثِ بْنِ أَبِي ضِرَارٍ، فَخَرَجَ إِلَيْهِمْ.</li>
+                </ul>
+            </li>
+            <li>
+                <span class="highlight">نَتِيجَةُ المَعْرَكَةِ:</span>
+                <ul>
+                    <li>انْهَزَمَ بَنُو المُصْطَلِقِ، وَغَنِمَ المُسْلِمُونَ أَمْوَالًا وَسَبَايَا كَثِيرَةً قُسِّمَتْ بَيْنَ الصَّحَابَةِ.</li>
+                </ul>
+            </li>
+            <li>
+                <span class="highlight">بَرَكَةُ أُمِّ المُؤْمِنِينَ جُوَيْرِيَةَ رَضِيَ اللهُ عَنْهَا:</span>
+                <ul>
+                    <li>وَقَعَتْ فِي سَهْمِ ثَابِتِ بْنِ قَيْسٍ فَكَاتَبَتْهُ، فَأَدَّى النَّبِيُّ ﷺ كِتَابَتَهَا وَتَزَوَّجَهَا.</li>
+                    <li>فَقَالَ النَّاسُ: <span class="highlight">«أَصْهَارُ رَسُولِ اللهِ!»</span>، فَأَعْتَقُوا أَكْثَرَ مِنْ مِائَةِ أَهْلِ بَيْتٍ مِنْ بَنِي المُصْطَلِقِ؛ فَمَا كَانَتِ امْرَأَةٌ أَعْظَمَ بَرَكَةً عَلَى قَوْمِهَا مِنْهَا.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- الشريحة 4: عنوان المحور الثاني -->
+    <div class="slide c-crimson">
+        <div class="section-title-slide">
+            <span class="section-badge">المِحْوَرُ الثَّانِي</span>
+            <h2>٢. مَوَاقِفُ غَزْوَةِ بَنِي المُصْطَلِقِ</h2>
+            <p>فِتْنَةُ عَبْدِ اللهِ بْنِ أُبَيٍّ عَلَى المَاءِ، وَنُزُولُ سُورَةِ المُنَافِقِينَ، وَمِحْنَةُ حَادِثَةِ الإِفْكِ</p>
+        </div>
+    </div>
+
+    <!-- الشريحة 5: فتنة الماء ومقولة ابن أبي -->
+    <div class="slide c-crimson">
+        <h1>💧 فِتْنَةُ المَاءِ وَمَقَالَةُ ابْنِ أُبَيٍّ</h1>
+        <ul>
+            <li>
+                <span class="highlight">شِجَارُ المَاءِ وَدَعْوَى الجَاهِلِيَّةِ:</span>
+                <ul>
+                    <li>تَنَازَعَ جَهْجَاهُ بْنُ سَعِيدٍ الغِفَارِيُّ وَسِنَانُ بْنُ يَزِيدَ فَنَادَيَا بِعَصَبِيَّةِ الأَنْصَارِ وَالمُهَاجِرِينَ.</li>
+                    <li>فَقَالَ النَّبِيُّ ﷺ حَاسِمًا: <span class="highlight">«مَا بَالُ دَعْوَى الجَاهِلِيَّةِ؟ دَعُوهَا فَإِنَّهَا مُنْتِنَةٌ»</span>.</li>
+                </ul>
+            </li>
+            <li>
+                <span class="highlight">طُغْيَانُ عَبْدِ اللهِ بْنِ أُبَيٍّ ابْنِ سَلُولَ:</span>
+                <ul>
+                    <li>قَالَ مُحَرِّضًا: «سَمِّنْ كَلْبَكَ يَأْكُلْكَ.. وَاللهِ لَئِنْ رَجَعْنَا إِلَى المَدِينَةِ لَيُخْرِجَنَّ الأَعَزُّ مِنْهَا الأَذَلَّ».</li>
+                    <li>حَرَّضَ قَوْمَهُ عَلَى مَنْعِ النَّفَقَةِ عَنِ المُهَاجِرِينَ حَتَّى يَتَفَرَّقُوا.</li>
+                </ul>
+            </li>
+            <li>
+                <span class="highlight">شَجَاعَةُ زَيْدِ بْنِ أَرْقَمَ رَضِيَ اللهُ عَنْهُ:</span>
+                <ul>
+                    <li>سَمِعَ مَقَالَةَ ابْنِ أُبَيٍّ فَنَقَلَهَا لِرَسُولِ اللهِ ﷺ، فَأَنْكَرَ ابْنُ أُبَيٍّ وَحَلَفَ كَاذِبًا فَصَدَّقَهُ بَعْضُ القَوْمِ وَلَامُوا زَيْدًا.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- الشريحة 6: نزول سورة المنافقين وحكمة النبي -->
+    <div class="slide c-crimson">
+        <h1>📜 نُزُولُ سُورَةِ المُنَافِقِينَ وَتَصْدِيقُ زَيْدٍ</h1>
+        <ul>
+            <li>
+                <span class="highlight">حِكْمَةُ النَّبِيِّ ﷺ مَعَ عُمَرَ بْنِ الخَطَّابِ:</span>
+                <ul>
+                    <li>طَلَبَ عُمَرُ قَتْلَ ابْنِ أُبَيٍّ، فَقَالَ ﷺ: <span class="highlight">«فَكَيْفَ إِذَا تَحَدَّثَ النَّاسُ يَا عُمَرُ أَنَّ مُحَمَّدًا يَقْتُلُ أَصْحَابَهُ؟»</span>، وَأَمَرَ بِالرَّحِيلِ فِي سَاعَةٍ حَارَّةٍ لِيَشْغَلَ النَّاسَ عَنِ الفِتْنَةِ.</li>
+                </ul>
+            </li>
+            <li>
+                <span class="highlight">بَرَاءَةُ زَيْدِ بْنِ أَرْقَمَ مِنَ السَّمَاءِ:</span>
+                <ul>
+                    <li>أَنْزَلَ اللهُ تَعَالَى سُورَةَ المُنَافِقِينَ تَصْدِيقًا لِزَيْدٍ وَفَضْحًا لِكَذِبِ ابْنِ أُبَيٍّ وَحَلِفِهِ البَاطِلِ.</li>
+                    <li>أَتَى النَّبِيُّ ﷺ زَيْدًا فَعَرَكَ أُذُنَهُ وَضَحِكَ فِي وَجْهِهِ وَقَالَ: <span class="highlight">«إِنَّ اللهَ قَدْ أَنْزَلَ عُذْرَكَ وَصَدَّقَكَ»</span>.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- الشريحة 7: حادثة الإفك وبراءة عائشة -->
+    <div class="slide c-orange">
+        <h1>💎 حَادِثَةُ الإِفْكِ: المِحْنَةُ وَالبَرَاءَةُ الرَّبَّانِيَّةُ</h1>
+        <ul>
+            <li>
+                <span class="highlight">أَصْلُ الوَاقِعَةِ:</span>
+                <ul>
+                    <li>فِي رُجُوعِ الجَيْشِ، تَأَخَّرَتْ أُمُّ المُؤْمِنِينَ عَائِشَةُ رَضِيَ اللهُ عَنْهَا لِالبَحْثِ عَنْ عِقْدِهَا، فَحَمَلُوا هَوْدَجَهَا يَظُنُّونَهَا فِيهِ لِخِفَّتِهَا، فَنَامَتْ حَتَّى حَمَلَهَا صَفْوَانُ بْنُ المُعَطَّلِ.</li>
+                </ul>
+            </li>
+            <li>
+                <span class="highlight">تَوَلِّي كِبْرِ الإِفْكِ:</span>
+                <ul>
+                    <li>تَوَلَّى نَشْرَ الفِرْيَةِ عَبْدُ اللهِ بْنُ أُبَيٍّ ابْنُ سَلُولَ، وَأَوْقَعَ الفِتْنَةَ بَيْنَ الصَّحَابَةِ، وَمَرِضَتْ عَائِشَةُ شَهْرًا لَا تَعْلَمُ بِالخَبَرِ.</li>
+                </ul>
+            </li>
+            <li>
+                <span class="highlight">البَرَاءَةُ الخَالِدَةُ فِي سُورَةِ النُّورِ:</span>
+                <ul>
+                    <li>صَبَرَتْ وَقَالَتْ: «فَصَبْرٌ جَمِيلٌ وَاللَّهُ الْمُسْتَعَانُ عَلَىٰ مَا تَصِفُونَ»، فَأَنْزَلَ اللهُ بَرَاءَتَهَا فِي قُرْآنٍ يُتْلَى إِلَى يَوْمِ القِيَامَةِ، وَعَفَا أَبُو بَكْرٍ عَنْ مِسْطَحِ بْنِ أُثَاثَةَ بَعْدَ نُزُولِ الآيَاتِ.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- الشريحة 8: عنوان المحور الثالث -->
+    <div class="slide c-green">
+        <div class="section-title-slide">
+            <span class="section-badge">المِحْوَرُ الثَّالِثُ</span>
+            <h2>٣. مَوَاقِفُ عَبْدِ اللهِ بْنِ عَبْدِ اللهِ بْنِ أُبَيٍّ</h2>
+            <p>نَمُوذَجٌ فَذٌّ فِي تَقْدِيمِ مَحَبَّةِ اللهِ وَرَسُولِهِ عَلَى النَّسَبِ وَالعَاطِفَةِ</p>
+        </div>
+    </div>
+
+    <!-- الشريحة 9: موقف عبدالله - الاستئذان في قتل أبيه -->
+    <div class="slide c-green">
+        <h1>⚔️ المَوْقِفُ الأَوَّلُ: بَرَاعَةُ الوَلَاءِ لِلَّهِ وَالبِرُّ بِالأَبِ</h1>
+        <div class="quote-box">
+            جَاءَ عَبْدُ اللهِ بْنُ عَبْدِ اللهِ بْنِ أُبَيٍّ رَضِيَ اللهُ عَنْهُ إِلَى النَّبِيِّ ﷺ فَقَالَ:<br>
+            «يَا رَسُولَ اللهِ! إِنَّهُ بَلَغَنِي أَنَّكَ تُرِيدُ قَتْلَ عَبْدِ اللهِ بْنِ أُبَيٍّ، <span class="highlight">فَإِنْ كُنْتَ فَاعِلًا فَمُرْنِي بِهِ فَأَنَا أَحْمِلُ إِلَيْكَ رَأْسَهُ!</span> فَوَاللهِ لَقَدْ عَلِمَتِ الخَزْرَجُ مَا كَانَ لَهَا مِنْ رَجُلٍ أَبَرَّ بِوَالِدِهِ مِنِّي، إِنِّي أَخْشَى أَنْ تَأْمُرَ بِهِ غَيْرِي فَيَقْتُلَهُ، فَلَا تَدَعُنِي نَفْسِي أَنْظُرُ إِلَى قَاتِلِ أَبِي يَمْشِي فِي النَّاسِ فَأَقْتُلَهُ، فَأَقْتُلَ مُؤْمِنًا بِكَافِرٍ فَأَدْخُلَ النَّارَ!».
+        </div>
+        <ul style="margin-top: 15px;">
+            <li>فَقَالَ لَهُ النَّبِيُّ ﷺ: <span class="highlight">«بَلْ نَتَرَفَّقُ بِهِ وَنُحْسِنُ صُحْبَتَهُ مَا بَقِيَ مَعَنَا»</span>.</li>
+        </ul>
+    </div>
+
+    <!-- الشريحة 10: موقف عبدالله على أبواب المدينة -->
+    <div class="slide c-green">
+        <h1>🚪 المَوْقِفُ الثَّانِي: إِيقَافُ أَبِيهِ عَلَى أَبْوَابِ المَدِينَةِ</h1>
+        <ul>
+            <li>
+                <span class="highlight">العِزَّةُ لِلَّهِ وَلِرَسُولِهِ:</span>
+                <ul>
+                    <li>عِنْدَ رُجُوعِ الجَيْشِ، وَقَفَ عَبْدُ اللهِ بْنُ عَبْدِ اللهِ عَلَى بَابِ المَدِينَةِ وَاسْتَلَّ سَيْفَهُ، فَجَعَلَ النَّاسُ يَمُرُّونَ.</li>
+                </ul>
+            </li>
+            <li>
+                <span class="highlight">المُوَاجَهَةُ الحَاسِمَةُ مَعَ رَأْسِ النِّفَاقِ:</span>
+                <ul>
+                    <li>فَلَمَّا وَصَلَ أَبُوهُ عَبْدُ اللهِ بْنُ أُبَيٍّ، قَالَ لَهُ ابْنُهُ: <span class="highlight">«وَرَاءَكَ!»</span>، فَقَالَ أَبُوهُ: مَالَكَ وَيْلَكَ؟</li>
+                    <li>فَقَالَ البَارُّ الصَّادِقُ: <span class="highlight">«وَاللهِ لَا تَجُوزُ مِنْ هَهُنَا حَتَّى يَأْذَنَ رَسُولُ اللهِ ﷺ، فَإِنَّهُ العَزِيزُ وَأَنْتَ الذَّلِيلُ!»</span>.</li>
+                </ul>
+            </li>
+            <li>
+                <span class="highlight">الإِذْنُ النَّبَوِيُّ:</span>
+                <ul>
+                    <li>شَكَا ابْنُ أُبَيٍّ ابْنَهُ لِرَسُولِ اللهِ ﷺ، فَأَذِنَ لَهُ النَّبِيُّ ﷺ بِالدُّخُولِ رَحْمَةً وَتَأْلِيفًا.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- الشريحة 11: موقف عبدالله عند وفاة أبيه -->
+    <div class="slide c-green">
+        <h1>⚰️ المَوْقِفُ الثَّالِثُ: وَفَاةُ ابْنِ أُبَيٍّ وَالصَّلَاةُ عَلَيْهِ</h1>
+        <div class="hadith-box">
+            لَمَّا تُوُفِّيَ عَبْدُ اللهِ بْنُ أُبَيٍّ، جَاءَ ابْنُهُ إِلَى رَسُولِ اللهِ ﷺ فَسَأَلَهُ أَنْ يُعْطِيَهُ قَمِيصَهُ يُكَفِّنُ فِيهِ أَبَاهُ فَأَعْطَاهُ، ثُمَّ سَأَلَهُ أَنْ يُصَلِّيَ عَلَيْهِ، فَقَامَ ﷺ لِيُصَلِّيَ عَلَيْهِ، فَأَخَذَ عُمَرُ بِثَوْبِهِ قَائِلًا: أَتُصَلِّي عَلَيْهِ وَقَدْ نَهَاكَ اللهُ؟ فَقَالَ ﷺ: <br>
+            <span class="highlight">«إِنَّمَا خَيَّرَنِي اللهُ فَقَالَ: {اسْتَغْفِرْ لَهُمْ أَوْ لَا تَسْتَغْفِرْ لَهُمْ إِن تَسْتَغْفِرْ لَهُمْ سَبْعِينَ مَرَّةً}، وَسَأَزِيدُهُ عَلَى سَبْعِينَ»</span>.
+        </div>
+        <p style="margin-top: 15px; font-size: 1.15rem; color: #27ae60; font-weight: 700; text-align: center;">
+            💡 فَنَزَلَ قَوْلُهُ تَعَالَى حَاسِمًا: ﴿وَلَا تُصَلِّ عَلَىٰ أَحَدٍ مِّنْهُم مَّاتَ أَبَدًا وَلَا تَقُمْ عَلَىٰ قَبْرِهِ﴾ [التوبة: 84].
+        </p>
+    </div>
+
+    <!-- الشريحة 12: عنوان المحور الرابع -->
+    <div class="slide c-teal">
+        <div class="section-title-slide">
+            <span class="section-badge">المِحْوَرُ الرَّابِعُ</span>
+            <h2>٤. قِصَّةُ نُعَيْمِ بْنِ مَسْعُودٍ فِي الخَنْدَقِ</h2>
+            <p>دَهَاءُ الحَرْبِ وَتَفْرِيقُ صُفُوفِ الأَحْزَابِ بَعْدَ إِسْلَامِهِ: «إِنَّمَا أَنْتَ فِينَا رَجُلٌ وَاحِدٌ فَخَذِّلْ عَنَّا»</p>
+        </div>
+    </div>
+
+    <!-- الشريحة 13: خطة نعيم بن مسعود -->
+    <div class="slide c-teal">
+        <h1>🧠 «الحَرْبُ خُدْعَةٌ» — حِيلَةُ نُعَيْمِ بْنِ مَسْعُودٍ</h1>
+        <ul>
+            <li>
+                <span class="highlight">إِسْلَامُ نُعَيْمٍ دُونَ عِلْمِ قَوْمِهِ:</span>
+                <ul>
+                    <li>جَاءَ نُعَيْمٌ فِي غَزْوَةِ الأَحْزَابِ مُسْلِمًا، فَقَالَ لَهُ النَّبِيُّ ﷺ: <span class="highlight">«إِنَّمَا أَنْتَ فِينَا رَجُلٌ وَاحِدٌ، فَخَذِّلْ عَنَّا مَا اسْتَطَعْتَ؛ فَإِنَّ الحَرْبَ خُدْعَةٌ»</span>.</li>
+                </ul>
+            </li>
+            <li>
+                <span class="highlight">خُطَّتُهُ الذَّكِيَّةُ مَعَ بَنِي قُرَيْظَةَ:</span>
+                <ul>
+                    <li>ذَهَبَ لِبَنِي قُرَيْظَةَ وَكَانَ نَدِيمَهُمْ، فَحَذَّرَهُمْ أَنَّ قُرَيْشًا وَغَطَفَانَ سَيَرْحَلُونَ إِذَا طَالَ الأَمْرُ وَيَتْرُكُونَهُمْ لِمُحَمَّدٍ.</li>
+                    <li>أَشَارَ عَلَيْهِمْ: <span class="highlight">«لَا تُقَاتِلُوا مَعَهُمْ حَتَّى تَأْخُذُوا مِنْ أَشْرَافِهِمْ رَهْنًا بِأَيْدِيكُمْ»</span>.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- الشريحة 14: تشتيت الأحزاب ونجاح الحيلة -->
+    <div class="slide c-teal">
+        <h1>🌪️ تَشْتِيتُ حِلْفِ الأَحْزَابِ وَزَرْعُ الشَّكِّ</h1>
+        <ul>
+            <li>
+                <span class="highlight">خُدْعَتُهُ مَعَ قُرَيْشٍ وَغَطَفَانَ:</span>
+                <ul>
+                    <li>مَضَى إِلَى قُرَيْشٍ وَأَبِي سُفْيَانَ وَغَطَفَانَ سِرًّا، فَأَخْبَرَهُمْ أَنَّ يَهُودَ بَنِي قُرَيْظَةَ قَدْ نَدِمُوا عَلَى نَقْضِ عَهْدِهِمْ مَعَ مُحَمَّدٍ ﷺ.</li>
+                    <li>أَخْبَرَهُمْ أَنَّ اليَهُودَ سَيَطْلُبُونَ رَهَائِنَ مِنْ أَشْرَافِ قُرَيْشٍ وَغَطَفَانَ لِيُسَلِّمُوهُمْ إِلَى مُحَمَّدٍ لِيَضْرِبَ أَعْنَاقَهُمْ!</li>
+                </ul>
+            </li>
+            <li>
+                <span class="highlight">النَّتِيجَةُ وَتَصْدِيقُ المَكِيدَةِ:</span>
+                <ul>
+                    <li>عِنْدَمَا طَلَبَتْ يَهُودُ الرَّهَائِنَ، اسْتَيْقَنَتْ قُرَيْشٌ وَغَطَفَانُ صِدْقَ نُعَيْمٍ، فَامْتَنَعُوا عَنْ إِعْطَائِهِمْ.</li>
+                    <li>وَقَعَ التَّخَاذُلُ وَالشَّكُّ فِي صُفُوفِ الأَحْزَابِ، وَأَرْسَلَ اللهُ الرِّيحَ وَالجُنُودَ فَانْهَزَمُوا.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- الشريحة 15: عنوان المحور الخامس -->
+    <div class="slide c-purple">
+        <div class="section-title-slide">
+            <span class="section-badge">المِحْوَرُ الخَامِسُ</span>
+            <h2>٥. أَحَادِيثُ عَنْ صِفَاتِ المُنَافِقِ</h2>
+            <p>التَّحْذِيرُ النَّبَوِيُّ مِنْ صِفَاتِ النِّفَاقِ العَمَلِيِّ وَأَخْلَاقِ أَهْلِ الرَّيْبِ</p>
+        </div>
+    </div>
+
+    <!-- الشريحة 16: حديث خصال النفاق الأربع -->
+    <div class="slide c-purple">
+        <h1>⚠️ الحَدِيثُ الأَوَّلُ: أَرْبَعُ خِصَالٍ مِنَ النِّفَاقِ الخَالِصِ</h1>
+        <div class="hadith-box">
+            عَنْ عَبْدِ اللَّهِ بْنِ عَمْرٍو رَضِيَ اللهُ عَنْهُمَا قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ:<br><br>
+            «<span class="highlight">أَرْبَعٌ مَنْ كُنَّ فِيهِ كَانَ مُنَافِقًا خَالِصًا، وَمَنْ كَانَتْ فِيهِ خَلَّةٌ مِنْهُنَّ كَانَتْ فِيهِ خَلَّةٌ مِنْ نِفَاقٍ حَتَّى يَدَعَهَا:</span><br>
+            ❶ إِذَا حَدَّثَ كَذَبَ.<br>
+            ❷ وَإِذَا عَاهَدَ غَدَرَ.<br>
+            ❸ وَإِذَا وَعَدَ أَخْلَفَ.<br>
+            ❹ وَإِذَا خَاصَمَ فَجَرَ».
+        </div>
+        <div class="hadith-source">[رواه البخاري ومسلم]</div>
+    </div>
+
+    <!-- الشريحة 17: حديث آية المنافق ثلاث والخلاصة -->
+    <div class="slide c-purple">
+        <h1>📌 الحَدِيثُ الثَّانِي: عَلَامَاتُ النِّفَاقِ الثَّلَاثُ</h1>
+        <div class="hadith-box">
+            عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ، أَنَّ رَسُولَ اللَّهِ ﷺ قَالَ:<br><br>
+            «<span class="highlight">آيَةُ المُنَافِقِ ثَلَاثٌ:</span> إِذَا حَدَّثَ كَذَبَ، وَإِذَا وَعَدَ أَخْلَفَ، وَإِذَا ائْتُمِنَ خَانَ».
+        </div>
+        <div class="hadith-source">[رواه البخاري ومسلم]</div>
+
+        <div class="cards-grid">
+            <div class="card-item">الكِذْبُ فِي الحَدِيثِ</div>
+            <div class="card-item">إِخْلَافُ الوَعْدِ</div>
+            <div class="card-item">خِيَانَةُ الأَمَانَةِ</div>
+            <div class="card-item">الغَدْرُ فِي العُهُودِ</div>
+            <div class="card-item">الفُجُورُ فِي الخُصُومَةِ</div>
+            <div class="card-item">إِشَاعَةُ الفِتَنِ وَالإِفْكِ</div>
+        </div>
+    </div>
+
+    <!-- أزرار التنقل -->
+    <a class="next" onclick="plusSlides(1)">❮</a>
+    <a class="prev" onclick="plusSlides(-1)">❯</a>
+
+    <!-- نقاط التنقل السفلية -->
+    <div class="dots-container" id="dotsContainer"></div>
+
+</div>
+
+<script>
+    let slideIndex = 1;
+    const slides = document.getElementsByClassName("slide");
+    const dotsContainer = document.getElementById("dotsContainer");
+
+    // إنشاء نقاط التنقل ديناميكيًا بعدد الشرائح
+    for (let i = 0; i < slides.length; i++) {
+        let dot = document.createElement("span");
+        dot.className = "dot";
+        dot.setAttribute("onclick", `currentSlide(${i + 1})`);
+        dotsContainer.appendChild(dot);
+    }
+
+    const dots = document.getElementsByClassName("dot");
+
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        if (n > slides.length) { slideIndex = 1; }
+        if (n < 1) { slideIndex = slides.length; }
+
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+
+        for (let i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+
+        slides[slideIndex - 1].style.display = "block";
+        if (dots[slideIndex - 1]) {
+            dots[slideIndex - 1].className += " active";
+        }
+    }
+
+    // التنقل باستخدام لوحة المفاتيح
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "ArrowRight") {
+            plusSlides(-1); // التالي عند القراءة بالعربية
+        } else if (event.key === "ArrowLeft") {
+            plusSlides(1);  // السابق
+        }
+    });
+
+    // وضع ملء الشاشة عند النقر المزدوج (Double Click)
+    document.addEventListener('dblclick', function(e) {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(err => {
+                console.log(err.message);
+            });
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
+    });
+
+    // السحب باللمس على الأجهزة المحمولة (Touch Gestures)
+    // swipe right -> next slide
+    // swipe left -> previous slide
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    const slideshowBox = document.getElementById('slideshowBox');
+
+    slideshowBox.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    slideshowBox.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleGesture();
+    }, { passive: true });
+
+    function handleGesture() {
+        let deltaX = touchEndX - touchStartX;
+        if (Math.abs(deltaX) > 40) {
+            if (deltaX > 0) {
+                // سحب لليمين -> الشريحة التالية (Next)
+                plusSlides(1);
+            } else {
+                // سحب لليسار -> الشريحة السابقة (Previous)
+                plusSlides(-1);
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
