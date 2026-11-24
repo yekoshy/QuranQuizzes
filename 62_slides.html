@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تأملات ومواقف حول سورة الجمعة</title>
+    <!-- استدعاء خطوط عربية واضحة وجميلة تدعم التشكيل -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #f0f3f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 15px;
+            user-select: none;
+        }
+
+        .slideshow-container {
+            width: 100%;
+            max-width: 1020px;
+            min-height: 76vh;
+            position: relative;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.09);
+            border-radius: 24px;
+            background: #ffffff;
+            padding-bottom: 85px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            padding: 46px 65px 25px 65px;
+            animation: fade 0.35s ease-in-out;
+            background-color: #ffffff;
+            border-radius: 24px;
+            overflow-y: auto;
+            max-height: 78vh;
+        }
+
+        @keyframes fade {
+            from { opacity: 0.25; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.05rem;
+            margin-bottom: 20px;
+            border-bottom: 2px dashed #ecf0f1;
+            padding-bottom: 14px;
+            font-weight: 800;
+            line-height: 1.5;
+        }
+
+        .section-title-slide {
+            text-align: center;
+            padding: 68px 25px;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .section-title-slide h2 {
+            font-size: 2.5rem;
+            line-height: 1.5;
+            font-weight: 900;
+        }
+
+        .section-title-slide p {
+            font-size: 1.22rem;
+            margin-top: 15px;
+            color: #6c7a89;
+            line-height: 1.85;
+            font-weight: 600;
+        }
+
+        ul {
+            list-style: none;
+            font-size: 1.18rem;
+            line-height: 1.95;
+            color: #2c3e50;
+        }
+
+        ul li {
+            margin-bottom: 14px;
+            position: relative;
+            padding-right: 30px;
+            font-weight: 600;
+        }
+
+        ul li::before {
+            content: "✦";
+            position: absolute;
+            right: 0;
+            top: 2px;
+            font-size: 1.2rem;
+        }
+
+        ul li ul {
+            margin-top: 8px;
+            margin-right: 12px;
+            font-size: 1.08rem;
+        }
+
+        ul li ul li::before {
+            content: "🔹";
+            font-size: 0.9rem;
+            top: 3px;
+        }
+
+        .highlight {
+            font-weight: 800;
+        }
+
+        .quran-box {
+            background: linear-gradient(135deg, #fdfcf7 0%, #f7f4e9 100%);
+            border: 1px solid #e6dec5;
+            border-right: 6px solid #b7950b;
+            padding: 20px 24px;
+            border-radius: 14px;
+            font-family: 'Amiri', 'Cairo', serif;
+            font-size: 1.42rem;
+            line-height: 2.25;
+            color: #1f2d3d;
+            margin-top: 14px;
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        .ayah-num {
+            color: #b7950b;
+            font-weight: 700;
+            font-size: 1.15rem;
+            margin: 0 3px;
+        }
+
+        .quote-box, .hadith-box {
+            background-color: #fafbfd;
+            border-right: 5px solid #2980b9;
+            padding: 18px 22px;
+            border-radius: 12px;
+            font-size: 1.14rem;
+            line-height: 2.05;
+            color: #2c3e50;
+            margin-top: 14px;
+            text-align: justify;
+            font-weight: 600;
+        }
+
+        .hadith-source {
+            margin-top: 10px;
+            margin-bottom: 14px;
+            font-size: 0.98rem;
+            color: #7f8c8d;
+            font-weight: 700;
+            text-align: left;
+            direction: rtl;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .card-item {
+            background: #fdfefe;
+            border: 1.5px solid #e1e8ed;
+            padding: 16px 12px;
+            border-radius: 14px;
+            text-align: center;
+            font-weight: 800;
+            font-size: 1.18rem;
+            color: #2c3e50;
+            transition: 0.25s ease;
+            cursor: pointer;
+        }
+
+        .card-item small {
+            display: block;
+            margin-top: 6px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: #6c7a89;
+        }
+
+        .card-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+        }
+
+        .name-banner {
+            text-align: center;
+            margin: 10px auto 18px auto;
+            padding: 16px 26px;
+            border-radius: 16px;
+            font-size: 2rem;
+            font-weight: 900;
+            max-width: 480px;
+        }
+
+        /* تنسيقات الألوان حسب المحاور */
+        .slide-intro h1 { color: #2c3e50; border-bottom-color: #bdc3c7; }
+
+        .c-gold h1, .c-gold h2 { color: #9a7d0a; border-bottom-color: #d4ac0d; }
+        .c-gold .section-badge { background: #fef9e7; color: #9a7d0a; }
+        .c-gold .highlight { color: #9a7d0a; }
+        .c-gold .quote-box, .c-gold .hadith-box { border-right-color: #d4ac0d; }
+
+        .c-crimson h1, .c-crimson h2 { color: #c0392b; border-bottom-color: #c0392b; }
+        .c-crimson .section-badge { background: #fcedec; color: #c0392b; }
+        .c-crimson .highlight { color: #c0392b; }
+        .c-crimson .quote-box, .c-crimson .hadith-box { border-right-color: #c0392b; }
+
+        .c-blue h1, .c-blue h2 { color: #2980b9; border-bottom-color: #2980b9; }
+        .c-blue .section-badge { background: #ebf5fb; color: #2980b9; }
+        .c-blue .highlight { color: #2980b9; }
+        .c-blue .name-banner { background: #ebf5fb; color: #1f618d; border: 2px solid #aed6f1; }
+        .c-blue .card-item:hover { border-color: #2980b9; }
+
+        .c-purple h1, .c-purple h2 { color: #8e44ad; border-bottom-color: #8e44ad; }
+        .c-purple .section-badge { background: #f4ecf7; color: #8e44ad; }
+        .c-purple .highlight { color: #8e44ad; }
+        .c-purple .quote-box, .c-purple .hadith-box { border-right-color: #8e44ad; }
+        .c-purple .name-banner { background: #f4ecf7; color: #6c3483; border: 2px solid #d7bde2; }
+
+        .c-green h1, .c-green h2 { color: #27ae60; border-bottom-color: #27ae60; }
+        .c-green .section-badge { background: #eafaf1; color: #27ae60; }
+        .c-green .highlight { color: #27ae60; }
+        .c-green .quote-box, .c-green .hadith-box { border-right-color: #27ae60; }
+        .c-green .name-banner { background: #eafaf1; color: #1e8449; border: 2px solid #a9dfbf; }
+
+        .c-teal h1, .c-teal h2 { color: #16a085; border-bottom-color: #16a085; }
+        .c-teal .section-badge { background: #e8f8f5; color: #16a085; }
+        .c-teal .highlight { color: #16a085; }
+        .c-teal .quote-box, .c-teal .hadith-box { border-right-color: #16a085; }
+        .c-teal .name-banner { background: #e8f8f5; color: #117864; border: 2px solid #a3e4d7; }
+
+        .c-orange h1, .c-orange h2 { color: #d35400; border-bottom-color: #d35400; }
+        .c-orange .section-badge { background: #fdf2e9; color: #d35400; }
+        .c-orange .highlight { color: #d35400; }
+        .c-orange .quote-box, .c-orange .hadith-box { border-right-color: #d35400; }
+        .c-orange .name-banner { background: #fdf2e9; color: #a04000; border: 2px solid #f5cba7; }
+
+        /* أسهم التنقل */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 46px;
+            height: 46px;
+            background-color: #ffffff;
+            color: #2c3e50;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.25s;
+            user-select: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+            z-index: 10;
+        }
+
+        .next { left: 12px; }
+        .prev { right: 12px; }
+
+        .prev:hover, .next:hover {
+            background-color: #2c3e50;
+            color: #ffffff;
+        }
+
+        /* حاوية مؤشرات الشرائح */
+        .dots-container {
+            position: absolute;
+            bottom: 16px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            padding: 0 28px;
+            z-index: 10;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 10px;
+            width: 10px;
+            background-color: #d5dbdb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: 0.3s ease;
+        }
+
+        .active, .dot:hover {
+            background-color: #2c3e50;
+            transform: scale(1.38);
+        }
+
+        .top-bar {
+            position: absolute;
+            top: 12px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .fullscreen-hint, .slide-counter {
+            font-size: 0.8rem;
+            color: #95a5a6;
+            font-weight: 700;
+            background: rgba(255,255,255,0.85);
+            padding: 2px 10px;
+            border-radius: 12px;
+        }
+
+        .nav-pills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 22px;
+        }
+
+        .nav-pill {
+            background: #f4f6f9;
+            border: 1px solid #dce3ea;
+            color: #2c3e50;
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .nav-pill:hover {
+            background: #2c3e50;
+            color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 8px; }
+            .slideshow-container { min-height: 86vh; padding-bottom: 72px; }
+            h1 { font-size: 1.48rem; }
+            .section-title-slide { padding: 48px 14px; }
+            .section-title-slide h2 { font-size: 1.75rem; }
+            .section-title-slide p { font-size: 1.05rem; }
+            ul { font-size: 1.02rem; }
+            ul li { padding-right: 24px; }
+            .slide { padding: 40px 18px 20px 18px; }
+            .next { left: 6px; width: 36px; height: 36px; font-size: 16px; }
+            .prev { right: 6px; width: 36px; height: 36px; font-size: 16px; }
+            .quran-box { font-size: 1.2rem; padding: 14px; line-height: 2.05; }
+            .quote-box, .hadith-box { font-size: 1.02rem; padding: 14px; }
+            .name-banner { font-size: 1.55rem; padding: 12px 18px; }
+            .dot { width: 8px; height: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slideshow-container" id="slideshowBox">
+    <div class="top-bar">
+        <span class="slide-counter" id="slideCounter">١ / ٢٨</span>
+        <span class="fullscreen-hint">اضغط مرتين للشاشة الكاملة ⛶</span>
+    </div>
+
+    <!-- الشريحة 1: المقدمة -->
+    <div class="slide slide-intro" data-title="المقدمة">
+        <h1>📖 تَأَمُّلَاتٌ وَمَوَاقِفُ حَوْلَ سُورَةِ الجُمُعَةِ</h1>
+        <div style="text-align: center; margin-top: 24px;">
+            <h2 style="font-size: 1.85rem; line-height: 1.7; color: #2c3e50;">
+                سُورَةٌ مَدَنِيَّةٌ • عَدَدُ آيَاتِهَا ١١ آيَةً • تَرْتِيبُهَا ٦٢ فِي المُصْحَفِ الشَّرِيفِ
+            </h2>
+            <p style="margin-top: 18px; font-size: 1.15rem; color: #5d6d7e; font-weight: 700; line-height: 1.9;">
+                اخْتَرْ مِحْوَرًا لِلِانْتِقَالِ السَّرِيعِ أَوْ تَنَقَّلْ بِالسَّحْبِ وَالأَسْهُمِ:
+            </p>
+            <div class="nav-pills">
+                <button class="nav-pill" onclick="currentSlide(2)">📜 آيَاتُ السُّورَةِ كَامِلَةً</button>
+                <button class="nav-pill" onclick="currentSlide(5)">١. الإِلَهُ عِنْدَ اليَهُودِ</button>
+                <button class="nav-pill" onclick="currentSlide(8)">٢. أَسْمَاءُ اللهِ الحُسْنَى</button>
+                <button class="nav-pill" onclick="currentSlide(19)">٣. الْمُبَاهَلَةُ</button>
+                <button class="nav-pill" onclick="currentSlide(22)">٤. سُنَنُ يَوْمِ الجُمُعَةِ</button>
+                <button class="nav-pill" onclick="currentSlide(26)">٥. حَادِثَةُ يَوْمِ الجُمُعَةِ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- الشريحة 2: عنوان تمهيدي للسورة -->
+    <div class="slide c-gold" data-title="سورة الجمعة كاملة">
+        <div class="section-title-slide">
+            <span class="section-badge">النَّصُّ القُرْآنِيُّ</span>
+            <h2>📜 سُورَةُ الجُمُعَةِ كَامِلَةً</h2>
+            <p>تَتَنَاوَلُ السُّورَةُ تَسْبِيحَ الكَوْنِ لِلَّهِ، وَبَعْثَةَ النَّبِيِّ ﷺ فِي الأُمِّيِّينَ، وَحَالِ اليَهُودِ مَعَ التَّوْرَاةِ، وَفَضْلِ صَلَاةِ الجُمُعَةِ وَأَحْكَامِهَا</p>
+        </div>
+    </div>
+
+    <!-- الشريحة 3: سورة الجمعة الآيات 1 - 5 -->
+    <div class="slide c-gold" data-title="الآيات ١ - ٥">
+        <h1>📖 سُورَةُ الجُمُعَةِ: الآيَاتُ (١ – ٥)</h1>
+        <div class="quran-box">
+            بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ<br>
+            يُسَبِّحُ لِلَّهِ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ الْمَلِكِ الْقُدُّوسِ الْعَزِيزِ الْحَكِيمِ <span class="ayah-num">﴿١﴾</span>
+            هُوَ الَّذِي بَعَثَ فِي الْأُمِّيِّينَ رَسُولًا مِّنْهُمْ يَتْلُو عَلَيْهِمْ آيَاتِهِ وَيُزَكِّيهِمْ وَيُعَلِّمُهُمُ الْكِتَابَ وَالْحِكْمَةَ وَإِن كَانُوا مِن قَبْلُ لَفِي ضَلَالٍ مُّبِينٍ <span class="ayah-num">﴿٢﴾</span>
+            وَآخَرِينَ مِنْهُمْ لَمَّا يَلْحَقُوا بِهِمْ ۚ وَهُوَ الْعَزِيزُ الْحَكِيمُ <span class="ayah-num">﴿٣﴾</span>
+            ذَٰلِكَ فَضْلُ اللَّهِ يُؤْتِيهِ مَن يَشَاءُ ۚ وَاللَّهُ ذُو الْفَضْلِ الْعَظِيمِ <span class="ayah-num">﴿٤﴾</span>
+            مَثَلُ الَّذِينَ حُمِّلُوا التَّوْرَاةَ ثُمَّ لَمْ يَحْمِلُوهَا كَمَثَلِ الْحِمَارِ يَحْمِلُ أَسْفَارًا ۚ بِئْسَ مَثَلُ الْقَوْمِ الَّذِينَ كَذَّبُوا بِآيَاتِ اللَّهِ ۚ وَاللَّهُ لَا يَهْدِي الْقَوْمَ الظَّالِمِينَ <span class="ayah-num">﴿٥﴾</span>
+        </div>
+    </div>
+
+    <!-- الشريحة 4: سورة الجمعة الآيات 6 - 11 -->
+    <div class="slide c-gold" data-title="الآيات ٦ - ١١">
+        <h1>📖 سُورَةُ الجُمُعَةِ: الآيَاتُ (٦ – ١١)</h1>
+        <div class="quran-box">
+            قُلْ يَا أَيُّهَا الَّذِينَ هَادُوا إِن زَعَمْتُمْ أَنَّكُمْ أَوْلِيَاءُ لِلَّهِ مِن دُونِ النَّاسِ فَتَمَنَّوُا الْمَوْتَ إِن كُنتُمْ صَادِقِينَ <span class="ayah-num">﴿٦﴾</span>
+            وَلَا يَتَمَنَّوْنَهُ أَبَدًا بِمَا قَدَّمَتْ أَيْدِيهِمْ ۚ وَاللَّهُ عَلِيمٌ بِالظَّالِمِينَ <span class="ayah-num">﴿٧﴾</span>
+            قُلْ إِنَّ الْمَوْتَ الَّذِي تَفِرُّونَ مِنْهُ فَإِنَّهُ مُلَاقِيكُمْ ۖ ثُمَّ تُرَدُّونَ إِلَىٰ عَالِمِ الْغَيْبِ وَالشَّهَادَةِ فَيُنَبِّئُكُم بِمَا كُنتُمْ تَعْمَلُونَ <span class="ayah-num">﴿٨﴾</span>
+            يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا نُودِيَ لِلصَّلَاةِ مِن يَوْمِ الْجُمُعَةِ فَاسْعَوْا إِلَىٰ ذِكْرِ اللَّهِ وَذَرُوا الْبَيْعَ ۚ ذَٰلِكُمْ خَيْرٌ لَّكُمْ إِن كُنتُمْ تَعْلَمُونَ <span class="ayah-num">﴿٩﴾</span>
+            فَإِذَا قُضِيَتِ الصَّلَاةُ فَانتَشِرُوا فِي الْأَرْضِ وَابْتَغُوا مِن فَضْلِ اللَّهِ وَاذْكُرُوا اللَّهَ كَثِيرًا لَّعَلَّكُمْ تُفْلِحُونَ <span class="ayah-num">﴿١٠﴾</span>
+            وَإِذَا رَأَوْا تِجَارَةً أَوْ لَهْوًا انفَضُّوا إِلَيْهَا وَتَرَكُوكَ قَائِمًا ۚ قُلْ مَا عِندَ اللَّهِ خَيْرٌ مِّنَ اللَّهْوِ وَمِنَ التِّجَارَةِ ۚ وَاللَّهُ خَيْرُ الرَّازِقِينَ <span class="ayah-num">﴿١١﴾</span>
+        </div>
+    </div>
+
+    <!-- الشريحة 5: عنوان المحور الأول - الإله عند اليهود -->
+    <div class="slide c-crimson" data-title="١. الإله عند اليهود">
+        <div class="section-title-slide">
+            <span class="section-badge">المِحْوَرُ الأَوَّلُ</span>
+            <h2>١. الإِلَهُ عِنْدَ اليَهُودِ</h2>
+            <p>مَفْهُومُ الأُلُوهِيَّةِ فِي العَقِيدَةِ اليَهُودِيَّةِ المُحَرَّفَةِ وَأَسْبَابُ تَنَزُّهِ اللهِ تَعَالَى عَمَّا يَصِفُونَ</p>
+        </div>
+    </div>
+
+    <!-- الشريحة 6: الإله عند اليهود - الأصل والانحراف -->
+    <div class="slide c-crimson" data-title="أصل العقيدة اليهودية والانحراف">
+        <h1>🕍 الأَصْلُ وَالانْحِرَافُ فِي مَفْهُومِ الإِلَهِ عِنْدَ اليَهُودِ</h1>
+        <ul>
+            <li>
+                <span class="highlight">الأَصْلُ التَّوْحِيدِيُّ:</span>
+                <ul>
+                    <li>اليَهُودُ كِتَابِيُّونَ مُوَحِّدُونَ فِي الأَصْلِ، أُرْسِلَ إِلَيْهِمْ مُوسَى عَلَيْهِ السَّلَامُ بِالتَّوْحِيدِ الخَالِصِ.</li>
+                </ul>
+            </li>
+            <li>
+                <span class="highlight">الِاتِّجَاهُ إِلَى التَّعَدُّدِ وَالتَّجْسِيمِ:</span>
+                <ul>
+                    <li>مَالُوا إِلَى التَّعَدُّدِ وَالتَّجْسِيمِ وَالنَّفْعِيَّةِ، مِمَّا أَدَّى إِلَى كَثْرَةِ الأَنْبِيَاءِ فِيهِمْ لِرَدِّهِمْ إِلَى جَادَّةِ التَّوْحِيدِ كُلَّمَا أَصَابَهُمُ انْحِرَافٌ.</li>
+                </ul>
+            </li>
+            <li>
+                <span class="highlight">عِبَادَةُ العِجْلِ وَالحَيَّةِ النُّحَاسِيَّةِ:</span>
+                <ul>
+                    <li>اتَّخَذُوا العِجْلَ مَعْبُودًا لَهُمْ بُعَيْدَ خُرُوجِهِمْ مِنْ مِصْرَ.</li>
+                    <li>يَرْوِي العَهْدُ القَدِيمُ أَنَّ مُوسَى عَمِلَ حَيَّةً مِنْ نُحَاسٍ، فَعَبَدَهَا بَنُو إِسْرَائِيلَ بَعْدَ ذَلِكَ، كَمَا قَدَّسُوا الأَفْعَى لِأَنَّهَا تُمَثِّلُ عِنْدَهُمُ الحِكْمَةَ وَالدَّهَاءَ.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- الشريحة 7: الإله يهوه وتشويه صفات الله -->
+    <div class="slide c-crimson" data-title="وصف الإله يهوه في التوراة المحرفة">
+        <h1>📜 تَصَوُّرُ اليَهُودِ عَنِ الإِلَهِ «يَهْوَه» وَتَنْزِيهُ القُرْآنِ</h1>
+        <ul>
+            <li>
+                <span class="highlight">تَشْبِيهُ الإِلَهِ بِالمَخْلُوقِ النَّاقِصِ:</span>
+                <ul>
+                    <li>سَمَّوْا إِلَهَهُمْ <span class="highlight">«يَهْوَه»</span> وَصَوَّرُوهُ فِي كُتُبِهِمُ المُحَرَّفَةِ غَيْرَ مَعْصُومٍ؛ يَخْطَأُ وَيَثُورُ وَيَنْدَمُ وَيَتْعَبُ وَيَسْتَرِيحُ يَوْمَ السَّبْتِ، وَجَعَلُوهُ إِلَهًا لِبَنِي إِسْرَائِيلَ فَقَطْ يَسِيرُ أَمَامَهُمْ فِي عَمُودٍ مِنْ سَحَابٍ — تَعَالَى اللهُ عَمَّا يَقُولُونَ عُلُوًّا كَبِيرًا.</li>
+                </ul>
+            </li>
+            <li>
+                <span class="highlight">ادِّعَاءُ بُنُوَّةِ عُزَيْرٍ (عَزْرَا):</span>
+                <ul>
+                    <li>لَمَّا أَوْجَدَ عَزْرَا التَّوْرَاةَ بَعْدَ ضَيَاعِهَا وَأَعَادَ بِنَاءَ الهَيْكَلِ سَمَّوْهُ «ابْنَ اللهِ»، فَرَدَّ القُرْآنُ: ﴿وَقَالَتِ الْيَهُودُ عُزَيْرٌ ابْنُ اللَّهِ﴾ [التوبة: ٣٠].</li>
+                </ul>
+            </li>
+        </ul>
+        <div class="quran-box" style="font-size: 1.25rem;">
+            وَرَدَّ اللهُ افْتِرَاءَ التَّعَبِ وَالنَّقْصِ بِقَوْلِهِ: ﴿وَلَقَدْ خَلَقْنَا السَّمَاوَاتِ وَالْأَرْضَ وَمَا بَيْنَهُمَا فِي سِتَّةِ أَيَّامٍ وَمَا مَسَّنَا مِن لُّغُوبٍ﴾ <span class="ayah-num">[ق: ٣٨]</span><br>
+            وَفِي سُورَةِ الجُمُعَةِ أَكَّدَ تَنْزِيهَهُ وَتَمْجِيدَهُ: ﴿يُسَبِّحُ لِلَّهِ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ الْمَلِكِ الْقُدُّوسِ الْعَزِيزِ الْحَكِيمِ﴾ <span class="ayah-num">[الجمعة: ١]</span>
+        </div>
+    </div>
+
+    <!-- الشريحة 8: عنوان المحور الثاني - أسماء الله الحسنى -->
+    <div class="slide c-blue" data-title="٢. أسماء الله الحسنى في سورة الجمعة">
+        <div class="section-title-slide">
+            <span class="section-badge">المِحْوَرُ الثَّانِي</span>
+            <h2>٢. أَسْمَاءُ اللهِ الحُسْنَى فِي سُورَةِ الجُمُعَةِ</h2>
+            <p>تَأَمُّلٌ فِي جَمَالِ الكَمَالِ الإِلَهِيِّ وَصِفَاتِ الجَلَالِ الَّتِي افْتُتِحَتْ وَخُتِمَتْ بِهَا السُّورَةُ المُبَارَكَةُ</p>
+        </div>
+    </div>
+
+    <!-- الشريحة 9: الشريحة الجامعة لجميع أسماء الله الحسنى في السورة -->
+    <div class="slide c-blue" data-title="جميع أسماء الله في سورة الجمعة">
+        <h1>🌟 جَمِيعُ أَسْمَاءِ اللهِ الحُسْنَى فِي سُورَةِ الجُمُعَةِ</h1>
+        <p style="text-align: center; color: #5d6d7e; font-weight: 700; margin-bottom: 10px;">
+            اضْغَطْ عَلَى أَيِّ اسْمٍ لِلِانْتِقَالِ مُبَاشَرَةً إِلَى شَرْحِهِ وَمَعْنَاهُ:
+        </p>
+        <div class="cards-grid">
+            <div class="card-item" onclick="currentSlide(10)">اللهُ ﷻ<small>الآيَاتُ: ١، ٤، ٥، ٦، ٧، ٩، ١٠، ١١</small></div>
+            <div class="card-item" onclick="currentSlide(11)">المَلِكُ<small>الآيَةُ: ١</small></div>
+            <div class="card-item" onclick="currentSlide(12)">القُدُّوسُ<small>الآيَةُ: ١</small></div>
+            <div class="card-item" onclick="currentSlide(13)">العَزِيزُ<small>الآيَتَانِ: ١، ٣</small></div>
+            <div class="card-item" onclick="currentSlide(14)">الحَكِيمُ<small>الآيَتَانِ: ١، ٣</small></div>
+            <div class="card-item" onclick="currentSlide(15)">ذُو الفَضْلِ العَظِيمِ<small>الآيَةُ: ٤</small></div>
+            <div class="card-item" onclick="currentSlide(16)">العَلِيمُ (عَلِيمٌ بِالظَّالِمِينَ)<small>الآيَةُ: ٧</small></div>
+            <div class="card-item" onclick="currentSlide(17)">عَالِمُ الغَيْبِ وَالشَّهَادَةِ<small>الآيَةُ: ٨</small></div>
+            <div class="card-item" onclick="currentSlide(18)">خَيْرُ الرَّازِقِينَ<small>الآيَةُ: ١١</small></div>
+        </div>
+    </div>
+
+    <!-- الشريحة 10: اسم الله (الله) -->
+    <div class="slide c-blue" data-title="اسم الله: الله">
+        <h1>✨ مِنْ أَسْمَاءِ اللهِ الحُسْنَى فِي السُّورَةِ</h1>
+        <div class="name-banner">اللهُ ﷻ</div>
+        <div class="quran-box" style="font-size: 1.25rem; text-align: center;">
+            ﴿يُسَبِّحُ لِلَّهِ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ﴾ <span class="ayah-num">[الجمعة: ١]</span> •
+            ﴿فَاسْعَوْا إِلَىٰ ذِكْرِ اللَّهِ﴾ <span class="ayah-num">[الجمعة: ٩]</span>
+        </div>
+        <ul>
+            <li><span class="highlight">المَعْنَى:</span> هُوَ المَأْلُوهُ الوَاحِدُ المَعْبُودُ بِحَقٍّ، الَّذِي تَفْزَعُ إِلَيْهِ الخَلَائِقُ فِي الشَّدَائِدِ، وَتَعْبُدُهُ القُلُوبُ مَحَبَّةً وَتَعْظِيمًا وَخُضُوعًا.</li>
+            <li><span class="highlight">خُصُوصِيَّةُ الِاسْمِ:</span> هُوَ عَلَمٌ عَلَى الذَّاتِ الإِلَهِيَّةِ الجَامِعِ لِجَمِيعِ صِفَاتِ الكَمَالِ وَالجَلَالِ، لَمْ يُسَمَّ بِهِ غَيْرُهُ قَطُّ ﴿هَلْ تَعْلَمُ لَهُ سَمِيًّا﴾، وَقِيلَ إِنَّهُ الِاسْمُ الأَعْظَمُ.</li>
+            <li><span class="highlight">أَثَرُ الإِيمَانِ بِهِ:</span> تَحْقِيقُ التَّوْحِيدِ الخَالِصِ، وَالطُّمَأْنِينَةُ وَالتَّوَكُّلُ عَلَيْهِ وَحْدَهُ.</li>
+        </ul>
+    </div>
+
+    <!-- الشريحة 11: اسم الله (الملك) -->
+    <div class="slide c-purple" data-title="اسم الله: الملك">
+        <h1>👑 مِنْ أَسْمَاءِ اللهِ الحُسْنَى فِي السُّورَةِ</h1>
+        <div class="name-banner">المَلِكُ ﷻ</div>
+        <div class="quran-box" style="font-size: 1.25rem; text-align: center;">
+            ﴿يُسَبِّحُ لِلَّهِ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ الْمَلِكِ الْقُدُّوسِ الْعَزِيزِ الْحَكِيمِ﴾ <span class="ayah-num">[الجمعة: ١]</span>
+        </div>
+        <ul>
+            <li><span class="highlight">المَعْنَى:</span> الَّذِي لَهُ المُلْكُ الحَقِيقِيُّ الكَامِلُ التَّامُّ الأَزَلِيُّ الَّذِي لَا يَنْقَضِي وَلَا يَزُولُ وَلَا يَتَغَيَّرُ.</li>
+            <li><span class="highlight">تَجَلِّيَاتُهُ:</span> ذَلَّتْ لَهُ الرِّقَابُ، وَخَضَعَتْ لَهُ السَّمَاوَاتُ وَالأَرْضُ وَمَنْ فِيهِنَّ، يَتَصَرَّفُ فِي مُلْكِهِ كَيْفَ يَشَاءُ وَيَحْكُمُ فِيهِ مَا يُرِيدُ، بِخِلَافِ مُلْكِ العِبَادِ الحَادِثِ الزَّائِلِ.</li>
+            <li><span class="highlight">أَثَرُ الإِيمَانِ بِهِ:</span> الزُّهْدُ فِي الدُّنْيَا، وَالخُضُوعُ لِشَرْعِ المَلِكِ الحَقِّ، وَالِاسْتِغْنَاءُ عَنِ الخَلْقِ.</li>
+        </ul>
+    </div>
+
+    <!-- الشريحة 12: اسم الله (القدوس) -->
+    <div class="slide c-teal" data-title="اسم الله: القدوس">
+        <h1>🕊️ مِنْ أَسْمَاءِ اللهِ الحُسْنَى فِي السُّورَةِ</h1>
+        <div class="name-banner">القُدُّوسُ ﷻ</div>
+        <div class="quran-box" style="font-size: 1.25rem; text-align: center;">
+            ﴿يُسَبِّحُ لِلَّهِ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ الْمَلِكِ الْقُدُّوسِ الْعَزِيزِ الْحَكِيمِ﴾ <span class="ayah-num">[الجمعة: ١]</span>
+        </div>
+        <ul>
+            <li><span class="highlight">المَعْنَى:</span> المُنَزَّهُ عَنْ كُلِّ نَقْصٍ، وَالمُطَهَّرُ مِنْ كُلِّ عَيْبٍ، الَّذِي لَهُ كُلُّ صِفَاتِ العَظَمَةِ وَالكَمَالِ وَالجَلَالِ وَالجَمَالِ.</li>
+            <li><span class="highlight">تَجَلِّيَاتُهُ:</span> تَنَزَّهَ فِي ذَاتِهِ وَأَسْمَائِهِ وَأَفْعَالِهِ وَشَرْعِهِ عَنْ كُلِّ مَا لَا يَلِيقُ بِجَلَالِهِ (رَدًّا عَلَى تَصَوُّرَاتِ أَهْلِ التَّجْسِيمِ وَالنَّقْصِ)، وَهُوَ الَّذِي يُزَكِّي عِبَادَهُ وَيُطَهِّرُهُمْ.</li>
+            <li><span class="highlight">أَثَرُ الإِيمَانِ بِهِ:</span> تَعْظِيمُ اللهِ وَتَسْبِيحُهُ الدَّائِمُ، وَالحِرْصُ عَلَى طَهَارَةِ القَلْبِ وَالجَسَدِ وَتَزْكِيَةِ النَّفْسِ.</li>
+        </ul>
+    </div>
+
+    <!-- الشريحة 13: اسم الله (العزيز) -->
+    <div class="slide c-crimson" data-title="اسم الله: العزيز">
+        <h1>🛡️ مِنْ أَسْمَاءِ اللهِ الحُسْنَى فِي السُّورَةِ</h1>
+        <div class="name-banner">العَزِيزُ ﷻ</div>
+        <div class="quran-box" style="font-size: 1.25rem; text-align: center;">
+            ﴿...الْمَلِكِ الْقُدُّوسِ الْعَزِيزِ الْحَكِيمِ﴾ <span class="ayah-num">[الجمعة: ١]</span> •
+            ﴿وَآخَرِينَ مِنْهُمْ لَمَّا يَلْحَقُوا بِهِمْ ۚ وَهُوَ الْعَزِيزُ الْحَكِيمُ﴾ <span class="ayah-num">[الجمعة: ٣]</span>
+        </div>
+        <ul>
+            <li><span class="highlight">المَعْنَى:</span> ذُو العِزَّةِ المُطْلَقَةِ وَالغَلَبَةِ وَالقُدْرَةِ، وَصَاحِبُ القُوَّةِ وَالمَنَعَةِ وَالسِّيَادَةِ، الغَالِبُ القَاهِرُ الَّذِي لَا يُغْلَبُ وَلَا يُعْجِزُهُ شَيْءٌ.</li>
+            <li><span class="highlight">مَظَاهِرُ العِزَّةِ:</span> هُوَ المَنِيعُ الَّذِي لَا يُنَالُ، وَالمُعِزُّ لِعِبَادِهِ المُؤْمِنِينَ بِنَصْرِهِ وَتَأْيِيدِهِ، وَالمُذِلُّ لِمَنْ عَادَاهُ؛ فَلِلَّهِ العِزَّةُ جَمِيعًا.</li>
+            <li><span class="highlight">أَثَرُ الإِيمَانِ بِهِ:</span> طَلَبُ العِزَّةِ مِنَ اللهِ وَحْدَهُ بِطَاعَتِهِ، وَعَدَمُ الخَوْفِ مِنْ غَيْرِهِ، وَالتَّوَاضُعُ لَهُ سُبْحَانَهُ.</li>
+        </ul>
+    </div>
+
+    <!-- الشريحة 14: اسم الله (الحكيم) -->
+    <div class="slide c-green" data-title="اسم الله: الحكيم">
+        <h1>⚖️ مِنْ أَسْمَاءِ اللهِ الحُسْنَى فِي السُّورَةِ</h1>
+        <div class="name-banner">الحَكِيمُ ﷻ</div>
+        <div class="quran-box" style="font-size: 1.25rem; text-align: center;">
+            ﴿...الْمَلِكِ الْقُدُّوسِ الْعَزِيزِ الْحَكِيمِ﴾ <span class="ayah-num">[الجمعة: ١]</span> •
+            ﴿وَآخَرِينَ مِنْهُمْ لَمَّا يَلْحَقُوا بِهِمْ ۚ وَهُوَ الْعَزِيزُ الْحَكِيمُ﴾ <span class="ayah-num">[الجمعة: ٣]</span>
+        </div>
+        <ul>
+            <li><span class="highlight">المَعْنَى:</span> ذُو الفِعْلِ السَّدِيدِ، وَالصُّنْعِ المُتْقَنِ، وَالقَوْلِ الحَمِيدِ، وَالتَّدْبِيرِ الرَّشِيدِ، المَوْصُوفُ بِكَمَالِ الحِكْمَةِ، العَالِمُ بِعَوَاقِبِ الأُمُورِ.</li>
+            <li><span class="highlight">اقْتِرَانُهُ بِالعَزِيزِ:</span> وَرَدَ مَرَّتَيْنِ فِي السُّورَةِ مُقْتَرِنًا بِاسْمِ «العَزِيزِ»؛ لِيَدُلَّ عَلَى أَنَّ غَلَبَةَ اللهِ وَقُدْرَتَهُ لَا تَنْفَكُّ عَنِ الحِكْمَةِ وَالعَدْلِ، وَمِنْ حِكْمَتِهِ بَعْثَةُ الرَّسُولِ ﷺ لِيُعَلِّمَ النَّاسَ الكِتَابَ وَالحِكْمَةَ.</li>
+            <li><span class="highlight">أَثَرُ الإِيمَانِ بِهِ:</span> الرِّضَا التَّامُّ بِقَضَاءِ اللهِ وَقَدَرِهِ وَشَرْعِهِ، لِلْيَقِينِ بِأَنَّ أَفْعَالَهُ كُلَّهَا لِحِكْمَةٍ بَالِغَةٍ.</li>
+        </ul>
+    </div>
+
+    <!-- الشريحة 15: اسم الله (ذو الفضل العظيم) -->
+    <div class="slide c-orange" data-title="اسم الله: ذو الفضل العظيم">
+        <h1>🎁 مِنْ أَسْمَاءِ اللهِ الحُسْنَى فِي السُّورَةِ</h1>
+        <div class="name-banner">ذُو الفَضْلِ العَظِيمِ ﷻ</div>
+        <div class="quran-box" style="font-size: 1.25rem; text-align: center;">
+            ﴿ذَٰلِكَ فَضْلُ اللَّهِ يُؤْتِيهِ مَن يَشَاءُ ۚ وَاللَّهُ ذُو الْفَضْلِ الْعَظِيمِ﴾ <span class="ayah-num">[الجمعة: ٤]</span>
+        </div>
+        <ul>
+            <li><span class="highlight">المَعْنَى:</span> المُنْعِمُ عَلَى عِبَادِهِ بِمَا لَا يَلْزَمُهُ، ذُو الإِحْسَانِ العَمِيمِ وَالعَطَاءِ الوَاسِعِ، الَّذِي يُعْطِي مَنْ يَشَاءُ ابْتِدَاءً وَتَفَضُّلًا مِنْ غَيْرِ اسْتِحْقَاقٍ مِنْهُمْ.</li>
+            <li><span class="highlight">دَلَالَتُهُ فِي السُّورَةِ:</span> جَاءَ بَعْدَ ذِكْرِ اصْطِفَاءِ النَّبِيِّ ﷺ فِي الأُمِّيِّينَ وَالآخَرِينَ؛ رَدًّا عَلَى حَسَدِ اليَهُودِ، وَتَأْكِيدًا أَنَّ الهِدَايَةَ وَالنُّبُوَّةَ مَوْهِبَةٌ مِنَ اللهِ يُؤْتِيهَا مَنْ يَشَاءُ.</li>
+            <li><span class="highlight">أَثَرُ الإِيمَانِ بِهِ:</span> شُكْرُ اللهِ عَلَى نِعْمَةِ الإِسْلَامِ، وَرَجَاءُ فَضْلِهِ فِي الدِّينِ وَالدُّنْيَا.</li>
+        </ul>
+    </div>
+
+    <!-- الشريحة 16: اسم الله (العليم) -->
+    <div class="slide c-blue" data-title="اسم الله: العليم">
+        <h1>👁️ مِنْ أَسْمَاءِ اللهِ الحُسْنَى فِي السُّورَةِ</h1>
+        <div class="name-banner">العَلِيمُ (عَلِيمٌ بِالظَّالِمِينَ) ﷻ</div>
+        <div class="quran-box" style="font-size: 1.25rem; text-align: center;">
+            ﴿وَلَا يَتَمَنَّوْنَهُ أَبَدًا بِمَا قَدَّمَتْ أَيْدِيهِمْ ۚ وَاللَّهُ عَلِيمٌ بِالظَّالِمِينَ﴾ <span class="ayah-num">[الجمعة: ٧]</span>
+        </div>
+        <ul>
+            <li><span class="highlight">المَعْنَى:</span> المُحِيطُ عِلْمُهُ بِكُلِّ شَيْءٍ، ظَاهِرًا وَبَاطِنًا، مَاضِيًا وَحَاضِرًا وَمُسْتَقْبَلًا؛ فَلَا يَخْفَى عَلَيْهِ مَا فِي القُلُوبِ وَالنِّيَّاتِ وَلَا مَا قَدَّمَتْهُ الأَيْدِي مِنْ ظُلْمٍ وَمَعَاصٍ.</li>
+            <li><span class="highlight">دَلَالَتُهُ فِي السُّورَةِ:</span> كَشَفَ اللهُ زَيْفَ دَعْوَى اليَهُودِ بِأَنَّهُمْ أَوْلِيَاءُ اللهِ، وَأَخْبَرَ أَنَّهُمْ لَنْ يَتَمَنَّوُا المَوْتَ لِعِلْمِهِ بِذُنُوبِهِمْ وَمَا اجْتَرَحُوهُ مِنَ الظُّلْمِ.</li>
+            <li><span class="highlight">أَثَرُ الإِيمَانِ بِهِ:</span> دَوَامُ مُرَاقَبَةِ اللهِ فِي السِّرِّ وَالعَلَنِ، وَالحَذَرُ مِنَ الظُّلْمِ وَكِتْمَانِ الحَقِّ.</li>
+        </ul>
+    </div>
+
+    <!-- الشريحة 17: اسم الله (عالم الغيب والشهادة) -->
+    <div class="slide c-purple" data-title="اسم الله: عالم الغيب والشهادة">
+        <h1>🌌 مِنْ أَسْمَاءِ اللهِ الحُسْنَى فِي السُّورَةِ</h1>
+        <div class="name-banner">عَالِمُ الغَيْبِ وَالشَّهَادَةِ ﷻ</div>
+        <div class="quran-box" style="font-size: 1.25rem; text-align: center;">
+            ﴿قُلْ إِنَّ الْمَوْتَ الَّذِي تَفِرُّونَ مِنْهُ فَإِنَّهُ مُلَاقِيكُمْ ۖ ثُمَّ تُرَدُّونَ إِلَىٰ عَالِمِ الْغَيْبِ وَالشَّهَادَةِ فَيُنَبِّئُكُم بِمَا كُنتُمْ تَعْمَلُونَ﴾ <span class="ayah-num">[الجمعة: ٨]</span>
+        </div>
+        <ul>
+            <li><span class="highlight">المَعْنَى:</span> الَّذِي يَعْلَمُ مَا غَابَ عَنِ الخَلْقِ وَاسْتَتَرَ (الغَيْبُ)، وَمَا ظَهَرَ لَهُمْ وَشَاهَدُوهُ (الشَّهَادَةُ)، فَعِلْمُهُ مُحِيطٌ بِالسَّرَائِرِ وَالعَلَانِيَةِ سَوَاءً بِسَوَاءٍ.</li>
+            <li><span class="highlight">دَلَالَتُهُ فِي السُّورَةِ:</span> تَذْكِيرٌ بِلِقَاءِ اللهِ بَعْدَ المَوْتِ، وَأَنَّ الإِنْسَانَ مَهْمَا فَرَّ فَإِنَّ مَصِيرَهُ إِلَى رَبٍّ لَا تَخْفَى عَلَيْهِ خَافِيَةٌ لِيُحَاسِبَهُ عَلَى عَمَلِهِ.</li>
+            <li><span class="highlight">أَثَرُ الإِيمَانِ بِهِ:</span> إِخْلَاصُ السَّرِيرَةِ وَالِاسْتِعْدَادُ لِيَوْمِ الحِسَابِ وَالعَرْضِ عَلَى اللهِ.</li>
+        </ul>
+    </div>
+
+    <!-- الشريحة 18: اسم الله (خير الرازقين) -->
+    <div class="slide c-teal" data-title="اسم الله: خير الرازقين">
+        <h1>🌾 مِنْ أَسْمَاءِ اللهِ الحُسْنَى فِي السُّورَةِ</h1>
+        <div class="name-banner">خَيْرُ الرَّازِقِينَ ﷻ</div>
+        <div class="quran-box" style="font-size: 1.25rem; text-align: center;">
+            ﴿قُلْ مَا عِندَ اللَّهِ خَيْرٌ مِّنَ اللَّهْوِ وَمِنَ التِّجَارَةِ ۚ وَاللَّهُ خَيْرُ الرَّازِقِينَ﴾ <span class="ayah-num">[الجمعة: ١١]</span>
+        </div>
+        <ul>
+            <li><span class="highlight">المَعْنَى:</span> المُتَكَفِّلُ بِأَرْزَاقِ الخَلَائِقِ أَجْمَعِينَ، الَّذِي يَرْزُقُ بِلَا حِسَابٍ وَلَا مُلَاحَظَةِ عِوَضٍ، وَهُوَ خَالِقُ الرِّزْقِ وَأَسْبَابِهِ، وَغَيْرُهُ مِنَ البَشَرِ إِنَّمَا هُوَ وَاسِطَةٌ فِي إِيصَالِ رِزْقِهِ.</li>
+            <li><span class="highlight">دَلَالَتُهُ فِي السُّورَةِ:</span> خُتِمَتْ بِهِ السُّورَةُ بَعْدَ ذِكْرِ حَادِثَةِ انْفِضَاضِ النَّاسِ إِلَى التِّجَارَةِ؛ لِيَطْمَئِنَّ المُؤْمِنُ أَنَّ التَّفَرُّغَ لِلصَّلَاةِ لَا يُنْقِصُ الرِّزْقَ، بَلْ مَا عِنْدَ اللهِ أَبْقَى وَأَخْيَرُ.</li>
+            <li><span class="highlight">أَثَرُ الإِيمَانِ بِهِ:</span> التَّوَكُّلُ عَلَى اللهِ فِي طَلَبِ الرِّزْقِ، وَتَقْدِيمُ طَاعَتِهِ عَلَى مَكْسَبِ الدُّنْيَا.</li>
+        </ul>
+    </div>
+
+    <!-- الشريحة 19: عنوان المحور الثالث - المباهلة -->
+    <div class="slide c-purple" data-title="٣. المباهلة">
+        <div class="section-title-slide">
+            <span class="section-badge">المِحْوَرُ الثَّالِثُ</span>
+            <h2>٣. الْمُبَاهَلَةُ</h2>
+            <p>تَحَدِّي اللهِ لِلْمُفْتَرِينَ، وَقِصَّةُ المُبَاهَلَةِ وَتَمَنِّي المَوْتِ فِي القُرْآنِ وَالسُّنَّةِ</p>
+        </div>
+    </div>
+
+    <!-- الشريحة 20: حديث المباهلة -->
+    <div class="slide c-purple" data-title="حديث المباهلة">
+        <h1>⚡ الحَدِيثُ النَّبَوِيُّ فِي الْمُبَاهَلَةِ وَتَمَنِّي المَوْتِ</h1>
+        <ul>
+            <li>
+                <span class="highlight">مَعْنَى الْمُبَاهَلَةِ:</span> اجْتِمَاعُ المُتَخَاصِمَيْنِ فِي الدِّينِ وَالتَّضَرُّعُ إِلَى اللهِ أَنْ يُنْزِلَ لَعْنَتَهُ وَعَذَابَهُ عَلَى الكَاذِبِ مِنْهُمَا.
+            </li>
+        </ul>
+        <div class="hadith-box">
+            قَالَ رَسُولُ اللَّهِ ﷺ:<br><br>
+            «<span class="highlight">لَوْ فَعَلَ لَأَخَذَتْهُ الْمَلَائِكَةُ عِيَانًا، وَلَوْ أَنَّ الْيَهُودَ تَمَنَّوُا الْمَوْتَ لَمَاتُوا وَرَأَوْا مَقَاعِدَهُمْ مِنَ النَّارِ، وَلَوْ خَرَجَ الَّذِينَ يُبَاهِلُونَ رَسُولَ اللَّهِ ﷺ لَرَجَعُوا لَا يَجِدُونَ أَهْلًا وَلَا مَالًا</span>».
+        </div>
+    </div>
+
+    <!-- الشريحة 21: آيات المباهلة وتمني الموت -->
+    <div class="slide c-purple" data-title="آيات المباهلة وتحدي تمني الموت">
+        <h1>📖 الآيَاتُ القُرْآنِيَّةُ فِي الْمُبَاهَلَةِ وَتَمَنِّي المَوْتِ</h1>
+        <div class="quran-box" style="font-size: 1.22rem;">
+            قَالَ تَعَالَى: ﴿قُلْ إِن كَانَتْ لَكُمُ الدَّارُ الْآخِرَةُ عِندَ اللَّهِ خَالِصَةً مِّن دُونِ النَّاسِ فَتَمَنَّوُا الْمَوْتَ إِن كُنتُمْ صَادِقِينَ <span class="ayah-num">﴿٩٤﴾</span> وَلَن يَتَمَنَّوْهُ أَبَدًا بِمَا قَدَّمَتْ أَيْدِيهِمْ ۗ وَاللَّهُ عَلِيمٌ بِالظَّالِمِينَ <span class="ayah-num">﴿٩٥﴾</span>﴾ <span class="ayah-num">[البقرة: ٩٤–٩٥]</span>
+        </div>
+        <div class="quran-box" style="font-size: 1.22rem;">
+            وَقَالَ تَعَالَى فِي آيَةِ المُبَاهَلَةِ: ﴿فَمَنْ حَاجَّكَ فِيهِ مِن بَعْدِ مَا جَاءَكَ مِنَ الْعِلْمِ فَقُلْ تَعَالَوْا نَدْعُ أَبْنَاءَنَا وَأَبْنَاءَكُمْ وَنِسَاءَنَا وَنِسَاءَكُمْ وَأَنفُسَنَا وَأَنفُسَكُمْ ثُمَّ نَبْتَهِلْ فَنَجْعَل لَّعْنَتَ اللَّهِ عَلَى الْكَاذِبِينَ﴾ <span class="ayah-num">[آل عمران: ٦١]</span>
+        </div>
+        <div class="quran-box" style="font-size: 1.22rem;">
+            وَمِثْلُهُ فِي سُورَةِ الجُمُعَةِ: ﴿قُلْ يَا أَيُّهَا الَّذِينَ هَادُوا إِن زَعَمْتُمْ أَنَّكُمْ أَوْلِيَاءُ لِلَّهِ مِن دُونِ النَّاسِ فَتَمَنَّوُا الْمَوْتَ إِن كُنتُمْ صَادِقِينَ <span class="ayah-num">﴿٦﴾</span> وَلَا يَتَمَنَّوْنَهُ أَبَدًا بِمَا قَدَّمَتْ أَيْدِيهِمْ ۚ وَاللَّهُ عَلِيمٌ بِالظَّالِمِينَ <span class="ayah-num">﴿٧﴾</span>﴾ <span class="ayah-num">[الجمعة: ٦–٧]</span>
+        </div>
+    </div>
+
+    <!-- الشريحة 22: عنوان المحور الرابع - سنن يوم الجمعة -->
+    <div class="slide c-green" data-title="٤. سنن يوم الجمعة">
+        <div class="section-title-slide">
+            <span class="section-badge">المِحْوَرُ الرَّابِعُ</span>
+            <h2>٤. سُنَنُ يَوْمِ الجُمُعَةِ</h2>
+            <p>مَجْمُوعَةُ الأَحَادِيثِ النَّبَوِيَّةِ الصَّحِيحَةِ فِي فَضَائِلِ يَوْمِ الجُمُعَةِ وَآدَابِهِ وَسُنَنِهِ</p>
+        </div>
+    </div>
+
+    <!-- الشريحة 23: سنن يوم الجمعة - التبكير والغسل والطيب -->
+    <div class="slide c-green" data-title="التبكير والغسل والطيب يوم الجمعة">
+        <h1>🕌 التَّبْكِيرُ وَالاغْتِسَالُ وَالطِّيبُ يَوْمَ الجُمُعَةِ</h1>
+        <div class="hadith-box">
+            عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ، أَنَّ رَسُولَ اللَّهِ ﷺ قَالَ: «<span class="highlight">مَنِ اغْتَسَلَ يَوْمَ الْجُمُعَةِ غُسْلَ الْجَنَابَةِ ثُمَّ رَاحَ، فَكَأَنَّمَا قَرَّبَ بَدَنَةً،</span> وَمَنْ رَاحَ فِي السَّاعَةِ الثَّانِيَةِ، فَكَأَنَّمَا قَرَّبَ بَقَرَةً، وَمَنْ رَاحَ فِي السَّاعَةِ الثَّالِثَةِ، فَكَأَنَّمَا قَرَّبَ كَبْشًا أَقْرَنَ، وَمَنْ رَاحَ فِي السَّاعَةِ الرَّابِعَةِ، فَكَأَنَّمَا قَرَّبَ دَجَاجَةً، وَمَنْ رَاحَ فِي السَّاعَةِ الْخَامِسَةِ، فَكَأَنَّمَا قَرَّبَ بَيْضَةً، فَإِذَا خَرَجَ الْإِمَامُ حَضَرَتِ الْمَلَائِكَةُ يَسْتَمِعُونَ الذِّكْرَ».
+        </div>
+        <div class="hadith-source">[أخرجه البخاري رقم: (٨٤١)، ومسلم رقم: (٨٥٠)]</div>
+
+        <div class="hadith-box">
+            قَالَ النَّبِيُّ ﷺ: «<span class="highlight">لَا يَغْتَسِلُ رَجُلٌ يَوْمَ الْجُمُعَةِ وَيَتَطَهَّرُ مَا اسْتَطَاعَ مِنْ طُهْرٍ، وَيَدَّهِنُ مِنْ دُهْنِهِ أَوْ يَمَسُّ مِنْ طِيبِ بَيْتِهِ،</span> ثُمَّ يَخْرُجُ فَلَا يُفَرِّقُ بَيْنَ اثْنَيْنِ، ثُمَّ يُصَلِّي مَا كُتِبَ لَهُ، ثُمَّ يُنْصِتُ إِذَا تَكَلَّمَ الْإِمَامُ، <span class="highlight">إِلَّا غُفِرَ لَهُ مَا بَيْنَهُ وَبَيْنَ الْجُمُعَةِ الْأُخْرَى</span>».
+        </div>
+        <div class="hadith-source">[أخرجه البخاري رقم: (٨٤٣)]</div>
+    </div>
+
+    <!-- الشريحة 24: سنن يوم الجمعة - الغسل الأسبوعي وساعة الإجابة -->
+    <div class="slide c-green" data-title="هدي الأمة وساعة الإجابة">
+        <h1>🤲 هَدْيُ الأُمَّةِ لِلْجُمُعَةِ وَسَاعَةُ الإِجَابَةِ</h1>
+        <div class="hadith-box">
+            قَالَ رَسُولُ اللَّهِ ﷺ: «<span class="highlight">نَحْنُ الْآخِرُونَ السَّابِقُونَ يَوْمَ الْقِيَامَةِ،</span> أُوتُوا الْكِتَابَ مِنْ قَبْلِنَا، وَأُوتِينَاهُ مِنْ بَعْدِهِمْ، فَهَذَا الْيَوْمُ الَّذِي اخْتَلَفُوا فِيهِ، فَهَدَانَا اللَّهُ، فَغَدًا لِلْيَهُودِ، وَبَعْدَ غَدٍ لِلنَّصَارَى، فَسَكَتَ ثُمَّ قَالَ: <span class="highlight">حَقٌّ عَلَى كُلِّ مُسْلِمٍ أَنْ يَغْتَسِلَ فِي كُلِّ سَبْعَةِ أَيَّامٍ يَوْمًا يَغْسِلُ فِيهِ رَأْسَهُ وَجَسَدَهُ</span>».
+        </div>
+        <div class="hadith-source">[أخرجه البخاري رقم: (٨٥٦)، ومسلم رقم: (٨٤٩)]</div>
+
+        <div class="hadith-box">
+            ذَكَرَ رَسُولُ اللَّهِ ﷺ يَوْمَ الْجُمُعَةِ فَقَالَ: «<span class="highlight">فِيهِ سَاعَةٌ لَا يُوَافِقُهَا عَبْدٌ مُسْلِمٌ وَهُوَ قَائِمٌ يُصَلِّي، يَسْأَلُ اللَّهَ تَعَالَى شَيْئًا، إِلَّا أَعْطَاهُ إِيَّاهُ</span>، وَأَشَارَ بِيَدِهِ يُقَلِّلُهَا».
+        </div>
+        <div class="hadith-source">[أخرجه البخاري رقم: (٨٩٣)، ومسلم رقم: (٨٥٢)]</div>
+    </div>
+
+    <!-- الشريحة 25: سنن يوم الجمعة - الصيام، فضل اليوم، سورة الكهف -->
+    <div class="slide c-green" data-title="أحكام الصيام وسورة الكهف">
+        <h1>🌟 فَضْلُ اليَوْمِ، وَأَحْكَامُ الصِّيَامِ، وَسُورَةُ الكَهْفِ</h1>
+        <div class="hadith-box">
+            قَالَ النَّبِيُّ ﷺ: «<span class="highlight">خَيْرُ يَوْمٍ طَلَعَتْ عَلَيْهِ الشَّمْسُ يَوْمُ الْجُمُعَةِ؛</span> فِيهِ خُلِقَ آدَمُ، وَفِيهِ أُدْخِلَ الْجَنَّةَ، وَفِيهِ أُخْرِجَ مِنْهَا، وَلَا تَقُومُ السَّاعَةُ إِلَّا فِي يَوْمِ الْجُمُعَةِ».
+        </div>
+        <div class="hadith-source">[أخرجه مسلم رقم: (٨٥٤)]</div>
+
+        <div class="hadith-box">
+            • عَنْ مُحَمَّدِ بْنِ عَبَّادٍ قَالَ: سَأَلْتُ جَابِرًا رَضِيَ اللَّهُ عَنْهُ: «<span class="highlight">نَهَى النَّبِيُّ ﷺ عَنْ صَوْمِ يَوْمِ الْجُمُعَةِ؟ قَالَ: نَعَمْ</span>» زَادَ غَيْرُ أَبِي عَاصِمٍ: «أَنْ يَنْفَرِدَ بِصَوْمٍ». <span style="color:#7f8c8d; font-size:0.95rem;">[البخاري: (١٨٨٣)، ومسلم: (١١٤٣)]</span><br>
+            • سَمِعْتُ النَّبِيَّ ﷺ يَقُولُ: «<span class="highlight">لَا يَصُومَنَّ أَحَدُكُمْ يَوْمَ الْجُمُعَةِ إِلَّا يَوْمًا قَبْلَهُ أَوْ بَعْدَهُ</span>». <span style="color:#7f8c8d; font-size:0.95rem;">[البخاري: (١٨٨٤)، ومسلم: (١١٤٤)]</span>
+        </div>
+
+        <div class="hadith-box">
+            عَنْ أَبِي سَعِيدٍ الْخُدْرِيِّ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ: «<span class="highlight">مَنْ قَرَأَ سُورَةَ الْكَهْفِ فِي يَوْمِ الْجُمُعَةِ، أَضَاءَ لَهُ مِنَ النُّورِ مَا بَيْنَ الْجُمُعَتَيْنِ</span>».
+        </div>
+        <div class="hadith-source">[إرواء الغليل (٣/٩٣)، وصحيح الترغيب رقم: (٧٣٦)]</div>
+    </div>
+
+    <!-- الشريحة 26: عنوان المحور الخامس - حادثة يوم الجمعة -->
+    <div class="slide c-orange" data-title="٥. حادثة يوم الجمعة">
+        <div class="section-title-slide">
+            <span class="section-badge">المِحْوَرُ الخَامِسُ</span>
+            <h2>٥. حَادِثَةُ يَوْمِ الجُمُعَةِ</h2>
+            <p>قِصَّةُ قُدُومِ العِيرِ أَثْنَاءَ الخُطْبَةِ وَنُزُولِ الآيَةِ الحَادِيَةَ عَشْرَةَ مِنْ سُورَةِ الجُمُعَةِ</p>
+        </div>
+    </div>
+
+    <!-- الشريحة 27: تفاصيل حادثة يوم الجمعة -->
+    <div class="slide c-orange" data-title="روايات حادثة يوم الجمعة والآية">
+        <h1>🐪 حَادِثَةُ قُدُومِ العِيرِ وَنُزُولُ خَاتِمَةِ السُّورَةِ</h1>
+        <div class="hadith-box">
+            عَنْ جَابِرِ بْنِ عَبْدِ اللَّهِ رَضِيَ اللَّهُ عَنْهُمَا، قَالَ: «<span class="highlight">أَقْبَلَتْ عِيرٌ يَوْمَ الْجُمُعَةِ وَنَحْنُ مَعَ النَّبِيِّ ﷺ، فَثَارَ النَّاسُ إِلَّا اثْنَيْ عَشَرَ رَجُلًا؛</span> فَأَنْزَلَ اللَّهُ: ﴿وَإِذَا رَأَوْا تِجَارَةً أَوْ لَهْوًا انفَضُّوا إِلَيْهَا وَتَرَكُوكَ قَائِمًا﴾ [الجمعة: ١١]».
+        </div>
+        <div class="hadith-source">[أخرجه البخاري رقم: (٤٦١٦)]</div>
+
+        <div class="hadith-box">
+            وَعَنْ جَابِرِ بْنِ عَبْدِ اللَّهِ رَضِيَ اللَّهُ عَنْهُ قَالَ: بَيْنَمَا النَّبِيُّ ﷺ يَخْطُبُ يَوْمَ الْجُمُعَةِ، فَقَدِمَتْ عِيرٌ إِلَى الْمَدِينَةِ، فَابْتَدَرَهَا أَصْحَابُ رَسُولِ اللَّهِ ﷺ حَتَّى لَمْ يَبْقَ مَعَ رَسُولِ اللَّهِ ﷺ إِلَّا اثْنَا عَشَرَ رَجُلًا، فَقَالَ رَسُولُ اللَّهِ ﷺ:<br>
+            «<span class="highlight">وَالَّذِي نَفْسِي بِيَدِهِ لَوْ تَتَابَعْتُمْ حَتَّى لَمْ يَبْقَ مِنْكُمْ أَحَدٌ لَسَالَ بِكُمُ الْوَادِي نَارًا</span>».
+        </div>
+
+        <div class="quran-box" style="font-size: 1.24rem; text-align: center;">
+            ﴿وَإِذَا رَأَوْا تِجَارَةً أَوْ لَهْوًا انفَضُّوا إِلَيْهَا وَتَرَكُوكَ قَائِمًا ۚ قُلْ مَا عِندَ اللَّهِ خَيْرٌ مِّنَ اللَّهْوِ وَمِنَ التِّجَارَةِ ۚ وَاللَّهُ خَيْرُ الرَّازِقِينَ﴾ <span class="ayah-num">[الجمعة: ١١]</span>
+        </div>
+    </div>
+
+    <!-- الشريحة 28: الخاتمة والدروس المستفادة -->
+    <div class="slide c-teal" data-title="الدروس المستفادة">
+        <h1>💎 خُلَاصَةُ الدُّرُوسِ وَالتَّأَمُّلَاتِ الإِيمَانِيَّةِ</h1>
+        <div class="cards-grid">
+            <div class="card-item">تَنْزِيهُ اللهِ ﷻ<small>وَتَعْظِيمُ أَسْمَائِهِ الحُسْنَى فِي السُّورَةِ</small></div>
+            <div class="card-item">العَمَلُ بِالعِلْمِ<small>حَتَّى لَا نُشْبِهَ مَنْ حَمَلَ التَّوْرَاةَ وَلَمْ يَعْمَلْ بِهَا</small></div>
+            <div class="card-item">الصِّدْقُ مَعَ اللهِ<small>فَأَوْلِيَاءُ اللهِ لَا يَخَافُونَ المَوْتَ كَالظَّالِمِينَ</small></div>
+            <div class="card-item">تَعْظِيمُ الجُمُعَةِ<small>بِالسَّعْيِ وَالتَّبْكِيرِ وَالإِنْصَاتِ وَتَرْكِ البَيْعِ</small></div>
+            <div class="card-item">التَّوَكُّلُ فِي الرِّزْقِ<small>فَمَا عِنْدَ اللهِ خَيْرٌ مِنَ اللَّهْوِ وَمِنَ التِّجَارَةِ</small></div>
+            <div class="card-item">الثَّبَاتُ مَعَ الرَّسُولِ ﷺ<small>وَإِيثَارُ طَاعَةِ اللهِ عَلَى حُطَامِ الدُّنْيَا</small></div>
+        </div>
+    </div>
+
+    <!-- أزرار التنقل -->
+    <a class="next" onclick="plusSlides(1)" title="الشريحة التالية">❮</a>
+    <a class="prev" onclick="plusSlides(-1)" title="الشريحة السابقة">❯</a>
+
+    <!-- نقاط التنقل السفلية -->
+    <div class="dots-container" id="dotsContainer"></div>
+
+</div>
+
+<script>
+    let slideIndex = 1;
+    const slides = document.getElementsByClassName("slide");
+    const dotsContainer = document.getElementById("dotsContainer");
+    const slideCounter = document.getElementById("slideCounter");
+
+    function toArabicDigits(num) {
+        return num.toString().replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
+    }
+
+    // إنشاء نقاط التنقل ديناميكيًا مع عنوان كل شريحة للانتقال السريع
+    for (let i = 0; i < slides.length; i++) {
+        let dot = document.createElement("span");
+        dot.className = "dot";
+        let title = slides[i].getAttribute("data-title") || `الشريحة ${i + 1}`;
+        dot.setAttribute("title", `${i + 1}. ${title}`);
+        dot.setAttribute("onclick", `currentSlide(${i + 1})`);
+        dotsContainer.appendChild(dot);
+    }
+
+    const dots = document.getElementsByClassName("dot");
+
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        if (n > slides.length) { slideIndex = 1; }
+        if (n < 1) { slideIndex = slides.length; }
+
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+
+        for (let i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+
+        slides[slideIndex - 1].style.display = "block";
+        slides[slideIndex - 1].scrollTop = 0;
+        if (dots[slideIndex - 1]) {
+            dots[slideIndex - 1].className += " active";
+        }
+        slideCounter.textContent = `${toArabicDigits(slideIndex)} / ${toArabicDigits(slides.length)}`;
+    }
+
+    // التنقل باستخدام لوحة المفاتيح
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "ArrowRight") {
+            plusSlides(-1); // الشريحة السابقة في الاتجاه العربي
+        } else if (event.key === "ArrowLeft") {
+            plusSlides(1);  // الشريحة التالية
+        }
+    });
+
+    // وضع ملء الشاشة عند النقر المزدوج (Double Click)
+    document.addEventListener('dblclick', function() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(err => {
+                console.log(err.message);
+            });
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
+    });
+
+    // السحب باللمس على الأجهزة المحمولة (Touch Gestures)
+    // swipe right -> next slide
+    // swipe left -> previous slide
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    const slideshowBox = document.getElementById('slideshowBox');
+
+    slideshowBox.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    slideshowBox.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleGesture();
+    }, { passive: true });
+
+    function handleGesture() {
+        let deltaX = touchEndX - touchStartX;
+        if (Math.abs(deltaX) > 40) {
+            if (deltaX > 0) {
+                // سحب لليمين -> الشريحة التالية (Next)
+                plusSlides(1);
+            } else {
+                // سحب لليسار -> الشريحة السابقة (Previous)
+                plusSlides(-1);
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
