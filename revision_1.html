@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>بَوَّابَةُ الِاسْتِعْدَادِ وَالْمُرَاجَعَةِ لِمُسَابَقَةِ الْحِفْظِ وَالْفَهْمِ</title>
+
+  <!-- تَحْمِيلُ مَكْتَبَةِ Tailwind CSS لِلتَّنْسِيقِ الْمُتَجَاوِبِ -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- تَحْمِيلُ الْخُطُوطِ الْعَرَبِيَّةِ الْأَصِيلَةِ (Amiri لِلْعَنَاوِينِ الْقُرْآنِيَّةِ وَ Cairo لِلنُّصُوصِ) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- تَخْصِيصُ إِعْدَادَاتِ Tailwind وَالْأَلْوَانِ وَالْخُطُوطِ -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            amiri: ['"Amiri"', 'serif'],
+            cairo: ['"Cairo"', 'sans-serif'],
+          },
+          colors: {
+            cream: '#FAF8F5',
+            emeraldDeep: '#0F5132',
+            emeraldMid: '#146C43',
+            emeraldSoft: '#E8F3EE',
+            goldAccent: '#B8860B',
+            goldLight: '#F9F3E3',
+            sageBorder: '#D1E7DD',
+            charcoal: '#1E293B',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* ضَبْطُ ارْتِفَاعِ الْأَسْطُرِ لِضَمَانِ وُضُوحِ التَّشْكِيلِ دُونَ تَدَاخُلٍ أَوْ قَصٍّ */
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #FAF8F5;
+      color: #1E293B;
+      line-height: 2;
+      overflow-x: hidden;
+    }
+
+    .font-quran {
+      font-family: 'Amiri', serif;
+      line-height: 2.1;
+    }
+
+    /* زَخْرَفَةٌ إِسْلَامِيَّةٌ هَنْدَسِيَّةٌ خَفِيفَةٌ فِي الْخَلْفِيَّةِ */
+    .islamic-pattern {
+      background-color: #FAF8F5;
+      background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230F5132' stroke-width='0.8' stroke-opacity='0.055'%3E%3Cpath d='M40 0L49.5 16.5L68.3 11.7L63.5 30.5L80 40L63.5 49.5L68.3 68.3L49.5 63.5L40 80L30.5 63.5L11.7 68.3L16.5 49.5L0 40L16.5 30.5L11.7 11.7L30.5 16.5Z'/%3E%3Ccircle cx='40' cy='40' r='14'/%3E%3Ccircle cx='40' cy='40' r='6'/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    /* تَأْثِيرَاتٌ حَرَكِيَّةٌ نَاعِمَةٌ لِلْبِطَاقَاتِ وَالْأَزْرَارِ */
+    .surah-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .surah-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 28px -8px rgba(15, 81, 50, 0.12);
+      border-color: #146C43;
+    }
+
+    .btn-action {
+      transition: all 0.2s ease;
+    }
+
+    .btn-action:hover {
+      transform: translateY(-1px);
+    }
+
+    /* تَنْسِيقُ صُنْدُوقِ الِاخْتِيَارِ الْمُخَصَّصِ */
+    .custom-checkbox:checked {
+      background-color: #146C43;
+      border-color: #146C43;
+    }
+  </style>
+</head>
+<body class="islamic-pattern min-h-screen flex flex-col antialiased selection:bg-emeraldSoft selection:text-emeraldDeep">
+
+  <!-- الرَّأْسُ وَالْقِسْمُ التَّرْحِيبِيُّ (Hero Section) -->
+  <header class="relative bg-gradient-to-b from-[#F2EFE9] via-[#FAF8F5] to-transparent border-b border-sageBorder/80 pt-8 pb-10 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto text-center">
+
+      <!-- الْبَسْمَلَةُ الشَّرِيفَةُ -->
+      <div class="inline-block bg-white/90 border border-goldAccent/30 rounded-full px-6 py-2 mb-5 shadow-sm">
+        <p class="font-quran text-xl sm:text-2xl text-emeraldDeep font-bold tracking-wide">
+          بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+        </p>
+      </div>
+
+      <!-- الْعُنْوَانُ الرَّئِيسِيُّ -->
+      <h1 class="font-quran text-3xl sm:text-4xl lg:text-5xl font-bold text-emeraldDeep mb-4 leading-relaxed">
+        بَوَّابَةُ الِاسْتِعْدَادِ وَالْمُرَاجَعَةِ لِمُسَابَقَةِ الْحِفْظِ وَالْفَهْمِ
+      </h1>
+
+      <!-- الْوَصْفُ التَّوْضِيحِيُّ -->
+      <p class="max-w-3xl mx-auto text-base sm:text-lg text-slate-700 font-medium mb-8 leading-loose">
+        دَلِيلٌ شَامِلٌ لِلسُّوَرِ الْمُقَرَّرَةِ (مِنْ سُورَةِ الصَّفِّ إِلَى سُورَةِ التَّحْرِيمِ) يَضُمُّ الْخَرَائِطَ الذِّهْنِيَّةَ، وَالِاخْتِبَارَاتِ التَّفَاعُلِيَّةَ، وَالْعُرُوضَ التَّقْدِيمِيَّةَ.
+      </p>
+
+      <!-- شَرِيطُ مُتَابَعَةِ الْإِنْجَازِ التَّفَاعُلِيُّ -->
+      <div class="max-w-3xl mx-auto bg-white rounded-2xl border border-sageBorder p-5 sm:p-6 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+          <div class="flex items-center gap-2.5 text-right">
+            <span class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-emeraldSoft text-emeraldDeep">
+              <!-- أَيْقُونَةُ الْإِنْجَازِ -->
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </span>
+            <div>
+              <h2 class="text-base sm:text-lg font-bold text-charcoal">
+                مُؤَشِّرُ الْإِنْجَازِ وَالْمُرَاجَعَةِ الشَّامِلِ
+              </h2>
+              <p id="progress-subtitle" class="text-xs sm:text-sm text-slate-500">
+                تَمَّ إِتْمَامُ ٠ مِنْ أَصْلِ ١٨ مَوْرِدًا تَعْلِيمِيًّا
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between sm:justify-end gap-3">
+            <span id="progress-percentage" class="text-xl sm:text-2xl font-extrabold text-emeraldMid bg-emeraldSoft px-4 py-1 rounded-xl border border-sageBorder">
+              ٠٪
+            </span>
+            <button
+              id="reset-progress-btn"
+              type="button"
+              title="إِعَادَةُ تَعْيِينِ سِجِلِّ التَّقَدُّمِ"
+              class="text-xs sm:text-sm text-slate-600 hover:text-red-700 bg-slate-100 hover:bg-red-50 border border-slate-200 hover:border-red-200 rounded-xl px-3.5 py-2 font-semibold transition-colors cursor-pointer"
+            >
+              إِعَادَةُ الضَّبْطِ
+            </button>
+          </div>
+        </div>
+
+        <!-- شَرِيطُ التَّقَدُّمِ الْمَرْئِيُّ -->
+        <div class="w-full h-3.5 bg-slate-100 rounded-full overflow-hidden border border-slate-200/70">
+          <div
+            id="progress-bar-fill"
+            class="h-full bg-gradient-to-l from-emeraldDeep via-emeraldMid to-goldAccent rounded-full transition-all duration-500"
+            style="width: 0%"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- الْمُحْتَوَى الرَّئِيسِيُّ -->
+  <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- شَرِيطُ التَّصْفِيَةِ وَالتَّنَقُّلِ السَّرِيعِ -->
+    <section aria-label="تَصْفِيَةُ السُّوَرِ" class="bg-white rounded-2xl border border-sageBorder p-4 sm:p-5 mb-8 shadow-sm">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+
+        <!-- أَزْرَارُ اخْتِيَارِ السُّورَةِ -->
+        <div class="flex flex-wrap items-center gap-2" id="filter-pills-container">
+          <button
+            type="button"
+            data-filter="all"
+            class="filter-pill active-pill px-4 py-2 rounded-xl text-sm font-bold bg-emeraldDeep text-white shadow-sm cursor-pointer transition-all"
+          >
+            الْكُلُّ (٦ سُوَرٍ)
+          </button>
+          <button
+            type="button"
+            data-filter="61"
+            class="filter-pill px-4 py-2 rounded-xl text-sm font-semibold bg-cream text-charcoal hover:bg-emeraldSoft hover:text-emeraldDeep border border-sageBorder/70 cursor-pointer transition-all"
+          >
+            ٦١. الصَّفُّ
+          </button>
+          <button
+            type="button"
+            data-filter="62"
+            class="filter-pill px-4 py-2 rounded-xl text-sm font-semibold bg-cream text-charcoal hover:bg-emeraldSoft hover:text-emeraldDeep border border-sageBorder/70 cursor-pointer transition-all"
+          >
+            ٦٢. الْجُمُعَةُ
+          </button>
+          <button
+            type="button"
+            data-filter="63"
+            class="filter-pill px-4 py-2 rounded-xl text-sm font-semibold bg-cream text-charcoal hover:bg-emeraldSoft hover:text-emeraldDeep border border-sageBorder/70 cursor-pointer transition-all"
+          >
+            ٦٣. الْمُنَافِقُونَ
+          </button>
+          <button
+            type="button"
+            data-filter="64"
+            class="filter-pill px-4 py-2 rounded-xl text-sm font-semibold bg-cream text-charcoal hover:bg-emeraldSoft hover:text-emeraldDeep border border-sageBorder/70 cursor-pointer transition-all"
+          >
+            ٦٤. التَّغَابُنُ
+          </button>
+          <button
+            type="button"
+            data-filter="65"
+            class="filter-pill px-4 py-2 rounded-xl text-sm font-semibold bg-cream text-charcoal hover:bg-emeraldSoft hover:text-emeraldDeep border border-sageBorder/70 cursor-pointer transition-all"
+          >
+            ٦٥. الطَّلَاقُ
+          </button>
+          <button
+            type="button"
+            data-filter="66"
+            class="filter-pill px-4 py-2 rounded-xl text-sm font-semibold bg-cream text-charcoal hover:bg-emeraldSoft hover:text-emeraldDeep border border-sageBorder/70 cursor-pointer transition-all"
+          >
+            ٦٦. التَّحْرِيمُ
+          </button>
+        </div>
+
+        <!-- خِيَارُ عَرْضِ السُّوَرِ غَيْرِ الْمُكْتَمِلَةِ فَقَطْ -->
+        <div class="flex items-center justify-end border-t lg:border-t-0 pt-3 lg:pt-0 border-slate-100">
+          <label class="inline-flex items-center gap-2.5 cursor-pointer select-none bg-goldLight/70 hover:bg-goldLight border border-goldAccent/30 px-4 py-2 rounded-xl transition-colors">
+            <input
+              type="checkbox"
+              id="incomplete-only-toggle"
+              class="w-4 h-4 rounded text-emeraldMid focus:ring-emeraldMid border-goldAccent cursor-pointer"
+            />
+            <span class="text-sm font-bold text-charcoal">
+              عَرْضُ غَيْرِ الْمُكْتَمِلِ فَقَطْ
+            </span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- شَبَكَةُ بِطَاقَاتِ السُّوَرِ (٦ سُوَرٍ: مِنْ ٦١ إِلَى ٦٦) -->
+    <section aria-label="قَائِمَةُ السُّوَرِ الْمُقَرَّرَةِ">
+      <div id="surahs-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- يَتِمُّ تَوْلِيدُ الْبِطَاقَاتِ تِلْقَائِيًّا بِوَاسِطَةِ JavaScript لِضَمَانِ الدِّقَّةِ وَالتَّفَاعُلِيَّةِ -->
+      </div>
+
+      <!-- رِسَالَةٌ تَظْهَرُ عِنْدَ اكْتِمَالِ جَمِيعِ السُّوَرِ وَتَفْعِيلِ خِيَارِ غَيْرِ الْمُكْتَمِلِ -->
+      <div id="empty-state-message" class="hidden text-center bg-white rounded-2xl border border-sageBorder p-10 my-6 shadow-sm">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-emeraldSoft text-emeraldDeep flex items-center justify-center">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h3 class="font-quran text-2xl font-bold text-emeraldDeep mb-2">
+          مَا شَاءَ اللَّهُ! لَقَدْ أَتْمَمْتَ جَمِيعَ السُّوَرِ الْمُقَرَّرَةِ
+        </h3>
+        <p class="text-slate-600 mb-5">
+          نَسْأَلُ اللَّهَ لَكَ التَّوْفِيقَ وَالسَّدَادَ وَالْفَوْزَ فِي الْمُسَابَقَةِ. يُمْكِنُكَ إِلْغَاءُ التَّصْفِيَةِ لِمُرَاجَعَةِ جَمِيعِ السُّوَرِ مَرَّةً أُخْرَى.
+        </p>
+        <button
+          type="button"
+          id="show-all-from-empty"
+          class="px-5 py-2.5 rounded-xl bg-emeraldDeep text-white font-bold text-sm hover:bg-emeraldMid transition-colors cursor-pointer"
+        >
+          عَرْضُ جَمِيعِ السُّوَرِ
+        </button>
+      </div>
+    </section>
+
+    <!-- قِسْمُ خُطَّةِ الْمُرَاجَعَةِ وَالِاسْتِعْدَادِ (٣ خُطُوَاتٍ عَمَلِيَّةٍ) -->
+    <section aria-labelledby="methodology-heading" class="mt-14 bg-white rounded-3xl border border-sageBorder p-6 sm:p-8 lg:p-10 shadow-sm">
+      <div class="text-center max-w-2xl mx-auto mb-8">
+        <span class="inline-block text-xs font-bold text-goldAccent bg-goldLight border border-goldAccent/30 rounded-full px-4 py-1 mb-3">
+          مَنْهَجِيَّةُ التَّفَوُّقِ وَالْإِتْقَانِ
+        </span>
+        <h2 id="methodology-heading" class="font-quran text-2xl sm:text-3xl font-bold text-emeraldDeep mb-2">
+          خُطَّةُ الْمُرَاجَعَةِ وَالِاسْتِعْدَادِ الْمُقْتَرَحَةُ
+        </h2>
+        <p class="text-sm sm:text-base text-slate-600">
+          لِتَحْقِيقِ أَقْصَى اسْتِفَادَةٍ مِنَ الْمَوَارِدِ الْمُتَاحَةِ، نَنْصَحُ بِاتِّبَاعِ هَذِهِ الْخُطُوَاتِ الثَّلَاثِ لِكُلِّ سُورَةٍ:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- الْخُطْوَةُ الْأُولَى -->
+        <div class="rounded-2xl bg-cream/80 border border-sageBorder/80 p-6 relative">
+          <div class="w-11 h-11 rounded-xl bg-emeraldDeep text-white font-bold text-lg flex items-center justify-center mb-4 shadow-sm">
+            ١
+          </div>
+          <h3 class="text-lg font-bold text-emeraldDeep mb-2">
+            فَهْمُ الْمَحَاوِرِ عَبْرَ الْخَرِيطَةِ الذِّهْنِيَّةِ
+          </h3>
+          <p class="text-sm text-slate-700 leading-loose">
+            ابْدَأْ بِتَصَفُّحِ الْخَرِيطَةِ الذِّهْنِيَّةِ لِلسُورَةِ لِتَكْوِينِ صُورَةٍ إِجْمَالِيَّةٍ وَاضِحَةٍ عَنْ مَوْضُوعَاتِهَا الرَّئِيسِيَّةِ وَتَسَلْسُلِ آيَاتِهَا وَتَرَابُطِ مَقَاطِعِهَا.
+          </p>
+        </div>
+
+        <!-- الْخُطْوَةُ الثَّانِيَةُ -->
+        <div class="rounded-2xl bg-cream/80 border border-sageBorder/80 p-6 relative">
+          <div class="w-11 h-11 rounded-xl bg-goldAccent text-white font-bold text-lg flex items-center justify-center mb-4 shadow-sm">
+            ٢
+          </div>
+          <h3 class="text-lg font-bold text-emeraldDeep mb-2">
+            تَثْبِيتُ الْمَعَانِي وَالتَّفْسِيرِ عَبْرَ الْعَرْضِ التَّقْدِيمِيِّ
+          </h3>
+          <p class="text-sm text-slate-700 leading-loose">
+            انْتَقِلْ إِلَى الْعَرْضِ التَّقْدِيمِيِّ لِفَهْمِ مَعَانِي الْمُفْرَدَاتِ الْغَرِيبَةِ، وَأَسْبَابِ النُّزُولِ، وَاللَّطَائِفِ التَّفْسِيرِيَّةِ وَالْهِدَايَاتِ الْقُرْآنِيَّةِ الْمُسْتَنْبَطَةِ.
+          </p>
+        </div>
+
+        <!-- الْخُطْوَةُ الثَّالِثَةُ -->
+        <div class="rounded-2xl bg-cream/80 border border-sageBorder/80 p-6 relative">
+          <div class="w-11 h-11 rounded-xl bg-emeraldMid text-white font-bold text-lg flex items-center justify-center mb-4 shadow-sm">
+            ٣
+          </div>
+          <h3 class="text-lg font-bold text-emeraldDeep mb-2">
+            قِيَاسُ الْإِتْقَانِ عَبْرَ الِاخْتِبَارِ التَّفَاعُلِيِّ
+          </h3>
+          <p class="text-sm text-slate-700 leading-loose">
+            اخْتَبِرْ حِفْظَكَ وَفَهْمَكَ مِنْ خِلَالِ الِاخْتِبَارِ التَّفَاعُلِيِّ لِتَثْبِيتِ الْمَعْلُومَاتِ، وَاكْتِشَافِ نِقَاطِ الْقُوَّةِ، وَمُرَاجَعَةِ مَا يَحْتَاجُ إِلَى مَزِيدٍ مِنَ التَّرْكِيزِ.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- التَّذْيِيلُ (Footer) -->
+  <footer class="mt-12 bg-emeraldDeep text-white py-8 px-4 sm:px-6 lg:px-8 border-t-4 border-goldAccent">
+    <div class="max-w-5xl mx-auto text-center">
+      <p class="font-quran text-xl sm:text-2xl text-goldLight mb-3 leading-relaxed">
+        «اللَّهُمَّ اجْعَلِ الْقُرْآنَ الْعَظِيمَ رَبِيعَ قُلُوبِنَا، وَنُورَ صُدُورِنَا، وَجَلَاءَ أَحْزَانِنَا، وَذَهَابَ هُمُومِنَا وَغُمُومِنَا»
+      </p>
+      <p class="text-xs sm:text-sm text-emerald-100/90">
+        مَرْجِعُ الِاسْتِعْدَادِ لِمُسَابَقَةِ حِفْظِ وَفَهْمِ الْقُرْآنِ الْكَرِيمِ • السُّوَرُ الْمُقَرَّرَةُ (٦١ – ٦٦)
+      </p>
+    </div>
+  </footer>
+
+  <!-- نَافِذَةُ تَأْكِيدِ إِعَادَةِ الضَّبْطِ الْمُخَصَّصَةُ (بَدِيلٌ آمِنٌ وَأَنِيقٌ عَنْ confirm) -->
+  <div
+    id="reset-modal"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 backdrop-blur-xs p-4"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="reset-modal-title"
+  >
+    <div class="bg-white rounded-2xl border border-sageBorder max-w-md w-full p-6 shadow-xl text-center">
+      <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-red-50 text-red-600 flex items-center justify-center">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+      </div>
+      <h3 id="reset-modal-title" class="text-lg font-bold text-charcoal mb-2">
+        تَأْكِيدُ إِعَادَةِ تَعْيِينِ سِجِلِّ التَّقَدُّمِ
+      </h3>
+      <p class="text-sm text-slate-600 mb-6 leading-relaxed">
+        هَلْ أَنْتَ مُتَأَكِّدٌ مِنْ رَغْبَتِكَ فِي مَسْحِ جَمِيعِ عَلَامَاتِ الْإِنْجَازِ الْمَحْفُوظَةِ وَالْبَدْءِ مِنْ جَدِيدٍ؟
+      </p>
+      <div class="flex items-center justify-center gap-3">
+        <button
+          type="button"
+          id="confirm-reset-btn"
+          class="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-sm font-bold transition-colors cursor-pointer"
+        >
+          نَعَمْ، أَعِدِ الضَّبْطَ
+        </button>
+        <button
+          type="button"
+          id="cancel-reset-btn"
+          class="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-charcoal text-sm font-bold transition-colors cursor-pointer"
+        >
+          إِلْغَاءٌ
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- إِشْعَارٌ عَائِمٌ لَطِيفٌ عِنْدَ تَحْدِيثِ الْإِنْجَازِ -->
+  <div
+    id="toast-notification"
+    class="fixed bottom-5 left-5 z-40 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 bg-emeraldDeep text-white px-5 py-3 rounded-xl shadow-lg border border-goldAccent/50 text-sm font-bold flex items-center gap-2"
+  >
+    <svg class="w-5 h-5 text-goldLight" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+    </svg>
+    <span id="toast-message">تَمَّ حِفْظُ التَّقَدُّمِ بِنَجَاحٍ</span>
+  </div>
+
+  <!-- الْبَرْمَجَةُ التَّفَاعُلِيَّةُ (JavaScript) -->
+  <script>
+    /**
+     * بَيَانَاتُ السُّوَرِ الْمُقَرَّرَةِ (مِنْ سُورَةِ الصَّفِّ ٦١ إِلَى سُورَةِ التَّحْرِيمِ ٦٦)
+     * جَمِيعُ النُّصُوصِ مَضْبُوطَةٌ بِالتَّشْكِيلِ الْكَامِلِ مَعَ الرَّوَابِطِ الصَّحِيحَةِ
+     */
+    const SURAHS_DATA = [
+      {
+        number: 61,
+        arabicNumber: '٦١',
+        name: 'سُورَةُ الصَّفِّ',
+        versesCount: '١٤ آيَةً',
+        revelationType: 'مَدَنِيَّةٌ',
+        summary: 'تَدْعُو إِلَى الصِّدْقِ فِي الْقَوْلِ وَالْعَمَلِ، وَالْجِهَادِ فِي سَبِيلِ اللَّهِ صَفًّا وَاحِدًا، وَنُصْرَةِ دِينِ اللَّهِ.',
+        links: {
+          mindmap: 'https://yekoshy.github.io/QuranQuizzes/61_mindmap.html',
+          quiz: 'https://yekoshy.github.io/QuranQuizzes/61.html',
+          slides: ''
+        }
+      },
+      {
+        number: 62,
+        arabicNumber: '٦٢',
+        name: 'سُورَةُ الْجُمُعَةِ',
+        versesCount: '١١ آيَةً',
+        revelationType: 'مَدَنِيَّةٌ',
+        summary: 'تُبَيِّنُ فَضْلَ بَعْثَةِ النَّبِيِّ ﷺ وَتَزْكِيَةِ النُّفُوسِ، وَتُحَذِّرُ مِنْ حَمْلِ الْعِلْمِ دُونَ عَمَلٍ، وَتُؤَكِّدُ عَلَى أَحْكَامِ صَلَاةِ الْجُمُعَةِ.',
+        links: {
+          mindmap: 'https://yekoshy.github.io/QuranQuizzes/62_mindmap.html',
+          quiz: 'https://yekoshy.github.io/QuranQuizzes/62.html',
+          slides: 'https://yekoshy.github.io/QuranQuizzes/62_slides.html'
+        }
+      },
+      {
+        number: 63,
+        arabicNumber: '٦٣',
+        name: 'سُورَةُ الْمُنَافِقُونَ',
+        versesCount: '١١ آيَةً',
+        revelationType: 'مَدَنِيَّةٌ',
+        summary: 'تَكْشِفُ صِفَاتِ الْمُنَافِقِينَ وَكِذْبَهُمْ، وَتُحَذِّرُ الْمُؤْمِنِينَ مِنَ الِانْشِغَالِ بِالْأَمْوَالِ وَالْأَوْلَادِ عَنْ ذِكْرِ اللَّهِ وَالْإِنْفَاقِ.',
+        links: {
+          mindmap: 'https://yekoshy.github.io/QuranQuizzes/63_mindmap.html',
+          quiz: 'https://yekoshy.github.io/QuranQuizzes/63.html',
+          slides: 'https://yekoshy.github.io/QuranQuizzes/63_slides.html'
+        }
+      },
+      {
+        number: 64,
+        arabicNumber: '٦٤',
+        name: 'سُورَةُ التَّغَابُنِ',
+        versesCount: '١٨ آيَةً',
+        revelationType: 'مَدَنِيَّةٌ',
+        summary: 'تُذَكِّرُ بِقُدْرَةِ اللَّهِ وَعِلْمِهِ الشَّامِلِ، وَتَصِفُ يَوْمَ الْقِيَامَةِ بِيَوْمِ التَّغَابُنِ، وَتُوَجِّهُ إِلَى التَّوَكُّلِ وَالْإِنْفَاقِ وَالصَّبْرِ.',
+        links: {
+          mindmap: 'https://yekoshy.github.io/QuranQuizzes/64_mindmap.html',
+          quiz: 'https://yekoshy.github.io/QuranQuizzes/64.html',
+          slides: 'https://yekoshy.github.io/QuranQuizzes/64_slides.html'
+        }
+      },
+      {
+        number: 65,
+        arabicNumber: '٦٥',
+        name: 'سُورَةُ الطَّلَاقِ',
+        versesCount: '١٢ آيَةً',
+        revelationType: 'مَدَنِيَّةٌ',
+        summary: 'تُفَصِّلُ أَحْكَامَ الطَّلَاقِ وَالْعِدَّةِ وَالنَّفَقَةِ بِعَدْلٍ وَرَحْمَةٍ، وَتُرَكِّزُ عَلَى أَثَرِ تَقْوَى اللَّهِ فِي تَفْرِيجِ الْكُرُوبِ وَتَيْسِيرِ الرِّزْقِ.',
+        links: {
+          mindmap: 'https://yekoshy.github.io/QuranQuizzes/65_mindmap.html',
+          quiz: 'https://yekoshy.github.io/QuranQuizzes/65.html',
+          slides: 'https://yekoshy.github.io/QuranQuizzes/65_slides.html'
+        }
+      },
+      {
+        number: 66,
+        arabicNumber: '٦٦',
+        name: 'سُورَةُ التَّحْرِيمِ',
+        versesCount: '١٢ آيَةً',
+        revelationType: 'مَدَنِيَّةٌ',
+        summary: 'تُعَالِجُ قَضَايَا أُسَرِيَّةً فِي بَيْتِ النُّبُوَّةِ، وَتَدْعُو إِلَى التَّوْبَةِ النَّصُوحِ وَحِمَايَةِ الْأَهْلِ مِنَ النَّارِ، وَتَضْرِبُ أَمْثَالًا لِلْمُؤْمِنِينَ وَالْكَافِرِينَ.',
+        links: {
+          mindmap: 'https://yekoshy.github.io/QuranQuizzes/66_mindmap.html',
+          quiz: 'https://yekoshy.github.io/QuranQuizzes/66.html',
+          slides: ''
+        }
+      }
+    ];
+
+    // مِفْتَاحُ التَّخْزِينِ الْمَحَلِّيِّ لِحِفْظِ تَقَدُّمِ الْمُتَسَابِقِ
+    const STORAGE_KEY = 'quran_competition_61_66_progress_v1';
+
+    // حَالَةُ التَّطْبِيقِ
+    let progressState = {};
+    let currentFilter = 'all';
+    let showIncompleteOnly = false;
+    let toastTimeout = null;
+
+    /**
+     * تَحْوِيلُ الْأَرْقَامِ الْإِنْجِلِيزِيَّةِ إِلَى أَرْقَامٍ عَرَبِيَّةٍ مَشْرِقِيَّةٍ (٠١٢٣٤٥٦٧٨٩)
+     */
+    function toArabicDigits(num) {
+      const arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+      return String(num).replace(/\d/g, (digit) => arabicNumbers[Number(digit)]);
+    }
+
+    /**
+     * تَحْمِيلُ سِجِلِّ التَّقَدُّمِ مِنْ localStorage بِأَمَانٍ
+     */
+    function loadProgress() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          progressState = JSON.parse(saved);
+        }
+      } catch (error) {
+        console.error('تَعَذَّرَ قِرَاءَةُ سِجِلِّ التَّقَدُّمِ:', error);
+        progressState = {};
+      }
+    }
+
+    /**
+     * حِفْظُ سِجِلِّ التَّقَدُّمِ فِي localStorage بِأَمَانٍ
+     */
+    function saveProgress() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(progressState));
+      } catch (error) {
+        console.error('تَعَذَّرَ حِفْظُ سِجِلِّ التَّقَدُّمِ:', error);
+      }
+    }
+
+    /**
+     * إِظْهَارُ رِسَالَةِ تَنْبِيهٍ لَطِيفَةٍ (Toast)
+     */
+    function showToast(message) {
+      const toastEl = document.getElementById('toast-notification');
+      const toastMsgEl = document.getElementById('toast-message');
+      if (!toastEl || !toastMsgEl) return;
+
+      toastMsgEl.textContent = message;
+      toastEl.classList.remove('translate-y-20', 'opacity-0');
+      toastEl.classList.add('translate-y-0', 'opacity-100');
+
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toastEl.classList.add('translate-y-20', 'opacity-0');
+        toastEl.classList.remove('translate-y-0', 'opacity-100');
+      }, 2400);
+    }
+
+    /**
+     * التَّحَقُّقُ مِمَّا إِذَا كَانَتِ السُّورَةُ مُكْتَمِلَةً بِالْكَامِلِ (٣ مَوَارِدَ)
+     */
+    function isSurahCompleted(surahNum) {
+      const s = progressState[surahNum] || {};
+      return Boolean(s.mindmap && s.quiz && s.slides);
+    }
+
+    /**
+     * تَحْدِيثُ شَرِيطِ التَّقَدُّمِ الْعَامِّ فِي أَعْلَى الصَّفْحَةِ
+     */
+    function updateOverallProgressUI() {
+      const totalItems = SURAHS_DATA.length * 3; // 6 سُوَرٍ × 3 مَوَارِدَ = 18
+      let completedCount = 0;
+
+      SURAHS_DATA.forEach((surah) => {
+        const s = progressState[surah.number] || {};
+        if (s.mindmap) completedCount++;
+        if (s.quiz) completedCount++;
+        if (s.slides) completedCount++;
+      });
+
+      const percentage = Math.round((completedCount / totalItems) * 100);
+
+      const subtitleEl = document.getElementById('progress-subtitle');
+      const percentEl = document.getElementById('progress-percentage');
+      const fillEl = document.getElementById('progress-bar-fill');
+
+      if (subtitleEl) {
+        subtitleEl.textContent = `تَمَّ إِتْمَامُ ${toArabicDigits(completedCount)} مِنْ أَصْلِ ${toArabicDigits(totalItems)} مَوْرِدًا تَعْلِيمِيًّا`;
+      }
+      if (percentEl) {
+        percentEl.textContent = `${toArabicDigits(percentage)}٪`;
+      }
+      if (fillEl) {
+        fillEl.style.width = `${percentage}%`;
+      }
+    }
+
+    /**
+     * تَبْدِيلُ حَالَةِ إِتْمَامِ مَوْرِدٍ مُعَيَّنٍ (خَرِيطَةٌ، اخْتِبَارٌ، عَرْضٌ)
+     */
+    function toggleResourceCompletion(surahNumber, resourceKey) {
+      if (!progressState[surahNumber]) {
+        progressState[surahNumber] = { mindmap: false, quiz: false, slides: false };
+      }
+
+      progressState[surahNumber][resourceKey] = !progressState[surahNumber][resourceKey];
+      saveProgress();
+      updateOverallProgressUI();
+      renderSurahCards();
+
+      if (progressState[surahNumber][resourceKey]) {
+        showToast('أَحْسَنْتَ! تَمَّ تَسْجِيلُ إِتْمَامِ الْمَوْرِدِ');
+      } else {
+        showToast('تَمَّ إِلْغَاءُ عَلَامَةِ الْإِتْمَامِ');
+      }
+    }
+
+    /**
+     * بِنَاءُ وَعَرْضُ بِطَاقَاتِ السُّوَرِ فِي الشَّبَكَةِ بِحَسَبِ التَّصْفِيَةِ الْحَالِيَّةِ
+     */
+    function renderSurahCards() {
+      const gridContainer = document.getElementById('surahs-grid');
+      const emptyStateEl = document.getElementById('empty-state-message');
+      if (!gridContainer) return;
+
+      // تَصْفِيَةُ السُّوَرِ
+      const filteredSurahs = SURAHS_DATA.filter((surah) => {
+        const matchesSurahFilter = currentFilter === 'all' || String(surah.number) === String(currentFilter);
+        const matchesCompletionFilter = !showIncompleteOnly || !isSurahCompleted(surah.number);
+        return matchesSurahFilter && matchesCompletionFilter;
+      });
+
+      // إِظْهَارُ أَوْ إِخْفَاءُ رِسَالَةِ الْفَرَاغِ
+      if (filteredSurahs.length === 0) {
+        gridContainer.innerHTML = '';
+        if (emptyStateEl) emptyStateEl.classList.remove('hidden');
+        return;
+      } else {
+        if (emptyStateEl) emptyStateEl.classList.add('hidden');
+      }
+
+      // تَوْلِيدُ كُودِ HTML لِكُلِّ بِطَاقَةٍ
+      gridContainer.innerHTML = filteredSurahs.map((surah) => {
+        const sProgress = progressState[surah.number] || { mindmap: false, quiz: false, slides: false };
+        const completed = isSurahCompleted(surah.number);
+        const completedCount = [sProgress.mindmap, sProgress.quiz, sProgress.slides].filter(Boolean).length;
+
+        return `
+          <article class="surah-card bg-white rounded-3xl border ${completed ? 'border-emeraldMid ring-2 ring-emeraldSoft' : 'border-sageBorder'} p-6 flex flex-col justify-between shadow-sm relative overflow-hidden">
+
+            <!-- شَرِيطٌ عُلْوِيٌّ زُخْرُفِيٌّ خَفِيفٌ -->
+            <div class="absolute top-0 inset-x-0 h-1.5 ${completed ? 'bg-gradient-to-l from-emeraldDeep to-emeraldMid' : 'bg-gradient-to-l from-emeraldDeep/80 via-goldAccent/70 to-emeraldDeep/80'}"></div>
+
+            <div>
+              <!-- رَأْسُ الْبِطَاقَةِ: رَقْمُ السُورَةِ، الِاسْمُ، وَالْبَيَانَاتُ -->
+              <div class="flex items-start justify-between gap-3 mb-4 pt-1">
+                <div class="flex items-center gap-3.5">
+                  <!-- شَارَةُ رَقْمِ السُورَةِ -->
+                  <div class="w-12 h-12 rounded-2xl bg-emeraldSoft border border-sageBorder flex items-center justify-center shrink-0 shadow-xs">
+                    <span class="font-quran text-xl font-bold text-emeraldDeep">${surah.arabicNumber}</span>
+                  </div>
+                  <div>
+                    <h2 class="font-quran text-2xl sm:text-[26px] font-bold text-emeraldDeep leading-snug">
+                      ${surah.name}
+                    </h2>
+                    <div class="flex flex-wrap items-center gap-2 mt-1 text-xs font-semibold text-slate-600">
+                      <span class="bg-cream px-2.5 py-0.5 rounded-lg border border-slate-200/80">${surah.versesCount}</span>
+                      <span class="text-goldAccent">•</span>
+                      <span class="bg-goldLight/80 text-goldAccent px-2.5 py-0.5 rounded-lg border border-goldAccent/20">${surah.revelationType}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- شَارَةُ حَالَةِ الْإِتْمَامِ -->
+                <span class="shrink-0 text-xs font-bold px-3 py-1 rounded-full ${completed ? 'bg-emeraldDeep text-white' : 'bg-slate-100 text-slate-600 border border-slate-200'}">
+                  ${completed ? 'مُكْتَمِلَةٌ ✓' : `${toArabicDigits(completedCount)} / ٣`}
+                </span>
+              </div>
+
+              <!-- الْمُلَخَّصُ الْمَوْضُوعِيُّ لِلسُّورَةِ -->
+              <div class="bg-cream/90 rounded-2xl p-4 border border-sageBorder/60 mb-5">
+                <p class="text-sm text-charcoal leading-loose font-medium">
+                  ${surah.summary}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <!-- قَائِمَةُ الْمُتَابَعَةِ التَّفَاعُلِيَّةِ (Checkboxes) -->
+              <div class="mb-5">
+                <p class="text-xs font-bold text-slate-500 mb-2.5">تَحْدِيدُ الْمَوَارِدِ الْمُنْجَزَةِ:</p>
+                <div class="grid grid-cols-3 gap-2">
+                  <!-- خَرِيطَةٌ ذِهْنِيَّةٌ -->
+                  <label class="flex items-center justify-center gap-1.5 p-2 rounded-xl border ${sProgress.mindmap ? 'bg-emeraldSoft/80 border-emeraldMid text-emeraldDeep' : 'bg-slate-50 border-slate-200 text-slate-600'} cursor-pointer select-none transition-colors text-xs font-bold">
+                    <input
+                      type="checkbox"
+                      ${sProgress.mindmap ? 'checked' : ''}
+                      onchange="toggleResourceCompletion(${surah.number}, 'mindmap')"
+                      class="w-3.5 h-3.5 rounded text-emeraldMid focus:ring-emeraldMid cursor-pointer"
+                    />
+                    <span>الْخَرِيطَةُ</span>
+                  </label>
+
+                  <!-- عَرْضٌ تَقْدِيمِيٌّ -->
+                  <label class="flex items-center justify-center gap-1.5 p-2 rounded-xl border ${sProgress.slides ? 'bg-emeraldSoft/80 border-emeraldMid text-emeraldDeep' : 'bg-slate-50 border-slate-200 text-slate-600'} cursor-pointer select-none transition-colors text-xs font-bold">
+                    <input
+                      type="checkbox"
+                      ${sProgress.slides ? 'checked' : ''}
+                      onchange="toggleResourceCompletion(${surah.number}, 'slides')"
+                      class="w-3.5 h-3.5 rounded text-emeraldMid focus:ring-emeraldMid cursor-pointer"
+                    />
+                    <span>الْعَرْضُ</span>
+                  </label>
+
+                  <!-- اخْتِبَارٌ تَفَاعُلِيٌّ -->
+                  <label class="flex items-center justify-center gap-1.5 p-2 rounded-xl border ${sProgress.quiz ? 'bg-emeraldSoft/80 border-emeraldMid text-emeraldDeep' : 'bg-slate-50 border-slate-200 text-slate-600'} cursor-pointer select-none transition-colors text-xs font-bold">
+                    <input
+                      type="checkbox"
+                      ${sProgress.quiz ? 'checked' : ''}
+                      onchange="toggleResourceCompletion(${surah.number}, 'quiz')"
+                      class="w-3.5 h-3.5 rounded text-emeraldMid focus:ring-emeraldMid cursor-pointer"
+                    />
+                    <span>الِاخْتِبَارُ</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- أَزْرَارُ الرَّوَابِطِ التَّعْلِيمِيَّةِ الثَّلَاثَةِ -->
+              <div class="space-y-2.5">
+                <!-- الزِّرُّ الْأَوَّلُ: الْخَرِيطَةُ الذِّهْنِيَّةُ -->
+                <a
+                  href="${surah.links.mindmap}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-action w-full flex items-center justify-between px-4 py-3 rounded-xl bg-emeraldSoft hover:bg-emeraldDeep text-emeraldDeep hover:text-white border border-sageBorder hover:border-emeraldDeep font-bold text-sm group"
+                >
+                  <span class="flex items-center gap-2.5">
+                    <svg class="w-5 h-5 text-emeraldMid group-hover:text-goldLight transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                    </svg>
+                    <span>الْخَرِيطَةُ الذِّهْنِيَّةُ</span>
+                  </span>
+                  <svg class="w-4 h-4 opacity-75 group-hover:opacity-100" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+
+                <!-- الزِّرُّ الثَّانِي: الْعَرْضُ التَّقْدِيمِيُّ -->
+                <a
+                  href="${surah.links.slides}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-action w-full flex items-center justify-between px-4 py-3 rounded-xl bg-goldLight hover:bg-goldAccent text-charcoal hover:text-white border border-goldAccent/30 hover:border-goldAccent font-bold text-sm group"
+                >
+                  <span class="flex items-center gap-2.5">
+                    <svg class="w-5 h-5 text-goldAccent group-hover:text-white transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+                    </svg>
+                    <span>الْعَرْضُ التَّقْدِيمِيُّ</span>
+                  </span>
+                  <svg class="w-4 h-4 opacity-75 group-hover:opacity-100" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+
+                <!-- الزِّرُّ الثَّالِثُ: الِاخْتِبَارُ التَّفَاعُلِيُّ -->
+                <a
+                  href="${surah.links.quiz}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-action w-full flex items-center justify-between px-4 py-3 rounded-xl bg-emeraldDeep hover:bg-emeraldMid text-white font-bold text-sm shadow-xs group"
+                >
+                  <span class="flex items-center gap-2.5">
+                    <svg class="w-5 h-5 text-goldLight" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                    <span>الِاخْتِبَارُ التَّفَاعُلِيُّ</span>
+                  </span>
+                  <svg class="w-4 h-4 opacity-85 group-hover:opacity-100" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+          </article>
+        `;
+      }).join('');
+    }
+
+    /**
+     * تَحْدِيثُ مَظْهَرِ أَزْرَارِ التَّصْفِيَةِ (Filter Pills)
+     */
+    function updateFilterPillsUI() {
+      const pills = document.querySelectorAll('.filter-pill');
+      pills.forEach((pill) => {
+        const filterVal = pill.getAttribute('data-filter');
+        if (filterVal === currentFilter) {
+          pill.className = 'filter-pill active-pill px-4 py-2 rounded-xl text-sm font-bold bg-emeraldDeep text-white shadow-sm cursor-pointer transition-all';
+        } else {
+          pill.className = 'filter-pill px-4 py-2 rounded-xl text-sm font-semibold bg-cream text-charcoal hover:bg-emeraldSoft hover:text-emeraldDeep border border-sageBorder/70 cursor-pointer transition-all';
+        }
+      });
+    }
+
+    /**
+     * تَهْيِئَةُ الْأَحْدَاثِ عِنْدَ اكْتِمَالِ تَحْمِيلِ الصَّفْحَةِ
+     */
+    document.addEventListener('DOMContentLoaded', () => {
+      loadProgress();
+      updateOverallProgressUI();
+      renderSurahCards();
+
+      // رَبْطُ أَحْدَاثِ أَزْرَارِ التَّصْفِيَةِ
+      const pills = document.querySelectorAll('.filter-pill');
+      pills.forEach((pill) => {
+        pill.addEventListener('click', () => {
+          currentFilter = pill.getAttribute('data-filter');
+          updateFilterPillsUI();
+          renderSurahCards();
+        });
+      });
+
+      // رَبْطُ حَدَثِ خِيَارِ "عَرْضُ غَيْرِ الْمُكْتَمِلِ فَقَطْ"
+      const incompleteToggle = document.getElementById('incomplete-only-toggle');
+      if (incompleteToggle) {
+        incompleteToggle.addEventListener('change', (e) => {
+          showIncompleteOnly = e.target.checked;
+          renderSurahCards();
+        });
+      }
+
+      // رَبْطُ زِرِّ إِعَادَةِ الضَّبْطِ فِي رِسَالَةِ الْفَرَاغِ
+      const showAllFromEmptyBtn = document.getElementById('show-all-from-empty');
+      if (showAllFromEmptyBtn) {
+        showAllFromEmptyBtn.addEventListener('click', () => {
+          currentFilter = 'all';
+          showIncompleteOnly = false;
+          if (incompleteToggle) incompleteToggle.checked = false;
+          updateFilterPillsUI();
+          renderSurahCards();
+        });
+      }
+
+      // إِدَارَةُ نَافِذَةِ تَأْكِيدِ إِعَادَةِ الضَّبْطِ
+      const resetBtn = document.getElementById('reset-progress-btn');
+      const resetModal = document.getElementById('reset-modal');
+      const confirmResetBtn = document.getElementById('confirm-reset-btn');
+      const cancelResetBtn = document.getElementById('cancel-reset-btn');
+
+      if (resetBtn && resetModal) {
+        resetBtn.addEventListener('click', () => {
+          resetModal.classList.remove('hidden');
+          resetModal.classList.add('flex');
+        });
+      }
+
+      if (cancelResetBtn && resetModal) {
+        cancelResetBtn.addEventListener('click', () => {
+          resetModal.classList.add('hidden');
+          resetModal.classList.remove('flex');
+        });
+      }
+
+      if (confirmResetBtn && resetModal) {
+        confirmResetBtn.addEventListener('click', () => {
+          progressState = {};
+          saveProgress();
+          updateOverallProgressUI();
+          renderSurahCards();
+          resetModal.classList.add('hidden');
+          resetModal.classList.remove('flex');
+          showToast('تَمَّتْ إِعَادَةُ تَعْيِينِ سِجِلِّ التَّقَدُّمِ بِالْكَامِلِ');
+        });
+      }
+
+      // إِغْلَاقُ النَّافِذَةِ عِنْدَ النَّقْرِ خَارِجَهَا
+      if (resetModal) {
+        resetModal.addEventListener('click', (e) => {
+          if (e.target === resetModal) {
+            resetModal.classList.add('hidden');
+            resetModal.classList.remove('flex');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
